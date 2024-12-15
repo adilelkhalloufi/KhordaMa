@@ -1,4 +1,3 @@
-
 import { ThemeProvider } from "@/components/theme-provider.tsx";
 import "./index.css";
 import React from "react";

@@ -17,6 +17,8 @@ import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { LogoIcon } from "./Icons";
+import i18next from "../i18n";
+import { webRoutes } from "@/routes/web";
 
 interface RouteProps {
   href: string;
@@ -25,20 +27,20 @@ interface RouteProps {
 
 const routeList: RouteProps[] = [
   {
-    href: "#features",
-    label: "Features",
+    href: "#home",
+    label: i18next.t("menu_home"),
   },
   {
-    href: "#testimonials",
-    label: "Testimonials",
+    href: "#scarp",
+    label: i18next.t("menu_scrap"),
   },
   {
-    href: "#pricing",
-    label: "Pricing",
+    href: "#about",
+    label: i18next.t("menu_about"),
   },
   {
     href: "#faq",
-    label: "FAQ",
+    label: i18next.t("menu_contact"),
   },
 ];
 
@@ -55,7 +57,7 @@ export const Navbar = () => {
               className="ml-2 font-bold text-xl flex"
             >
               <LogoIcon />
-              ShadcnUI/React
+              {i18next.t("website")}
             </a>
           </NavigationMenuItem>
 
@@ -63,10 +65,7 @@ export const Navbar = () => {
           <span className="flex md:hidden">
             <ModeToggle />
 
-            <Sheet
-              open={isOpen}
-              onOpenChange={setIsOpen}
-            >
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger className="px-2">
                 <Menu
                   className="flex md:hidden h-5 w-5"
@@ -129,12 +128,12 @@ export const Navbar = () => {
           <div className="hidden md:flex gap-2">
             <a
               rel="noreferrer noopener"
-              href="https://github.com/leoMirandaa/shadcn-landing-page.git"
-              target="_blank"
+              href={webRoutes.login}
+              // target="_blank"
               className={`border ${buttonVariants({ variant: "secondary" })}`}
             >
-              <GitHubLogoIcon className="mr-2 w-5 h-5" />
-              Github
+              {/* <GitHubLogoIcon className="mr-2 w-5 h-5" /> */}
+              Login
             </a>
 
             <ModeToggle />
