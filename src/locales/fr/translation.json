@@ -4,5 +4,21 @@
   "menu_about": "À propos de nous",
   "menu_contact": "Contactez-nous",
   "menu_scrap": "Ferraille",
-  "menu_auction": "Enchères"
+  "menu_auction": "Enchères",
+  "login": "Se connecter",
+  "title_sponsor": "Investisseurs et fondateurs",
+  "title_about": "À propos de la société",
+  "hero_title": "Bienvenue sur <span class='text-green-600'>KhordaMa</span> L'Avenir de la Gestion des Déchets et des Déchets Industriels",
+  "hero_description": "Une plateforme simple permettant aux entreprises de commercer efficacement des déchets et matériaux industriels.",
+  "button_scrap": "Marché de la ferraille",
+  "button_stagnant": "Marché stagnant",
+  "testimonial1": "Adev",
+  "testimonial2": "Mohammed Hanine",
+  "testimonial1_description": "KhordaMa a rendu la vente de nos matériaux de récupération excédentaires très simple. Rapide, efficace et fiable – hautement recommandé ! avatar utilisateur",
+  "testimonial2_description": "KhordaMa is the first platform in Morocco dedicated to the efficient buying and selling of industrial scrap and waste. It revolutionizes the recycling industry by connecting businesses with ease, helping to promote sustainability and reduce waste.",
+  "testimonial1_profil": "adevMa",
+  "testimonial2_profil": "CTO EquipConnect\n\n",
+  "testimonial3\n\n": "1# Platform",
+  "testimonial3_description": "KhordaMa is the first platform in Morocco dedicated to the efficient buying and selling of industrial scrap and waste. It revolutionizes the recycling industry by connecting businesses with ease, helping to promote sustainability and reduce waste.",
+  "about_description": "KhordaMa is a leading platform in Morocco that specializes in the buying and selling of industrial scrap and waste materials. Our mission is to connect businesses efficiently, enabling them to trade excess materials in a simple, transparent, and sustainable manner. By offering an easy-to-use online marketplace, we help companies minimize waste, promote recycling, and optimize their resource management. Whether you're looking to offload unused materials or source valuable resources, KhordaMa is your trusted partner for all industrial scrap and waste needs."
 }

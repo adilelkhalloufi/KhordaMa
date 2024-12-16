@@ -4,10 +4,9 @@ import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-import enNs1 from "./locales/eng/translation.json";
+import enNs1 from "./locales/en/translation.json";
 import frNs1 from "./locales/fr/translation.json";
 import arNs1 from "./locales/ar/translation.json";
-
 i18next
   .use(Backend)
   .use(LanguageDetector)
@@ -27,5 +26,6 @@ i18next
         ns1: arNs1,
       },
     },
+    
   });
 export default i18next;

@@ -12,52 +12,61 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
-import { LogoIcon } from "./Icons";
-import i18next from "../i18n";
 import { webRoutes } from "@/routes/web";
+import { IconLogin, IconRecycle } from "@tabler/icons-react";
+import { LangToggle } from "./lang-toggle";
+import { useTranslation } from "react-i18next";
 
 interface RouteProps {
   href: string;
   label: string;
 }
 
-const routeList: RouteProps[] = [
-  {
-    href: "#home",
-    label: i18next.t("menu_home"),
-  },
-  {
-    href: "#scarp",
-    label: i18next.t("menu_scrap"),
-  },
-  {
-    href: "#about",
-    label: i18next.t("menu_about"),
-  },
-  {
-    href: "#faq",
-    label: i18next.t("menu_contact"),
-  },
-];
+
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { t } = useTranslation();
+
+
+  const routeList: RouteProps[] = [
+    {
+      href: "#home",
+      // label: "Home",
+      label: t("menu_home"),
+    },
+    {
+      href: "#scarp",
+      //  label: "Scarp",
+      label: t("menu_scrap"),
+    },
+    {
+      href: "#about",
+      label: t("menu_about"),
+      // label: "About",
+    },
+    {
+      href: "#contact",
+      label: t("menu_contact"),
+      // label: "Contact"  ,
+    },
+  ];
+
   return (
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
       <NavigationMenu className="mx-auto">
         <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
           <NavigationMenuItem className="font-bold flex">
+            <IconRecycle />
             <a
               rel="noreferrer noopener"
               href="/"
-              className="ml-2 font-bold text-xl flex"
+              className="ml-2 font-bold text-xl flex text-center"
             >
-              <LogoIcon />
-              {i18next.t("website")}
+              {t("website")}
             </a>
           </NavigationMenuItem>
 
@@ -78,7 +87,7 @@ export const Navbar = () => {
               <SheetContent side={"left"}>
                 <SheetHeader>
                   <SheetTitle className="font-bold text-xl">
-                    Shadcn/React
+                    {t("website")}
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col justify-center items-center gap-2 mt-4">
@@ -101,8 +110,8 @@ export const Navbar = () => {
                       variant: "secondary",
                     })}`}
                   >
-                    <GitHubLogoIcon className="mr-2 w-5 h-5" />
-                    Github
+                    <IconLogin className="mr-2 w-5 h-5" />
+                    {t("login")}
                   </a>
                 </nav>
               </SheetContent>
@@ -132,11 +141,12 @@ export const Navbar = () => {
               // target="_blank"
               className={`border ${buttonVariants({ variant: "secondary" })}`}
             >
-              {/* <GitHubLogoIcon className="mr-2 w-5 h-5" /> */}
-              Login
+              <IconLogin className="mr-2 w-5 h-5" />
+              {t("login")}
             </a>
 
             <ModeToggle />
+            <LangToggle />
           </div>
         </NavigationMenuList>
       </NavigationMenu>

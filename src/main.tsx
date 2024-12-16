@@ -1,7 +1,8 @@
-import { ThemeProvider } from "@/components/theme-provider.tsx";
-import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import './i18n';
+import "./index.css";
+import { ThemeProvider } from "@/components/theme-provider.tsx";
 import { RouterProvider } from "react-router-dom";
 import { Toaster } from "sonner";
 import { browserRouter } from "./routes/browserRouter";
