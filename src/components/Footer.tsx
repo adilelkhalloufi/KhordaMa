@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import { LogoIcon } from "./Icons";
 
 export const Footer = () => {
+  const {t} = useTranslation()
   return (
     <footer id="footer">
       <hr className="w-11/12 mx-auto" />
@@ -13,42 +15,11 @@ export const Footer = () => {
             className="font-bold text-xl flex"
           >
             <LogoIcon />
-            ShadcnUI/React
+            {t('website')}
           </a>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">Follow US</h3>
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Github
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Twitter
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Dribbble
-            </a>
-          </div>
-        </div>
+      
 
         <div className="flex flex-col gap-2">
           <h3 className="font-bold text-lg">Platforms</h3>
@@ -152,14 +123,14 @@ export const Footer = () => {
 
       <section className="container pb-14 text-center">
         <h3>
-          &copy; 2024 Landing page made by{" "}
+          &copy; CopyRight By   {" "}
           <a
             rel="noreferrer noopener"
             target="_blank"
-            href="https://www.linkedin.com/in/leopoldo-miranda/"
+            href="www.adev.ma"
             className="text-primary transition-all border-primary hover:border-b-2"
           >
-            Leo Miranda
+            Adev.ma
           </a>
         </h3>
       </section>

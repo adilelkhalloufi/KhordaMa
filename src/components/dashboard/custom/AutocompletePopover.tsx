@@ -4,22 +4,14 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "@radix-ui/react-popover";
-import {
-  Command,
-  CommandInput,
-  CommandList,
-  CommandItem,
-  CommandGroup,
-  CommandEmpty,
-  CommandSeparator,
-} from "@/components/ui/command"; // Adjust based on your components' paths
  
- import { Separator } from "@/components/ui/separator";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
-import { Badge } from "../ui/badge";
-
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
+ 
 type AutocompletePopoverProps = {
   data: { value: any; name: any; [key: string]: any }[]; // Allow additional properties
   title?: string;

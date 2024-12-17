@@ -1,15 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import { webRoutes } from "./web";
-import loadable from "@loadable/component";
-import ProgressBar from "@/components/loader/progressBar";
+//  import ProgressBar from "@/components/loader/progressBar";
 import RequireAuth from "./requireAuth";
-import Layout from "@/components/dashboard/layout";
-import Redirect from "./Redirect";
-import App from "@/App";
+ import App from "@/App";
 import ErrorPage from "@/components/errors/general-error";
+import { LayoutSh } from "@/components/dashboard/custom/layout";
 
 const errorElement = <ErrorPage />;
-const fallbackElement = <ProgressBar />;
+// const fallbackElement = <ProgressBar />;
 
 // const Dashboard = loadable(() => import("../pages/dashboard"), {
 //   fallback: fallbackElement,
@@ -48,7 +46,7 @@ export const browserRouter = createBrowserRouter([
   {
     element: (
       <RequireAuth>
-        <Layout />
+        <LayoutSh />
       </RequireAuth>
     ),
     errorElement: errorElement,

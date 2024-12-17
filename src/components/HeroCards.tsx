@@ -1,13 +1,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Badge } from "./ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
+  
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter,
+ 
 } from "@/components/ui/card";
  import { LightBulbIcon } from "./Icons";
  import { useTranslation } from "react-i18next";

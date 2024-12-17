@@ -1,25 +1,28 @@
+import { useTranslation } from "react-i18next";
+
 export const Statistics = () => {
   interface statsProps {
     quantity: string;
     description: string;
   }
-
+  const {t} = useTranslation()
   const stats: statsProps[] = [
     {
-      quantity: "2.7K+",
-      description: "Users",
+      quantity: "653T",
+      description: t('statistac.title1'),
     },
     {
-      quantity: "1.8K+",
-      description: "Subscribers",
+      quantity: "1,000",
+      description: t('statistac.title2'),
     },
     {
-      quantity: "112",
-      description: "Downloads",
+      quantity: "3,500",
+      description: t('statistac.title3'),
     },
     {
-      quantity: "4",
-      description: "Products",
+      quantity: "15",
+      description: t('statistac.title4'),
+
     },
   ];
 

@@ -16,9 +16,10 @@ import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { webRoutes } from "@/routes/web";
-import { IconLogin, IconRecycle } from "@tabler/icons-react";
+import { IconLogin } from "@tabler/icons-react";
 import { LangToggle } from "./lang-toggle";
 import { useTranslation } from "react-i18next";
+import { LogoIcon } from "./Icons";
 
 interface RouteProps {
   href: string;
@@ -60,7 +61,7 @@ export const Navbar = () => {
       <NavigationMenu className="mx-auto">
         <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
           <NavigationMenuItem className="font-bold flex">
-            <IconRecycle />
+             <LogoIcon />
             <a
               rel="noreferrer noopener"
               href="/"

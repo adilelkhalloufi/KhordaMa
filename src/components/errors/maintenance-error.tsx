@@ -1,5 +1,6 @@
-import { Button } from '@/components/custom/button'
+import { Button } from "../ui/button";
 
+ 
 export default function MaintenanceError() {
   return (
     <div className='h-svh'>

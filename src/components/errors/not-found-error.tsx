@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import { Button } from '@/components/custom/button'
-import { webRoutes } from '@/routes/web'
+ import { webRoutes } from '@/routes/web'
+import { Button } from '../ui/button'
 
 export default function NotFoundError() {
   const navigate = useNavigate()

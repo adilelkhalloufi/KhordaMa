@@ -1,5 +1,6 @@
-export const CONFIG = {
+export const CONFIG : any = {
     CURENCY : "DIRHAM",
+    theme : "",
     COUNTRY : "UNITED ARAB EMIRATES",
     LANGUAGE_CODE : "FR",
     CURRENCY_SYMBOL : "MAD",
