@@ -15,5 +15,6 @@ export const webRoutes = {
   Marque: '/Marque',
   Parametre: '/Parametre',
   Societe: '/Société',
+  stagnant: '/stagnant',
 
 };

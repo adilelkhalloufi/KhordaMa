@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
-import { CheckboxItem } from "@/components/ui/checkbox";
+ import { Label } from "@radix-ui/react-dropdown-menu";
+import { Slider } from "../ui/Slider";
+import { Checkbox } from "../ui/checkbox";
 interface FilterSidebarProps {
   categories: string[];
   selectedCategories: string[];
@@ -56,12 +56,12 @@ export const FilterSidebar = ({
         <div className="space-y-2">
           {categories.map((category) => (
             <div key={category} className="flex items-center space-x-2">
-              <CheckboxItem
+              <Checkbox
                 id={category}
                 checked={selectedCategories.includes(category)}
                 onCheckedChange={() => onCategoryChange(category)}
               />
-              <Label htmlFor={category} className="text-sm cursor-pointer">
+              <Label  className="text-sm cursor-pointer">
                 {category}
               </Label>
             </div>

@@ -40,7 +40,7 @@ export const Navbar = () => {
       label: t("menu_home"),
     },
     {
-      href: "#scarp",
+      href: webRoutes.stagnant,
       //  label: "Scarp",
       label: t("menu_scrap"),
     },

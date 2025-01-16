@@ -1,6 +1,7 @@
+import { FilterSidebar } from "@/components/products/FilterSidebar";
+import { ProductCard } from "@/components/products/ProductCard";
 import {useState}from"react";
-import { ProductCard } from "@/components/ProductCard";
-import { FilterSidebar } from "@/components/FilterSidebar";
+ 
 // Sample data - in a real app this would come from an API
 const SAMPLE_PRODUCTS = [
   {

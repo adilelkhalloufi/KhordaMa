@@ -5,9 +5,11 @@ import RequireAuth from "./requireAuth";
  import App from "@/App";
 import ErrorPage from "@/components/errors/general-error";
 import { LayoutSh } from "@/components/dashboard/custom/layout";
+import ProgressBar from "@/components/loader/progressBar";
+import loadable from "@loadable/component";
 
 const errorElement = <ErrorPage />;
-// const fallbackElement = <ProgressBar />;
+const fallbackElement = <ProgressBar />;
 
 // const Dashboard = loadable(() => import("../pages/dashboard"), {
 //   fallback: fallbackElement,
@@ -23,9 +25,9 @@ const errorElement = <ErrorPage />;
 // const Sales = loadable(() => import("../pages/sales"), {
 //   fallback: fallbackElement,
 // });
-// const Company = loadable(() => import('../pages/company'), {
-//   fallback: fallbackElement,
-// });
+const Stagnant = loadable(() => import('../pages/ProductList'), {
+  fallback: fallbackElement,
+});
 
 export const browserRouter = createBrowserRouter([
   {
@@ -33,7 +35,12 @@ export const browserRouter = createBrowserRouter([
     element: <App />,
     errorElement: errorElement,
   },
-
+  {
+    path: webRoutes.stagnant,
+    element: <Stagnant />,
+    errorElement: errorElement,
+  },
+  
   // auth routes
   // {
   //   path: webRoutes.login,
