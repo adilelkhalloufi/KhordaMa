@@ -29,7 +29,7 @@ if (i18n.language === 'ar') {
 }
   return (
     <>
-      <Navbar />
+  
       <Hero />
       <Sponsors />
       <About />
@@ -42,8 +42,7 @@ if (i18n.language === 'ar') {
       {/* <Pricing /> */}
       <Newsletter />
       <FAQ />
-      <Footer />
-      <ScrollToTop />
+  
     </>
   );
 }

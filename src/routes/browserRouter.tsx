@@ -7,6 +7,7 @@ import ErrorPage from "@/components/errors/general-error";
 import { LayoutSh } from "@/components/dashboard/custom/layout";
 import ProgressBar from "@/components/loader/progressBar";
 import loadable from "@loadable/component";
+import LayoutLanding from "@/components/landing/LayoutLanding";
 
 const errorElement = <ErrorPage />;
 const fallbackElement = <ProgressBar />;
@@ -31,14 +32,22 @@ const Stagnant = loadable(() => import('../pages/ProductList'), {
 
 export const browserRouter = createBrowserRouter([
   {
-    path: webRoutes.home,
-    element: <App />,
+    element: (
+      <LayoutLanding/>
+    ),
     errorElement: errorElement,
-  },
-  {
-    path: webRoutes.stagnant,
-    element: <Stagnant />,
-    errorElement: errorElement,
+    children: [
+      {
+        path: webRoutes.home,
+        element: <App />,
+      },
+      {
+        path: webRoutes.stagnant,
+        element: <Stagnant />,
+      },
+      
+   
+    ],
   },
   
   // auth routes
