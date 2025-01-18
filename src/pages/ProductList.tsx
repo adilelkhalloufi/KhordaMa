@@ -1,5 +1,11 @@
 import { FilterSidebar } from "@/components/products/FilterSidebar";
 import { ProductCard } from "@/components/products/ProductCard";
+import ListProductSkeleton from "@/components/skeleton/ListProductSkeleton";
+import { Categorie, Product, Unite } from "@/interfaces/models/admin";
+import { apiRoutes } from "@/routes/api";
+import { handleErrorResponse } from "@/utils";
+import http from "@/utils/http";
+import { useQuery } from "@tanstack/react-query";
 
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -43,23 +49,59 @@ const SAMPLE_PRODUCTS = [
 const Index = () => {
   const { t } = useTranslation();
 
+
+  const { data: categories = [] } = useQuery<Categorie[]>({
+    queryKey: ['data'],
+    queryFn: () =>
+      http
+        .get<Categorie[]>(apiRoutes.categories)
+        .then((res) => res.data)
+        .catch((e) => {
+          handleErrorResponse(e)
+          return []
+        }),
+  })
+  const { data: unites = [] } = useQuery<Unite[]>({
+    queryKey: ['data'],
+    queryFn: () =>
+      http
+        .get<Unite[]>(apiRoutes.unites)
+        .then((res) => res.data)
+        .catch((e) => {
+          handleErrorResponse(e)
+          return []
+        }),
+  })
+  const { isLoading, data: products = [] } = useQuery<Product[]>({
+    queryKey: ['data'],
+    queryFn: () =>
+      http
+        .get<Product[]>(apiRoutes.products)
+        .then((res) => res.data)
+        .catch((e) => {
+          handleErrorResponse(e)
+          return []
+        }),
+  })
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 500]);
+  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
+  const [selectedUnites, setSelectedUnites] = useState<number[]>([]);
 
-  const categories = Array.from(new Set(SAMPLE_PRODUCTS.map((p) => p.category)));
-  const maxPrice = Math.max(...SAMPLE_PRODUCTS.map((p) => p.price));
-
-  const filteredProducts = SAMPLE_PRODUCTS.filter((product) => {
+  const maxPrice = Math.max(...products.map((p) => p.price));
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, maxPrice]);
+  const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory =
-      selectedCategories.length === 0 || selectedCategories.includes(product.category);
+      selectedCategories.length === 0 || selectedCategories.includes(product.categorie?.id);
+    const matchesUnites =
+      selectedUnites.length === 0 || selectedUnites.includes(product.unite?.id);
     const matchesPrice = product.price >= priceRange[0] && product.price <= priceRange[1];
 
-    return matchesSearch && matchesCategory && matchesPrice;
+    return matchesSearch && matchesCategory && matchesPrice && matchesUnites;
   });
 
-  const handleCategoryChange = (category: string) => {
+
+  const handleCategoryChange = (category: any) => {
     setSelectedCategories((prev) =>
       prev.includes(category)
         ? prev.filter((c) => c !== category)
@@ -67,6 +109,16 @@ const Index = () => {
     );
   };
 
+  const handleUniteChange = (uniteId: any) => {
+    setSelectedUnites((prev) =>
+      prev.includes(uniteId)
+        ? prev.filter((id) => id !== uniteId)
+        : [...prev, uniteId]
+    );
+  };
+
+
+  { isLoading && <ListProductSkeleton /> }
   return (
     <div className="min-h-screen p-6">
       <h1 className="text-3xl font-bold mb-8">{t('our_product')}</h1>
@@ -77,6 +129,7 @@ const Index = () => {
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
+
           {filteredProducts.length === 0 && (
             <p className="text-center text-muted-foreground mt-8">
               {t("no_product_found")}
@@ -85,11 +138,14 @@ const Index = () => {
         </div>
         <FilterSidebar
           categories={categories}
+          unites={unites}
           selectedCategories={selectedCategories}
+          selectedUnites={selectedUnites}
           priceRange={priceRange}
           maxPrice={maxPrice}
           searchTerm={searchTerm}
           onCategoryChange={handleCategoryChange}
+          onUniteChange={handleUniteChange}
           onPriceChange={setPriceRange}
           onSearchChange={setSearchTerm}
         />

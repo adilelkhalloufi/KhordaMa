@@ -1,16 +1,10 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
- interface ProductCardProps {
-  product: {
-    id: number;
-    name: string;
-    price: number;
-    description: string;
-    image: string;
-    category: string;
-  };
+import { Product } from "@/interfaces/models/admin";
+interface ProductCardProps {
+  product: Product
 }
 export const ProductCard = ({ product }: ProductCardProps) => {
-   
+
   return (
     <Card className="product-card">
       <CardHeader className="p-0">

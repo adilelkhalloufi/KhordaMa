@@ -3,25 +3,35 @@ import { Label } from "@radix-ui/react-dropdown-menu";
 import { Checkbox } from "../ui/checkbox";
 import { useTranslation } from "react-i18next";
 import { Slider } from "../ui/slider";
+import { Categorie, Unite } from "@/interfaces/models/admin";
+import i18next from "i18next";
 interface FilterSidebarProps {
-  categories: string[];
-  selectedCategories: string[];
+  categories: Categorie[];
+  selectedCategories: number[];
+  selectedUnites: number[];
   priceRange: [number, number];
   maxPrice: number;
   searchTerm: string;
-  onCategoryChange: (category: string) => void;
+  unites: Unite[];
+  onCategoryChange: (category: number) => void;
+  onUniteChange: (unite: number) => void;
   onPriceChange: (value: [number, number]) => void;
   onSearchChange: (value: string) => void;
+
 }
 export const FilterSidebar = ({
   categories,
   selectedCategories,
+  selectedUnites,
   priceRange,
   maxPrice,
   searchTerm,
+  unites,
   onCategoryChange,
   onPriceChange,
   onSearchChange,
+  onUniteChange
+
 }: FilterSidebarProps) => {
 
   const { t } = useTranslation();
@@ -58,14 +68,31 @@ export const FilterSidebar = ({
         <h3 className="font-semibold mb-3">{t('categories')}</h3>
         <div className="space-y-2">
           {categories.map((category) => (
-            <div key={category} className="flex items-center space-x-2">
+            <div key={category.id} className="flex items-center space-x-2">
               <Checkbox
-                id={category}
-                checked={selectedCategories.includes(category)}
-                onCheckedChange={() => onCategoryChange(category)}
+                id={category.id}
+                checked={selectedCategories.includes(category.id)}
+                onCheckedChange={() => onCategoryChange(category.id)}
               />
               <Label className="text-sm cursor-pointer">
-                {category}
+                {category.name[i18next.language]}
+              </Label>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h3 className="font-semibold mb-3">{t('unites')}</h3>
+        <div className="space-y-2">
+          {unites.map((untie) => (
+            <div key={untie.name} className="flex items-center space-x-2">
+              <Checkbox
+                id={untie.id}
+                checked={selectedUnites.includes(untie.id)}
+                onCheckedChange={() => onUniteChange(untie.id)}
+              />
+              <Label className="text-sm cursor-pointer">
+                {untie.name[i18next.language]}
               </Label>
             </div>
           ))}

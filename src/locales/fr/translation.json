@@ -54,5 +54,6 @@
   "search_placeholder": "Search products...",
   "price_range": "Price Range",
   "currency": "MAD",
-  "categories": "Categories"
+  "categories": "Categories",
+  "unites": "Unit"
 }
