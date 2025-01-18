@@ -47,5 +47,12 @@
   "newsletter.description": "الطريقة البسيطة للتواصل معنا",
   "button.subscribe": "يشترك",
   "button.whatsup": "عبر الواتس اب",
-  "button.contact": "اتصل بنا"
+  "button.contact": "اتصل بنا",
+  "our_product": "منتجاتنا",
+  "no_product_found": "لم يتم العثور على أي منتجات تطابق معاييرك.",
+  "search": "بحث",
+  "search_placeholder": "البحث عن المنتجات...",
+  "price_range": "نطاق السعر",
+  "currency": "درهم",
+  "categories": "فئات"
 }

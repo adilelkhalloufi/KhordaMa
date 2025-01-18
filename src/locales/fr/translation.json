@@ -47,5 +47,12 @@
   "newsletter.description": "le moyen simple de nous contacter",
   "button.subscribe": "S'abonner",
   "button.whatsup": "Par WhatsApp",
-  "button.contact": "Contactez-nous"
+  "button.contact": "Contactez-nous",
+  "our_product": "Nos produits",
+  "no_product_found": "Aucun produit trouvé correspondant à vos critères.",
+  "search": "Search",
+  "search_placeholder": "Search products...",
+  "price_range": "Price Range",
+  "currency": "MAD",
+  "categories": "Categories"
 }

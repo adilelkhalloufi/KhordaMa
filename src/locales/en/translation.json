@@ -47,5 +47,12 @@
   "newsletter.description": "the simple way connect with us ",
   "button.subscribe": "Subscribe",
   "button.whatsup": "Via WhatsApp",
-  "button.contact": "Contact us"
+  "button.contact": "Contact us",
+  "our_product": "Our Products",
+  "no_product_found": "No products found matching your criteria.",
+  "search": "Recherche",
+  "search_placeholder": "Rechercher des produits...",
+  "price_range": "Gamme de prix",
+  "currency": "MAD",
+  "categories": "Catégories"
 }

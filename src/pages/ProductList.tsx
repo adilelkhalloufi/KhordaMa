@@ -1,7 +1,9 @@
 import { FilterSidebar } from "@/components/products/FilterSidebar";
 import { ProductCard } from "@/components/products/ProductCard";
-import {useState}from"react";
- 
+
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 // Sample data - in a real app this would come from an API
 const SAMPLE_PRODUCTS = [
   {
@@ -39,6 +41,8 @@ const SAMPLE_PRODUCTS = [
 ];
 
 const Index = () => {
+  const { t } = useTranslation();
+
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 500]);
@@ -65,7 +69,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen p-6">
-      <h1 className="text-3xl font-bold mb-8">Our Products</h1>
+      <h1 className="text-3xl font-bold mb-8">{t('our_product')}</h1>
       <div className="flex flex-col md:flex-row gap-6">
         <div className="flex-1">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -75,7 +79,7 @@ const Index = () => {
           </div>
           {filteredProducts.length === 0 && (
             <p className="text-center text-muted-foreground mt-8">
-              No products found matching your criteria.
+              {t("no_product_found")}
             </p>
           )}
         </div>

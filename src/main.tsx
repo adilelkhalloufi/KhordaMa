@@ -13,10 +13,29 @@ import { store } from "./store";
 import { injectStore } from "./utils/http";
 import Loader from "./components/loader";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import i18next from "./i18n";
 
 const persistor = persistStore(store);
 injectStore(store);
 const queryClient = new QueryClient();
+
+// Handle language direction change
+i18next.on('languageChanged', (lng) => {
+  // Set the text direction based on language
+  if (lng === 'ar') {
+    document.documentElement.setAttribute('dir', 'rtl');
+  } else {
+    document.documentElement.setAttribute('dir', 'ltr');
+  }
+});
+
+// Initialize the direction based on the default language
+if (i18next.language === 'ar') {
+  document.documentElement.setAttribute('dir', 'rtl');
+} else {
+  document.documentElement.setAttribute('dir', 'ltr');
+}
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider>

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-interface ProductCardProps {
+ interface ProductCardProps {
   product: {
     id: number;
     name: string;
@@ -10,6 +10,7 @@ interface ProductCardProps {
   };
 }
 export const ProductCard = ({ product }: ProductCardProps) => {
+   
   return (
     <Card className="product-card">
       <CardHeader className="p-0">
