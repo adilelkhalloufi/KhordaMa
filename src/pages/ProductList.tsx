@@ -6,52 +6,15 @@ import { apiRoutes } from "@/routes/api";
 import { handleErrorResponse } from "@/utils";
 import http from "@/utils/http";
 import { useQuery } from "@tanstack/react-query";
-
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-// Sample data - in a real app this would come from an API
-const SAMPLE_PRODUCTS = [
-  {
-    id: 1,
-    name: "Wireless Headphones",
-    price: 199,
-    description: "High-quality wireless headphones with noise cancellation",
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
-    category: "Electronics",
-  },
-  {
-    id: 2,
-    name: "Running Shoes",
-    price: 89,
-    description: "Comfortable running shoes for professional athletes",
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
-    category: "Sports",
-  },
-  {
-    id: 3,
-    name: "Smart Watch",
-    price: 299,
-    description: "Latest generation smartwatch with health tracking",
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-    category: "Electronics",
-  },
-  {
-    id: 4,
-    name: "Backpack",
-    price: 79,
-    description: "Durable backpack for everyday use",
-    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62",
-    category: "Accessories",
-  },
-];
+
 
 const Index = () => {
-  const { t } = useTranslation();
-
 
   const { data: categories = [] } = useQuery<Categorie[]>({
-    queryKey: ['data'],
+    queryKey: ['categories'],
     queryFn: () =>
       http
         .get<Categorie[]>(apiRoutes.categories)
@@ -62,7 +25,7 @@ const Index = () => {
         }),
   })
   const { data: unites = [] } = useQuery<Unite[]>({
-    queryKey: ['data'],
+    queryKey: ['unites'],
     queryFn: () =>
       http
         .get<Unite[]>(apiRoutes.unites)
@@ -72,8 +35,9 @@ const Index = () => {
           return []
         }),
   })
+
   const { isLoading, data: products = [] } = useQuery<Product[]>({
-    queryKey: ['data'],
+    queryKey: ['products'],
     queryFn: () =>
       http
         .get<Product[]>(apiRoutes.products)
@@ -83,14 +47,18 @@ const Index = () => {
           return []
         }),
   })
+
+  const { t } = useTranslation();
+
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
   const [selectedUnites, setSelectedUnites] = useState<number[]>([]);
-
-  const maxPrice = Math.max(...products.map((p) => p.price));
+  const maxPrice = products.reduce((max, product) => Math.max(max, product.price), 0);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, maxPrice]);
+
   const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
+    console.log("product :", product)
+    const matchesSearch = product?.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory =
       selectedCategories.length === 0 || selectedCategories.includes(product.categorie?.id);
     const matchesUnites =
@@ -155,3 +123,4 @@ const Index = () => {
 };
 
 export default Index;
+
