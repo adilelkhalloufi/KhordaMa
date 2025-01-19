@@ -1,10 +1,11 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-dropdown-menu";
-import { Checkbox } from "../ui/checkbox";
 import { useTranslation } from "react-i18next";
 import { Slider } from "../ui/slider";
 import { Categorie, Unite } from "@/interfaces/models/admin";
 import i18next from "i18next";
+import { Checkbox } from "../ui/checkbox";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 interface FilterSidebarProps {
   categories: Categorie[];
   selectedCategories: number[];
@@ -64,40 +65,60 @@ export const FilterSidebar = ({
           </div>
         </div>
       </div>
-      <div>
-        <h3 className="font-semibold mb-3">{t('categories')}</h3>
-        <div className="space-y-2">
-          {categories.map((category) => (
-            <div key={category.id} className="flex items-center space-x-2">
-              <Checkbox
-                id={category.id}
-                checked={selectedCategories.includes(category.id)}
-                onCheckedChange={() => onCategoryChange(category.id)}
-              />
-              <Label className="text-sm cursor-pointer">
-                {category.name[i18next.language]}
-              </Label>
-            </div>
-          ))}
-        </div>
+
+
+      <div className="w-full">
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="categories">
+            <AccordionTrigger>
+              {t('categories')}
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="space-y-2">
+                {categories.map((category) => (
+                  <div key={category.id} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={category.id}
+                      checked={selectedCategories.includes(category.id)}
+                      onCheckedChange={() => onCategoryChange(category.id)}
+                    />
+                    <Label className="text-sm cursor-pointer">
+                      {category.name[i18next.language]}
+                    </Label>
+                  </div>
+                ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
-      <div>
-        <h3 className="font-semibold mb-3">{t('unites')}</h3>
-        <div className="space-y-2">
-          {unites.map((untie) => (
-            <div key={untie.name} className="flex items-center space-x-2">
-              <Checkbox
-                id={untie.id}
-                checked={selectedUnites.includes(untie.id)}
-                onCheckedChange={() => onUniteChange(untie.id)}
-              />
-              <Label className="text-sm cursor-pointer">
-                {untie.name[i18next.language]}
-              </Label>
-            </div>
-          ))}
-        </div>
+      <div className="w-full">
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="categories">
+            <AccordionTrigger>
+              {t('unites')}
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="space-y-2">
+                {unites.map((untie) => (
+                  <div key={untie.name} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={untie.id}
+                      checked={selectedUnites.includes(untie.id)}
+                      onCheckedChange={() => onUniteChange(untie.id)}
+                    />
+                    <Label className="text-sm cursor-pointer">
+                      {untie.name[i18next.language]}
+                    </Label>
+                  </div>
+
+                ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
+
     </div>
   );
 };

@@ -17,7 +17,7 @@ const Index = () => {
     queryKey: ['categories'],
     queryFn: () =>
       http
-        .get<Categorie[]>(apiRoutes.categories)
+        .get<Categorie[]>(apiRoutes.categories, { params: { type: 2 } })
         .then((res) => res.data)
         .catch((e) => {
           handleErrorResponse(e)
@@ -56,24 +56,25 @@ const Index = () => {
   const maxPrice = products.reduce((max, product) => Math.max(max, product.price), 0);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, maxPrice]);
 
-  const filteredProducts = products.filter((product) => {
-    console.log("product :", product)
-    const matchesSearch = product?.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory =
-      selectedCategories.length === 0 || selectedCategories.includes(product.categorie?.id);
-    const matchesUnites =
-      selectedUnites.length === 0 || selectedUnites.includes(product.unite?.id);
-    const matchesPrice = product.price >= priceRange[0] && product.price <= priceRange[1];
+  const filteredProducts = products
+    .filter((product) => {
 
-    return matchesSearch && matchesCategory && matchesPrice && matchesUnites;
-  });
+      const matchesSearch = product?.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory =
+        selectedCategories.length === 0 || selectedCategories.includes(product.categorie?.id);
+      const matchesUnites =
+        selectedUnites.length === 0 || selectedUnites.includes(product.unite?.id);
+      const matchesPrice = product.price >= priceRange[0] && product.price <= priceRange[1];
+      console.log(matchesSearch, matchesCategory, matchesPrice, matchesUnites)
+      return matchesSearch && matchesCategory && matchesPrice && matchesUnites;
+    });
 
 
-  const handleCategoryChange = (category: any) => {
+  const handleCategoryChange = (categoryId: any) => {
     setSelectedCategories((prev) =>
-      prev.includes(category)
-        ? prev.filter((c) => c !== category)
-        : [...prev, category]
+      prev.includes(categoryId)
+        ? prev.filter((c) => c !== categoryId)
+        : [...prev, categoryId]
     );
   };
 
@@ -84,7 +85,6 @@ const Index = () => {
         : [...prev, uniteId]
     );
   };
-
 
   { isLoading && <ListProductSkeleton /> }
   return (

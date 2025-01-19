@@ -17,7 +17,13 @@ import i18next from "./i18n";
 
 const persistor = persistStore(store);
 injectStore(store);
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 600000,
+    },
+  },
+});
 
 // Handle language direction change
 i18next.on('languageChanged', (lng) => {

@@ -36,6 +36,7 @@ export interface Categorie {
   name: string
   slug?: string
   description?: string
+  subcategories?: Categorie[]
 }
 
 export interface Unite {
