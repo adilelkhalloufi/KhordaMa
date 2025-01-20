@@ -41,7 +41,11 @@ const Index = () => {
     queryFn: () =>
       http
         .get<Product[]>(apiRoutes.products)
-        .then((res) => res.data)
+        .then((res) => {
+
+           return res.data
+ 
+        })
         .catch((e) => {
           handleErrorResponse(e)
           return []
@@ -53,20 +57,15 @@ const Index = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
   const [selectedUnites, setSelectedUnites] = useState<number[]>([]);
-  const maxPrice = products.reduce((max, product) => Math.max(max, product.price), 0);
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, maxPrice]);
 
-  const filteredProducts = products
+    const filteredProducts = products
     .filter((product) => {
-
       const matchesSearch = product?.name.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory =
         selectedCategories.length === 0 || selectedCategories.includes(product.categorie?.id);
       const matchesUnites =
         selectedUnites.length === 0 || selectedUnites.includes(product.unite?.id);
-      const matchesPrice = product.price >= priceRange[0] && product.price <= priceRange[1];
-      console.log(matchesSearch, matchesCategory, matchesPrice, matchesUnites)
-      return matchesSearch && matchesCategory && matchesPrice && matchesUnites;
+       return matchesSearch && matchesCategory &&  matchesUnites;
     });
 
 
@@ -86,8 +85,10 @@ const Index = () => {
     );
   };
 
-  { isLoading && <ListProductSkeleton /> }
+  
   return (
+    <>
+    {isLoading ?  <ListProductSkeleton />  :  
     <div className="min-h-screen p-6">
       <h1 className="text-3xl font-bold mb-8">{t('our_product')}</h1>
       <div className="flex flex-col md:flex-row gap-6">
@@ -109,16 +110,14 @@ const Index = () => {
           unites={unites}
           selectedCategories={selectedCategories}
           selectedUnites={selectedUnites}
-          priceRange={priceRange}
-          maxPrice={maxPrice}
           searchTerm={searchTerm}
           onCategoryChange={handleCategoryChange}
           onUniteChange={handleUniteChange}
-          onPriceChange={setPriceRange}
           onSearchChange={setSearchTerm}
         />
       </div>
-    </div>
+    </div>}
+    </>
   );
 };
 

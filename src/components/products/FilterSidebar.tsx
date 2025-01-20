@@ -10,26 +10,19 @@ interface FilterSidebarProps {
   categories: Categorie[];
   selectedCategories: number[];
   selectedUnites: number[];
-  priceRange: [number, number];
-  maxPrice: number;
   searchTerm: string;
   unites: Unite[];
   onCategoryChange: (category: number) => void;
   onUniteChange: (unite: number) => void;
-  onPriceChange: (value: [number, number]) => void;
   onSearchChange: (value: string) => void;
-
 }
 export const FilterSidebar = ({
   categories,
   selectedCategories,
   selectedUnites,
-  priceRange,
-  maxPrice,
   searchTerm,
   unites,
   onCategoryChange,
-  onPriceChange,
   onSearchChange,
   onUniteChange
 
@@ -48,7 +41,8 @@ export const FilterSidebar = ({
           className="w-full"
         />
       </div>
-      <div className="mb-6">
+
+      {/* <div className="mb-6">
         <h3 className="font-semibold mb-3">{t("price_range")}</h3>
         <div className="px-2">
           <Slider
@@ -64,7 +58,7 @@ export const FilterSidebar = ({
             <span>{t("currency")} {priceRange[1]}</span>
           </div>
         </div>
-      </div>
+      </div> */}
 
 
       <div className="w-full">

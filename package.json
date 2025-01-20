@@ -2,9 +2,9 @@
   "name": "shadcn-landing-page-template",
   "description": "Landing page template utilizing Shadcn, React, Typescript, and Tailwind CSS for rapid development and responsive design.",
   "author": {
-    "name": "Leopoldo Miranda",
-    "email": "leomirandadev@gmail.com",
-    "url": "https://github.com/leoMirandaa"
+    "name": "adil elkhalloufi",
+    "email": "adilelkhalloufi@gmail.com",
+    "url": "https://github.com/adilelkhalloufi"
   },
   "license": "MIT",
   "keywords": [
@@ -12,10 +12,8 @@
     "typescript",
     "shadcn",
     "shadcn/ui",
-    "tailwind",
-    "landing-page",
-    "template",
-    "responsive-design"
+    "tailwind"
+  
   ],
   "private": true,
   "version": "1.1.0",
