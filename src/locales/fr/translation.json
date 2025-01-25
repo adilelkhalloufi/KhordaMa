@@ -8,7 +8,7 @@
   "login": "Se connecter",
   "title_sponsor": "Investisseurs et fondateurs",
   "title_about": "À propos de la société",
-  "hero_title": "Bienvenue sur <span class='text-green-600'>KhordaMa</span> L'Avenir de la Gestion des Déchets et des Déchets Industriels",
+  "hero_title": "Bienvenue sur  KhordaMa  L'Avenir de la Gestion des Déchets et des Déchets Industriels",
   "hero_description": "Une plateforme simple permettant aux entreprises de commercer efficacement des déchets et matériaux industriels.",
   "button_scrap": "Marché de la ferraille",
   "button_stagnant": "Marché stagnant",
@@ -56,5 +56,6 @@
   "currency": "MAD",
   "categories": "Categories",
   "unites": "Unit",
-  "t": ""
+  "t": "",
+  "d": ""
 }

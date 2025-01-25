@@ -4,23 +4,23 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "@radix-ui/react-popover";
- 
+
 import { CheckIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
- 
+
 type AutocompletePopoverProps = {
-  data: { value: any; name: any; [key: string]: any }[]; // Allow additional properties
+  data: { value: any; name: any;[key: string]: any }[]; // Allow additional properties
   title?: string;
-  emptyMessage?:string;
-  clearMessage?:string;
+  emptyMessage?: string;
+  clearMessage?: string;
   onSelectionChange?: (selectedValues: string[] | any[]) => void; // Callback with either values or full objects
   multiSelect?: boolean; // Whether multiple selections are allowed (default is true)
   returnFullObject?: boolean; // Whether to return the full object or just the value
-  isLoading?: boolean;  
+  isLoading?: boolean;
   defaultValue?: any[] | any; // Default value can be a single object or an array
 
 };
@@ -39,23 +39,23 @@ const AutocompletePopover: React.FC<AutocompletePopoverProps> = ({
   const [query, setQuery] = useState("");
   const [selectedObjects, setSelectedObjects] = useState<Set<any>>(new Set());
 
-    // Normalize defaultValue to always be an array
-    useEffect(() => {
-      const normalizedDefaultValue = Array.isArray(defaultValue)
-        ? defaultValue
-        : [defaultValue]; // If it's not an array, wrap it in an array
-      if (normalizedDefaultValue.length > 0) {
-        setSelectedObjects(new Set(normalizedDefaultValue));
-      }
-    }, [defaultValue]);
+  // Normalize defaultValue to always be an array
+  useEffect(() => {
+    const normalizedDefaultValue = Array.isArray(defaultValue)
+      ? defaultValue
+      : [defaultValue]; // If it's not an array, wrap it in an array
+    if (normalizedDefaultValue.length > 0) {
+      setSelectedObjects(new Set(normalizedDefaultValue));
+    }
+  }, [defaultValue]);
   // Filter data based on the query
   const filteredData = query === ""
     ? data
     : data.filter((item) =>
-        item.name.toLowerCase().includes(query.toLowerCase())
-      );
+      item.name.toLowerCase().includes(query.toLowerCase())
+    );
 
- 
+
   const toggleSelection = (item: any) => {
     if (multiSelect) {
       // Multi-selection logic
@@ -68,18 +68,18 @@ const AutocompletePopover: React.FC<AutocompletePopoverProps> = ({
         updatedSelection.add(item);
       }
       setSelectedObjects(updatedSelection);
-  
+
       // Return full objects or just values depending on returnFullObject
       const selectionToReturn = Array.from(updatedSelection).map((obj) =>
         returnFullObject ? obj : obj.value
       );
-  
+
       // If multiSelect is enabled, pass an array of selected items (full objects or just values)
       onSelectionChange?.(selectionToReturn);
     } else {
       // Single-selection logic
       setSelectedObjects(new Set([item]));
-  
+
       // If returnFullObject is true, pass the full object, otherwise, pass just the value
       onSelectionChange?.(returnFullObject ? item : item.value);
     }
@@ -98,15 +98,15 @@ const AutocompletePopover: React.FC<AutocompletePopoverProps> = ({
                 variant="secondary"
                 className="rounded-sm px-1 font-normal lg:hidden"
               >
-                {Array.from(selectedObjects).map((item,index) => (
-                    <Badge
-                      key={index}
-                      variant="secondary"
-                      className="rounded-sm px-1 font-normal"
-                    >
-                      {item.name}
-                    </Badge>
-                  ))
+                {Array.from(selectedObjects).map((item, index) => (
+                  <Badge
+                    key={index}
+                    variant="secondary"
+                    className="rounded-sm px-1 font-normal"
+                  >
+                    {item.name}
+                  </Badge>
+                ))
                 }
               </Badge>
               <div className="hidden space-x-1 lg:flex">
@@ -118,7 +118,7 @@ const AutocompletePopover: React.FC<AutocompletePopoverProps> = ({
                     {selectedObjects.size} sélectionné
                   </Badge>
                 ) : (
-                  Array.from(selectedObjects).map((item,index) => (
+                  Array.from(selectedObjects).map((item, index) => (
                     <Badge
                       key={index}
                       variant="secondary"

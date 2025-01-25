@@ -1,16 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
 import { webRoutes } from "./web";
-//  import ProgressBar from "@/components/loader/progressBar";
-import RequireAuth from "./requireAuth";
- import App from "@/App";
+import App from "@/App";
 import ErrorPage from "@/components/errors/general-error";
-import { LayoutSh } from "@/components/dashboard/custom/layout";
-import ProgressBar from "@/components/loader/progressBar";
-import loadable from "@loadable/component";
 import LayoutLanding from "@/components/landing/LayoutLanding";
 
+//  import ProgressBar from "@/components/loader/progressBar";
+// import RequireAuth from "./requireAuth";
+// import { LayoutSh } from "@/components/dashboard/custom/layout";
+// import ProgressBar from "@/components/loader/progressBar";
+// import loadable from "@loadable/component";
+
 const errorElement = <ErrorPage />;
-const fallbackElement = <ProgressBar />;
+// const fallbackElement = <ProgressBar />;
 
 // const Dashboard = loadable(() => import("../pages/dashboard"), {
 //   fallback: fallbackElement,
@@ -26,14 +27,14 @@ const fallbackElement = <ProgressBar />;
 // const Sales = loadable(() => import("../pages/sales"), {
 //   fallback: fallbackElement,
 // });
-const Stagnant = loadable(() => import('../pages/ProductList'), {
-  fallback: fallbackElement,
-});
+// const Stagnant = loadable(() => import('../pages/ProductList'), {
+//   fallback: fallbackElement,
+// });
 
 export const browserRouter = createBrowserRouter([
   {
     element: (
-      <LayoutLanding/>
+      <LayoutLanding />
     ),
     errorElement: errorElement,
     children: [
@@ -41,55 +42,31 @@ export const browserRouter = createBrowserRouter([
         path: webRoutes.home,
         element: <App />,
       },
-      {
-        path: webRoutes.stagnant,
-        element: <Stagnant />,
-      },
-      
-   
+      // {
+      //   path: webRoutes.stagnant,
+      //   element: <Stagnant />,
+      // },
+
+
     ],
   },
-  
-  // auth routes
-  // {
-  //   path: webRoutes.login,
 
-  //   element: <Login />,
+
+  // {
+  //   element: (
+  //     <RequireAuth>
+  //       <LayoutSh />
+  //     </RequireAuth>
+  //   ),
   //   errorElement: errorElement,
+  //   children: [
+
+  //   ],
   // },
 
-  // protected routes
-  {
-    element: (
-      <RequireAuth>
-        <LayoutSh />
-      </RequireAuth>
-    ),
-    errorElement: errorElement,
-    children: [
-      // {
-      //   path: webRoutes.Dashboard,
-      //   element: <Dashboard />,
-      // },
-      // {
-      //   path: webRoutes.Vente,
-      //   element: <Sales />,
-      // },
-      // {
-      //   path: webRoutes.Societe,
-      //   element: <Company />,
-      // },
-      // {
-      //   path: webRoutes.Clients,
-      //   element: <Users />,
-      // },
-    ],
-  },
-
-  // 404
-  {
-    path: "*",
-    element: <ErrorPage />,
-    errorElement: errorElement,
-  },
+  // {
+  //   path: "*",
+  //   element: <ErrorPage />,
+  //   errorElement: errorElement,
+  // },
 ]);

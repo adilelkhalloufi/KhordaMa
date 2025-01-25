@@ -1,14 +1,11 @@
 import { Product } from '@/interfaces/models/admin'
 import { Button } from './button'
-import { useDispatch } from 'react-redux'
-import { addToCart } from '@/store/slices/cartSlice'
+// import { useDispatch } from 'react-redux'
 import { FormatPrice } from '@/utils'
 
-interface ProductItemInterface {
-  product: Product
-}
-export default function ProductItem({ product }: ProductItemInterface) {
-  const dispatch = useDispatch()
+
+export default function ProductItem(product: Product) {
+  // const dispatch = useDispatch()
 
   return (
     <li className='rounded-lg border p-4 hover:shadow-md'>
@@ -25,7 +22,7 @@ export default function ProductItem({ product }: ProductItemInterface) {
           onClick={() => {
             console.log('product : ', product)
 
-            dispatch(addToCart(product))
+            // dispatch(addToCart(product))
           }}
           className={`${product.quantity ? 'border border-blue-300 bg-blue-50 hover:bg-blue-100 dark:border-blue-700 dark:bg-blue-950 dark:hover:bg-blue-900' : ''}`}
         >

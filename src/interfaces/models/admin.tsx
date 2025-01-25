@@ -32,23 +32,23 @@ export interface Company {
 
 
 export interface Categorie {
-  id: number
-  name: string
+  id: any
+  name: any
   slug?: string
   description?: string
   subcategories?: Categorie[]
 }
 
 export interface Unite {
-  id: number
-  name: string
+  id: any
+  name: any
   slug?: string
   description?: string
 }
 
 
 export interface Setting {
-  id: number
+  id: any
   licence?: string
   expired?: boolean
   expired_date?: Date
@@ -63,13 +63,14 @@ export interface Setting {
 
 export interface Product {
 
-  id: number
-  name: string
+  id: any
+  name: any
   image?: string
   reference?: string
   description?: string
   price: number
-  quantity?: number
+  quantity: number
+  qte: number
   categorie?: Categorie
   unite?: Unite
   user?: User

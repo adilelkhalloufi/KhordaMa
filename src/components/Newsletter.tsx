@@ -14,7 +14,7 @@ export const Newsletter = () => {
 
       <div className="container py-24 sm:py-32">
         <h3 className="text-center text-4xl md:text-5xl font-bold">
-        {t('newsletter.title')}
+          {t('newsletter.title')}
         </h3>
         <p className="text-xl text-muted-foreground text-center mt-4 mb-8">
           {t('newsletter.description')}

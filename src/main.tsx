@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Profiler } from "react";
 import ReactDOM from "react-dom/client";
 import './i18n';
 import "./index.css";
@@ -14,9 +14,11 @@ import { injectStore } from "./utils/http";
 import Loader from "./components/loader";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import i18next from "./i18n";
+import App from "./App";
 
 const persistor = persistStore(store);
 injectStore(store);
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -25,34 +27,42 @@ const queryClient = new QueryClient({
   },
 });
 
-// Handle language direction change
 i18next.on('languageChanged', (lng) => {
-  // Set the text direction based on language
-  if (lng === 'ar') {
-    document.documentElement.setAttribute('dir', 'rtl');
-  } else {
-    document.documentElement.setAttribute('dir', 'ltr');
-  }
+  document.documentElement.setAttribute('dir', lng === 'ar' ? 'rtl' : 'ltr');
 });
+document.documentElement.setAttribute('dir', i18next.language === 'ar' ? 'rtl' : 'ltr');
 
-// Initialize the direction based on the default language
-if (i18next.language === 'ar') {
-  document.documentElement.setAttribute('dir', 'rtl');
-} else {
-  document.documentElement.setAttribute('dir', 'ltr');
+function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime) {
+  // Aggregate or log render timings...
+  // make detail ti be shown in the console
+  console.log('id', id);
+  console.log('phase', phase);
+  console.log('actualDuration', actualDuration);
+  console.log('baseDuration', baseDuration);
+  console.log('startTime', startTime);
+  console.log('commitTime', commitTime);
+  console.log('----------------------');
 }
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
-        <Provider store={store}>
-          <PersistGate loading={<Loader />} persistor={persistor}>
-            <RouterProvider router={browserRouter} />
+    <Provider store={store}>
+
+      <PersistGate loading={<Loader />} persistor={persistor}>
+        <QueryClientProvider client={queryClient}>
+
+
+          <ThemeProvider>
+            {/* <RouterProvider router={browserRouter} /> */}
+            <Profiler id="App" onRender={onRender}>
+              <App />
+
+            </Profiler>
             <Toaster />
-          </PersistGate>
-        </Provider>
-      </QueryClientProvider>
-    </ThemeProvider>
-  </React.StrictMode>
+          </ThemeProvider>
+        </QueryClientProvider>
+
+      </PersistGate>
+
+    </Provider>
+  </React.StrictMode >
 );

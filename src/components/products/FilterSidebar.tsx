@@ -1,7 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { useTranslation } from "react-i18next";
-import { Slider } from "../ui/slider";
 import { Categorie, Unite } from "@/interfaces/models/admin";
 import i18next from "i18next";
 import { Checkbox } from "../ui/checkbox";
@@ -41,25 +40,6 @@ export const FilterSidebar = ({
           className="w-full"
         />
       </div>
-
-      {/* <div className="mb-6">
-        <h3 className="font-semibold mb-3">{t("price_range")}</h3>
-        <div className="px-2">
-          <Slider
-            defaultValue={[0, maxPrice]}
-            max={maxPrice}
-            step={1}
-            value={priceRange}
-            onValueChange={onPriceChange}
-            className="my-4"
-          />
-          <div className="flex justify-between text-sm text-muted-foreground">
-            <span>{t("currency")} {priceRange[0]}</span>
-            <span>{t("currency")} {priceRange[1]}</span>
-          </div>
-        </div>
-      </div> */}
-
 
       <div className="w-full">
         <Accordion type="single" collapsible className="w-full">

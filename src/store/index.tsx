@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import adminSlice, { AdminState } from './slices/adminSlice';
-import cartSlice, { CartState } from './slices/cartSlice';
-import settingSlice ,{  SettingsState } from './slices/settingSlice';
+// import cartSlice, { CartState } from './slices/cartSlice';
+import settingSlice, { SettingsState } from './slices/settingSlice';
 
 
 import {
@@ -15,7 +15,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { CONFIG } from '@/CONFIG';
-  
+
 const persistConfig = {
   key: CONFIG.APP_NAME,
   storage,
@@ -23,8 +23,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   admin: adminSlice,
-  cart: cartSlice,  
-  setting: settingSlice,  
+  // cart: cartSlice,
+  setting: settingSlice,
 
 });
 
@@ -42,7 +42,7 @@ export const store = configureStore({
 
 export type RootState = {
   admin: AdminState;
-  cart: CartState;
+  // cart: CartState;
   setting: SettingsState;
 
 };

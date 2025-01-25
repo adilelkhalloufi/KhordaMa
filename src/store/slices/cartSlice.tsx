@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Cart } from '../../interfaces/models/Cart'
-import { Product, TypeGlasses } from '@/interfaces/models/admin'
+import { Product } from '@/interfaces/models/admin'
 
-export type CartState = Cart
+// export type anyState = any
 
-const initialState: CartState = {
+const initialState: any = {
   items: [],
   total_command: 0,
   total_payment: 0,
@@ -21,19 +20,19 @@ const initialState: CartState = {
   glass_types: [],
 }
 
-export const cartSlice = createSlice({
-  name: 'cart',
+export const anySlice = createSlice({
+  name: 'any',
   initialState: initialState,
   reducers: {
-    clearCart: (state: any) => {
+    clearany: (state: any) => {
       state = initialState
       return state
     },
-    addToCart: (state: Cart, action) => {
+    addToany: (state: any, action) => {
       const { id } = action.payload
       const newState = { ...state }
 
-      let itemIndex = newState?.items?.findIndex(
+      const itemIndex = newState?.items?.findIndex(
         (element: any) => element.id == id
       )
       if (itemIndex > -1) {
@@ -43,13 +42,13 @@ export const cartSlice = createSlice({
       }
       updateNbItems(state)
     },
-    minisToCart: (state, action) => {
+    minisToany: (state, action) => {
       const { id } = action.payload
-      console.log('minisToCart ', id)
+      console.log('minisToany ', id)
 
       const newState = { ...state }
 
-      let itemIndex = newState.items.findIndex(
+      const itemIndex = newState.items.findIndex(
         (element: any) => element.id == id
       )
       console.log('itemIndex ', itemIndex)
@@ -61,7 +60,7 @@ export const cartSlice = createSlice({
       }
       updateNbItems(state)
     },
-    deleteItem: (state: Cart, action) => {
+    deleteItem: (state: any, action) => {
       const { index, slug } = action.payload
       const newState = { ...state }
 
@@ -71,51 +70,51 @@ export const cartSlice = createSlice({
       updateNbItems(state)
     },
 
-    addCustomer: (state: Cart, action) => {
+    addCustomer: (state: any, action) => {
       state.customer = action.payload
     },
-    ClearCustomer: (state: Cart) => {
+    ClearCustomer: (state: any) => {
       state.customer = null
     },
-    IsCustomer: (state: Cart, action) => {
+    IsCustomer: (state: any, action) => {
       state.is_customer = action.payload
     },
 
-    addPrescription: (state: Cart, action) => {
+    addPrescription: (state: any, action) => {
       state.prescription = action.payload
     },
-    ClearPrescription: (state: Cart) => {
+    ClearPrescription: (state: any) => {
       state.prescription = null
     },
 
-    addPayment: (state: Cart, action) => {
+    addPayment: (state: any, action) => {
       const { payement } = action.payload
       const newState = { ...state }
       newState.payment = payement
       return newState
     },
-    removePayment: (state: Cart) => {
+    removePayment: (state: any) => {
       const newState = { ...state }
       newState.payment = null
       return newState
     },
-    addGlassType: (state, action: PayloadAction<TypeGlasses[]>) => {
+    addGlassType: (state, action: PayloadAction<any[]>) => {
       state.glass_types = action.payload
       updateNbItems(state)
     },
-    IsInvoice: (state: Cart, action) => {
+    IsInvoice: (state: any, action) => {
       state.is_invoice = action.payload
     },
-    addDiscount: (state: Cart, action) => {
+    addDiscount: (state: any, action) => {
       state.discount = action.payload
       updateNbItems(state)
     },
-    addAdvance: (state: Cart, action) => {
+    addAdvance: (state: any, action) => {
       state.advance = action.payload
       updateNbItems(state)
     },
 
-    addAssurance: (state: Cart, action) => {
+    addAssurance: (state: any, action) => {
       state.assurance = action.payload
     },
     reset: (state) => {
@@ -132,28 +131,28 @@ export const {
   addDiscount,
   addGlassType,
   addPayment,
-  addToCart,
+  addToany,
   addPrescription,
   addAdvance,
-  minisToCart,
+  minisToany,
   IsCustomer,
   IsInvoice,
-  clearCart,
+  clearany,
   deleteItem,
   ClearCustomer,
   ClearPrescription,
   removePayment,
   reset,
-} = cartSlice.actions
+} = anySlice.actions
 
-const updateNbItems = (state: Cart) => {
+const updateNbItems = (state: any) => {
   let total_products: number = state.items.reduce(
     (total: number, produit: Product) =>
       Number(total) + Number(produit.qte) * Number(produit.price),
     0
   )
   let total_type_glasses: number = state.glass_types.reduce(
-    (total: number, produit: TypeGlasses) =>
+    (total: number, produit: any) =>
       Number(total) + Number(produit?.price),
     0
   )
@@ -167,4 +166,4 @@ const updateNbItems = (state: Cart) => {
     Number(state.discount) -
     Number(state.advance)
 }
-export default cartSlice.reducer
+export default anySlice.reducer

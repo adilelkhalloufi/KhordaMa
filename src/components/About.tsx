@@ -1,8 +1,10 @@
 import { Statistics } from "./Statistics";
- import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export const About = () => {
-  const {t} = useTranslation()
+
+  const { t } = useTranslation()
+
   return (
     <section
       id="about"
@@ -19,12 +21,12 @@ export const About = () => {
             <div className="pb-6">
               <h2 className="text-3xl md:text-4xl font-bold">
                 <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-                   {t('title_about')}
+                  {t('title_about')}
                 </span>
-                 
+
               </h2>
               <p className="text-xl text-muted-foreground mt-4">
-              {t('about.description')}
+                {t('about.description')}
               </p>
             </div>
 

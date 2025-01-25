@@ -8,7 +8,7 @@
   "login": "تسجيل الدخول",
   "title_sponsor": "المستثمرون والمؤسسون",
   "title_about": "نبذة عن الشركة",
-  "hero_title": "مرحبًا بكم في <span class='text-green-600'>KhordaMa</span> مستقبل إدارة النفايات والخردة",
+  "hero_title": "مرحبًا بكم في  KhordaMa  مستقبل إدارة النفايات والخردة",
   "hero_description": "منصة بسيطة تربط الشركات لتداول النفايات والخردة الصناعية بكفاءة.",
   "button_scrap": "سوق الخردة  ",
   "button_stagnant": "السوق الراكدة",
@@ -56,5 +56,6 @@
   "currency": "درهم",
   "categories": "فئات",
   "unites": "وحدة",
-  "t": ""
+  "t": "",
+  "d": ""
 }

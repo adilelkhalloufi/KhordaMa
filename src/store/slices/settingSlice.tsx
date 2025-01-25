@@ -1,32 +1,32 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {  Assurance, Customer, TypeGlasses } from '../../interfaces/models/admin';
- 
-interface DataState  {
-  customers: Customer[];
-  glasses: TypeGlasses[];
-  assurances: Assurance[];
-  step : number
-}
-export type SettingsState = DataState;
+// import {  Assurance, Customer, TypeGlasses } from '../../interfaces/models/admin';
+
+// interface DataState {
+//   customers: Customer[];
+//   glasses: TypeGlasses[];
+//   assurances: Assurance[];
+//   step: number
+// }
+export type SettingsState = any;
 
 const initialState: SettingsState = {
-  customers: [] as Customer[],
-  glasses: [] as TypeGlasses[],
-  assurances: [] as Assurance[],
-  step : 1,
+  customers: [] as any[],
+  glasses: [] as any[],
+  assurances: [] as any[],
+  step: 1,
 };
 
 export const settingSlice = createSlice({
   name: 'setting',
-  initialState : initialState,
+  initialState: initialState,
   reducers: {
-    setCustomers: (state, action: PayloadAction<Customer[]>) => {
+    setCustomers: (state, action: PayloadAction<any[]>) => {
       state.customers = action.payload;
     },
-    setGlasses: (state, action: PayloadAction<TypeGlasses[]>) => {
+    setGlasses: (state, action: PayloadAction<any[]>) => {
       state.glasses = action.payload;
     },
-    setAssurances: (state, action: PayloadAction<Assurance[]>) => {
+    setAssurances: (state, action: PayloadAction<any[]>) => {
       state.assurances = action.payload;
     },
     setStep: (state, action: PayloadAction<number>) => {
@@ -36,6 +36,6 @@ export const settingSlice = createSlice({
   },
 });
 
-export const { setCustomers, setGlasses , setAssurances ,resetState,setStep  } = settingSlice.actions;
+export const { setCustomers, setGlasses, setAssurances, resetState, setStep } = settingSlice.actions;
 
 export default settingSlice.reducer;
