@@ -4,8 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Badge } from "../ui/badge";
 import { Product } from "@/interfaces/admin";
 import i18next from "i18next";
-import { Button } from "../ui/Button";
-
+ 
 interface ProductCardProps {
   product: Product
 }

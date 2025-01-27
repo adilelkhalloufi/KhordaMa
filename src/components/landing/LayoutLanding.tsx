@@ -1,20 +1,22 @@
-import { Outlet } from "react-router-dom";
-import { Footer } from "../Footer";
+import { Outlet, useNavigation } from "react-router-dom";
 import { ScrollToTop } from "../ScrollToTop";
 import { Header } from "../Header";
-
-
-
+import Footer from "../Footer";
 
 export default function LayoutLanding() {
+  const navigation = useNavigation();
+
+  // Check if the route is still loading
+  const isLoading = navigation.state === "loading";
+
   return (
     <>
-      <Header />
+      {!isLoading && <Header />}
       <div className="container mt-20">
         <Outlet />
       </div>
-      <Footer />
+      {!isLoading && <Footer />}
       <ScrollToTop />
     </>
-  )
+  );
 }

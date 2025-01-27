@@ -11,10 +11,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Facebook, Instagram, Linkedin, Moon, Send, Sun, Twitter } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
-export default function Footerdemo() {
+export default function Footer() {
+  const { t } = useTranslation()
   const [isDarkMode, setIsDarkMode] = React.useState(true)
   const [isChatOpen, setIsChatOpen] = React.useState(false)
+
 
   React.useEffect(() => {
     if (isDarkMode) {
@@ -29,9 +32,9 @@ export default function Footerdemo() {
       <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="relative">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight">Stay Connected</h2>
+            <h2 className="mb-4 text-3xl font-bold tracking-tight">{t('website')}</h2>
             <p className="mb-6 text-muted-foreground">
-              Join our newsletter for the latest updates and exclusive offers.
+              {t('about.description')}
             </p>
             <form className="relative">
               <Input
@@ -166,7 +169,7 @@ export default function Footerdemo() {
           </nav>
         </div>
       </div>
-      <Button
+      {/* <Button
         onClick={() => setIsChatOpen(!isChatOpen)}
         className="fixed bottom-4 right-4 z-50 rounded-full shadow-lg"
       >
@@ -188,7 +191,7 @@ export default function Footerdemo() {
             </Button>
           </form>
         </div>
-      )}
+      )} */}
     </footer>
   )
 }
