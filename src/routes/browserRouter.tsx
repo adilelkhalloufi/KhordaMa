@@ -4,6 +4,7 @@ import ErrorPage from "@/components/errors/general-error";
 import LayoutLanding from "@/components/landing/LayoutLanding";
 import loadable from "@loadable/component";
 import ProgressBar from "@/components/loader/progressBar";
+import SingleProduct from "@/pages/SingleProduct";
 
 // import RequireAuth from "./requireAuth";
 // import { LayoutSh } from "@/components/dashboard/custom/layout";
@@ -46,6 +47,10 @@ export const browserRouter = createBrowserRouter([
         path: webRoutes.stagnant,
         element: <Stagnant />,
       },
+      {
+        path: webRoutes.SingleProduit,
+        element: <SingleProduct/>,
+      }
 
 
 

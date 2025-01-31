@@ -5,38 +5,44 @@ import { Badge } from "../ui/badge";
 import { Product } from "@/interfaces/admin";
 import i18next from "i18next";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { webRoutes } from "@/routes/web";
  
 interface ProductCardProps {
   product: Product
 }
 export const ProductCard = ({ product }: ProductCardProps) => {
   const { t } = useTranslation();
-  console.log("product : ",product)
  
+
   return (
-    <Card className="product-card relative">
+    <Card className="product-card relative"
+    
+    >
       <CardHeader className="p-0">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-48 object-cover rounded-t-lg"
-        />
+        <Link to={webRoutes.SingleProduit + product.id}>
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-48 object-cover rounded-t-lg"
+            />
 
 
-        <div className="absolute top-2 right-2">
-          <Badge
-            variant={product.status.color}
+            <div className="absolute top-2 right-2">
+              <Badge
+                variant={product.status.color}
 
-            className="text-xs">
-            {product.status.name[i18next.language]}
-          </Badge>
-        </div>
+                className="text-xs">
+                {product.status.name[i18next.language]}
+              </Badge>
+            </div>
 
-        <div className="absolute top-2 left-2">
-          <Badge className="px-2 py-1 bg-primary text-white rounded-lg text-xs">
-            <IconHeart></IconHeart>
-          </Badge>
-        </div>
+            <div className="absolute top-2 left-2">
+              <Badge className="px-2 py-1 bg-primary text-white rounded-lg text-xs">
+                <IconHeart></IconHeart>
+              </Badge>
+            </div>
+        </Link>
 
       </CardHeader>
       <CardContent className="p-4">
