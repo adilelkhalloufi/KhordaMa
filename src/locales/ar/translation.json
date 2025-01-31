@@ -62,5 +62,7 @@
   "faq.description": "ابحث عن إجابات للأسئلة الشائعة حول منصتنا.",
   "product.status": "حالة",
   "product.unite": "وحدة",
-  "product.qte": "الكمية "
+  "product.qte": "الكمية ",
+  "product.categorie": "فئة",
+  "product.command": "طلب"
 }

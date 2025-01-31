@@ -3,7 +3,7 @@ import { Moon, Sun } from "lucide-react"
 import { useTheme } from "./theme-provider"
 import { useTranslation } from "react-i18next";
 import { webRoutes } from "@/routes/web";
-import { IconLogin, IconRecycle } from "@tabler/icons-react";
+import { IconBasket, IconLogin, IconRecycle } from "@tabler/icons-react";
 import i18next from "../i18n"
 import { LangToggle } from "./lang-toggle";
 
@@ -77,6 +77,16 @@ export function Header() {
             {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
           </Button>
           <LangToggle />
+
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => console.log("basket")}   
+          >
+                        <IconBasket className="mr-2 w-5 h-5" />
+
+          </Button>
+     
           <Button>
             <IconLogin className="mr-2 w-5 h-5" />
             {t("login")}

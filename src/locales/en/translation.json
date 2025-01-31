@@ -62,5 +62,7 @@
   "faq.description": "Find answers to common questions about our platform.\n\n",
   "product.status": "Status",
   "product.unite": "Unité",
-  "product.qte": "Quantity"
+  "product.qte": "Quantity",
+  "product.categorie": "Category",
+  "product.command": "Order"
 }
