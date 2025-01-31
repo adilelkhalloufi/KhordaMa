@@ -1,32 +1,19 @@
-// single product component
-
 import i18next from "i18next";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Product } from "@/interfaces/admin";
-import { IconHeart } from "@tabler/icons-react";
-import { Card, CardContent, CardHeader } from "../components/ui/card";
-import { Badge } from "../components/ui/badge";
+ 
 import http from "@/utils/http";
 import { apiRoutes } from "@/routes/api";
 import { handleErrorResponse } from "@/utils";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { StarIcon } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Label } from "@radix-ui/react-label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { RadioGroupItem,RadioGroup } from "@/components/ui/radio-group";
+ 
  import ListProductSkeleton from "@/components/skeleton/ListProductSkeleton";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import ReviewCustomer from "@/components/products/ReviewCustomer";
+import RelatedProduct from "@/components/products/RelatedProduct";
 
 export const SingleProduct = () => {
   const { t } = useTranslation();
@@ -146,86 +133,7 @@ export const SingleProduct = () => {
           <div className="grid gap-4">
             <h2 className="font-bold text-lg">Related Products</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="relative overflow-hidden rounded-lg group">
-                <Link
-                  href="#"
-                  className="absolute inset-0 z-10"
-                  prefetch={false}
-                >
-                  <span className="sr-only">View</span>
-                </Link>
-                <img
-                  src="/placeholder.svg"
-                  alt="Related Product 1"
-                  width={400}
-                  height={300}
-                  className="object-cover w-full h-60"
-                  style={{ aspectRatio: "400/300", objectFit: "cover" }}
-                />
-                <div className="p-4 bg-background">
-                  <h3 className="text-lg font-semibold md:text-xl">
-                    Acme Prism Tee
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Cozy Chromatic Blend
-                  </p>
-                  <h4 className="text-base font-semibold md:text-lg">$99</h4>
-                </div>
-              </div>
-              <div className="relative overflow-hidden rounded-lg group">
-                <Link
-                  href="#"
-                  className="absolute inset-0 z-10"
-                  prefetch={false}
-                >
-                  <span className="sr-only">View</span>
-                </Link>
-                <img
-                  src="/placeholder.svg"
-                  alt="Related Product 2"
-                  width={400}
-                  height={300}
-                  className="object-cover w-full h-60"
-                  style={{ aspectRatio: "400/300", objectFit: "cover" }}
-                />
-                <div className="p-4 bg-background">
-                  <h3 className="text-lg font-semibold md:text-xl">
-                    Acme Shorts
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Quick-Dry Swim Shorts
-                  </p>
-                  <h4 className="text-base font-semibold md:text-lg">$34.99</h4>
-                </div>
-              </div>
-              <div className="relative overflow-hidden rounded-lg group">
-                <Link
-                  href="#"
-                  className="absolute inset-0 z-10"
-                  prefetch={false}
-                >
-                  <span className="sr-only">View</span>
-                </Link>
-                <img
-                  src="/placeholder.svg"
-                  alt="Related Product 3"
-                  width={400}
-                  height={300}
-                  className="object-cover w-full h-60"
-                  style={{ aspectRatio: "400/300", objectFit: "cover" }}
-                />
-                <div className="p-4 bg-background">
-                  <h3 className="text-lg font-semibold md:text-xl">
-                    Acme Pants
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Lightweight Cotton Pants
-                  </p>
-                  <h4 className="text-base font-semibold md:text-lg">
-                    $299.99
-                  </h4>
-                </div>
-              </div>
+              <RelatedProduct/>
             </div>
           </div>
         </div>
