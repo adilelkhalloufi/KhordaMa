@@ -2,11 +2,15 @@ import { Product } from '@/interfaces/admin'
 import { webRoutes } from '@/routes/web'
 import { Link } from 'react-router-dom'
 
-export default function RelatedProduct(product : Product) {
+interface ProductProps {
+  product? : Product
+}
+
+export default function RelatedProduct({product} : ProductProps) {
   return (
     <div className="relative overflow-hidden rounded-lg group">
     <Link
-      to={webRoutes.SingleProduit + product.id}
+      // to={webRoutes.SingleProduit + product.id}
       className="absolute inset-0 z-10"
     >
       <span className="sr-only">View</span>

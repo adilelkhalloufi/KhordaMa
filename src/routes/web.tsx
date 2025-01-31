@@ -8,7 +8,7 @@ export const webRoutes = {
   Facture: '/Facture',
   Fournisseur: '/Fournisseur',
   Produit: '/Produit',  
-  SingleProduit: '/Produit/',
+  SingleProduit: '/Produit/:id',
   Commandes: '/Commandes',
   Clients: '/Clients',
   Caisse: '/Caisse',
