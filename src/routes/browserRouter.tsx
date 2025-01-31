@@ -21,22 +21,20 @@ const fallbackElement = <ProgressBar />;
 //   fallback: fallbackElement,
 // });
 
-// const Login = loadable(() => import("../pages/auth/sign-in"), {
-//   fallback: fallbackElement,
-// });
+const Login = loadable(() => import("../pages/login"), {
+  fallback: fallbackElement,
+});
 
 const Landing = loadable(() => import("../pages/landing"), {
   fallback: fallbackElement,
 });
-const Stagnant = loadable(() => import('../pages/ProductList'), {
+const Stagnant = loadable(() => import("../pages/ProductList"), {
   fallback: fallbackElement,
 });
 
 export const browserRouter = createBrowserRouter([
   {
-    element: (
-      <LayoutLanding />
-    ),
+    element: <LayoutLanding />,
     errorElement: errorElement,
     children: [
       {
@@ -49,14 +47,11 @@ export const browserRouter = createBrowserRouter([
       },
       {
         path: webRoutes.SingleProduit,
-        element: <SingleProduct/>,
-      }
-
-
-
+        element: <SingleProduct />,
+      },
+     
     ],
   },
-
 
   // {
   //   element: (
@@ -69,10 +64,14 @@ export const browserRouter = createBrowserRouter([
 
   //   ],
   // },
-
-  // {
-  //   path: "*",
-  //   element: <ErrorPage />,
-  //   errorElement: errorElement,
-  // },
+  {
+    path: webRoutes.login,
+    element: <Login />,
+    errorElement: errorElement,
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
+    errorElement: errorElement,
+  },
 ]);

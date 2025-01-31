@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button"
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "./theme-provider"
+import { Button } from "@/components/ui/button";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "./theme-provider";
 import { useTranslation } from "react-i18next";
 import { webRoutes } from "@/routes/web";
 import { IconBasket, IconLogin, IconRecycle } from "@tabler/icons-react";
-import i18next from "../i18n"
+import i18next from "../i18n";
 import { LangToggle } from "./lang-toggle";
 
 interface RouteProps {
@@ -13,7 +13,7 @@ interface RouteProps {
 }
 
 export function Header() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
   const { t } = useTranslation();
 
   const routeList: RouteProps[] = [
@@ -38,7 +38,6 @@ export function Header() {
       // label: "Contact"  ,
     },
   ];
-
 
   return (
     <header className="fixed top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -65,7 +64,6 @@ export function Header() {
                 {route.label}
               </a>
             ))}
-
           </nav>
         </div>
         <div className="flex items-center space-x-4">
@@ -74,26 +72,33 @@ export function Header() {
             size="icon"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           >
-            {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+            {theme === "light" ? (
+              <Moon className="h-5 w-5" />
+            ) : (
+              <Sun className="h-5 w-5" />
+            )}
           </Button>
           <LangToggle />
 
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => console.log("basket")}   
+            onClick={() => console.log("basket")}
           >
-                        <IconBasket className="mr-2 w-5 h-5" />
-
+            <IconBasket className="mr-2 w-5 h-5" />
           </Button>
-     
-          <Button>
+
+          <Button
+            onClick={() => {
+              // go to route login
+              window.location.href = webRoutes.login;
+            }}
+          >
             <IconLogin className="mr-2 w-5 h-5" />
             {t("login")}
           </Button>
         </div>
       </div>
     </header>
-  )
+  );
 }
-
