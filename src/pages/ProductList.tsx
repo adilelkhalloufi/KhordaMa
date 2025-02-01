@@ -4,7 +4,7 @@ import ListProductSkeleton from "@/components/skeleton/ListProductSkeleton";
 import { Categorie, Product, Unite } from "@/interfaces/admin";
 import { apiRoutes } from "@/routes/api";
 import { handleErrorResponse } from "@/utils";
-import http from "@/utils/http";
+import http, { defaultHttp } from "@/utils/http";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -16,7 +16,7 @@ const Index = () => {
   const { data: categories = [] } = useQuery<Categorie[]>({
     queryKey: ['categories'],
     queryFn: () =>
-      http
+      defaultHttp
         .get<Categorie[]>(apiRoutes.categories, { params: { type: 2 } })
         .then((res) => res.data)
         .catch((e) => {
@@ -27,7 +27,7 @@ const Index = () => {
   const { data: unites = [] } = useQuery<Unite[]>({
     queryKey: ['unites'],
     queryFn: () =>
-      http
+      defaultHttp
         .get<Unite[]>(apiRoutes.unites)
         .then((res) => res.data)
         .catch((e) => {
@@ -39,7 +39,7 @@ const Index = () => {
   const { isLoading, data: products = [] } = useQuery<Product[]>({
     queryKey: ['products'],
     queryFn: () =>
-      http
+      defaultHttp
         .get<Product[]>(apiRoutes.products)
         .then((res) => {
 

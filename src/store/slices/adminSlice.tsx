@@ -3,7 +3,34 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export type AdminState = Admin | null;
 
-const initialState: AdminState = null;
+const initialState: AdminState = {
+  token: '',
+  user: {
+    id: 0,
+    name: '',
+    email: '',
+    password: '',
+    role: '',
+    token: '',
+  },
+  register: {
+    company_name: '',
+    role: '',
+    password: '',
+    email: '',
+    specialitie_id: 0,
+    interseing_id: [],
+    phone: '',
+    address: '',
+    zip_code: '',
+    city: '',
+    country: '',
+    agreement: false,
+    company_logo: '',
+    first_name: '',
+    last_name: '',
+  },
+};
 
 export const adminSlice = createSlice({
   name: 'admin',
@@ -13,7 +40,10 @@ export const adminSlice = createSlice({
       state = action.payload;
     },
     register: (state, action) => {
-      state.register = action.payload;
+      state.register = {
+        ...state.register,
+        [action.payload.key]: action.payload.value,
+      };
     },
     logout: (state) => {
       state = null;

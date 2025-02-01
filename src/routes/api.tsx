@@ -8,9 +8,7 @@ export const apiRoutes = {
   products: `${API_URL}/products`,
   categories: `${API_URL}/categorie`,
   unites: `${API_URL}/unites`,
-  customers: `${API_URL}/customers`,
-  glasses: `${API_URL}/glasses`,
-  assurances: `${API_URL}/assurances`,
+  specialities: `${API_URL}/specialities`,
 
 
 };

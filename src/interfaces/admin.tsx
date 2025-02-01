@@ -4,6 +4,12 @@ export interface Admin {
     register?: RegisterForm
 }
 
+export interface Specialitie {
+    id: any
+    name: any
+    slug?: string
+    description?: string
+}
 export interface RegisterForm {
 
     company_name?: string

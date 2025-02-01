@@ -6,8 +6,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { RadioGroupItem, RadioGroup } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { RoleEnum } from "@/enum/RoleEnum";
+import i18next from "i18next";
+import { useDispatch } from "react-redux";
+import { register } from "module";
 
-const TypeAccount = ({ form, setform }) => {
+const TypeAccount = ({ form, data }) => {
+    const dispatch = useDispatch()
 
     return (
         <div>
@@ -15,13 +19,15 @@ const TypeAccount = ({ form, setform }) => {
             <Card>
                 <CardHeader>
                     <CardTitle>Account type</CardTitle>
-                </CardHeader>
+                </CardHeader>data
                 <CardContent className="space-y-4">
                     <RadioGroup defaultValue="buyer"
                         className="grid grid-cols-2 gap-4"
                         onValueChange={(e) => {
-
-                            setform({ ...form, role: e })
+                            dispatch({
+                                type: "register",
+                                payload: { key: "role", value: e }
+                            });
                         }}
                     >
 
@@ -60,22 +66,29 @@ const TypeAccount = ({ form, setform }) => {
                     <Input
                         placeholder='Company name'
 
-                        onChange={(e) => setform({ ...form, company_name: e.target.value })}
+                        onChange={(e) => dispatch({
+                            type: "register",
+                            payload: { key: "company_name", value: e.target.value }
+                        })}
                     />
 
 
-                    <Select onValueChange={(e) => setform({ ...form, specialitie_id: e })}>
+                    <Select onValueChange={(e) =>
+                        dispatch({
+                            type: "register",
+                            payload: { key: "specialitie_id", value: e }
+                        })
+                    }>
                         <SelectTrigger >
                             <SelectValue placeholder="Select a specialitie" />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
                                 <SelectLabel>Specialitie</SelectLabel>
-                                <SelectItem value="apple">Apple</SelectItem>
-                                <SelectItem value="banana">Banana</SelectItem>
-                                <SelectItem value="blueberry">Blueberry</SelectItem>
-                                <SelectItem value="grapes">Grapes</SelectItem>
-                                <SelectItem value="pineapple">Pineapple</SelectItem>
+                                {data.map((item) => (
+                                    <SelectItem key={item.id} value={item.id}>{item.name[i18next.language]}</SelectItem>
+                                ))}
+
                             </SelectGroup>
                         </SelectContent>
                     </Select>

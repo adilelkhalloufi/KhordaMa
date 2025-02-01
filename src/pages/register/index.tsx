@@ -1,44 +1,47 @@
 import { Button } from "@/components/ui/button";
 import { defineStepper } from "@stepperize/react";
 import { useTranslation } from "react-i18next";
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Form } from '@/components/ui/form';
-import { RoleEnum } from "@/enum/RoleEnum";
 import TypeAccount from "@/components/register/TypeAccount";
 import InterseingForm from "@/components/register/InterseingForm";
 import PersonalInformation from "@/components/register/PersonalInformation";
 import { useEffect, useState } from "react";
-import { RegisterForm } from "@/interfaces/admin";
+import { Categorie, RegisterForm, Specialitie } from "@/interfaces/admin";
+import { useQuery } from "@tanstack/react-query";
+import { apiRoutes } from "@/routes/api";
+import { defaultHttp } from "@/utils/http";
+import { handleErrorResponse } from "@/utils";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
+
 
 
 
 const Register = () => {
+
     const { t } = useTranslation();
+    const form = useSelector((state: RootState) => state.admin?.register)
+    const [specialitie, setSpecialitie] = useState<Specialitie[]>([]);
+    const [categories, setCategories] = useState<Categorie[]>([]);
 
-    const [form, setform] = useState<RegisterForm>({
-        company_name: "",
-        role: "",
-        password: "",
-        email: "",
-        specialitie_id: 0,
-        interseing_id: [],
-        phone: "",
-        address: "",
-        zip_code: "",
-        city: "",
-        country: "",
-        agreement: false,
-        company_logo: "",
-        first_name: "",
+    useEffect(() => {
+        defaultHttp.get(apiRoutes.specialities)
+            .then((response) => {
+                setSpecialitie(response.data.data);
+            })
+            .catch(handleErrorResponse);
+        defaultHttp.get(apiRoutes.categories)
+            .then((response) => {
+                setCategories(response.data.data);
+            })
+            .catch(handleErrorResponse);
 
-    })
+    }, []);
+
 
     const { Scoped, useStepper, steps, utils } = defineStepper(
-        { id: "1", component: <TypeAccount form={form} setform={setform} /> },
-        { id: "2", component: <InterseingForm form={form} setform={setform} /> },
-        { id: "3", component: <PersonalInformation form={form} setform={setform} /> },
+        { id: "1", component: <TypeAccount form={form} data={specialitie} /> },
+        { id: "2", component: <InterseingForm form={form} data={categories} /> },
+        { id: "3", component: <PersonalInformation form={form} /> },
 
     );
 
