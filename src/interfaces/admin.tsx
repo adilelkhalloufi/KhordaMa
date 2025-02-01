@@ -1,10 +1,10 @@
 export interface Admin {
     token?: string
     user?: User
-    register?: Register
+    register?: RegisterForm
 }
 
-export interface Register {
+export interface RegisterForm {
 
     company_name?: string
     role?: string

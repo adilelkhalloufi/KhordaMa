@@ -1,4 +1,4 @@
-const PersonalInformation = ({ form }) => {
+const PersonalInformation = ({ form, setform }) => {
     return (
         <div>
             PersonalInformation

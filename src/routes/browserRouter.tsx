@@ -14,7 +14,7 @@ import Register from "@/pages/register/index";
 // import ProgressBar from "@/components/loader/progressBar";
 // import loadable from "@loadable/component";
 
-const errorElement = <ErrorPage />;
+// const errorElement = <ErrorPage />;
 const fallbackElement = <ProgressBar />;
 
 // const Dashboard = loadable(() => import("../pages/dashboard"), {
@@ -38,7 +38,7 @@ const Stagnant = loadable(() => import("../pages/ProductList"), {
 export const browserRouter = createBrowserRouter([
   {
     element: <LayoutLanding />,
-    errorElement: errorElement,
+    // errorElement: errorElement,
     children: [
       {
         path: webRoutes.home,
@@ -66,7 +66,7 @@ export const browserRouter = createBrowserRouter([
         <Layout />
       </RequireAuth>
     ),
-    errorElement: errorElement,
+    // errorElement: errorElement,
     children: [
       {
         path: webRoutes.Dashboard,
@@ -77,12 +77,12 @@ export const browserRouter = createBrowserRouter([
   {
     path: webRoutes.login,
     element: <SignIn />,
-    errorElement: errorElement,
+    // errorElement: errorElement,
   },
 
   {
     path: "*",
     element: <ErrorPage />,
-    errorElement: errorElement,
+    // errorElement: errorElement,
   },
 ]);

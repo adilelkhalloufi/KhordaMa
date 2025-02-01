@@ -9,65 +9,45 @@ import { RoleEnum } from "@/enum/RoleEnum";
 import TypeAccount from "@/components/register/TypeAccount";
 import InterseingForm from "@/components/register/InterseingForm";
 import PersonalInformation from "@/components/register/PersonalInformation";
+import { useEffect, useState } from "react";
+import { RegisterForm } from "@/interfaces/admin";
 
-const formSchemaTypeAccount = z.object({
-    company_name: z
-        .string()
-        .min(1, { message: 'Please enter your company name' }),
-    specialitie_id: z
-        .number(),
-    role: z
-        .number(),
-    first_name: z
-        .string()
-        .min(1, { message: 'Please enter your first name' }),
-    last_name: z
-        .string()
-        .min(1, { message: 'Please enter your last name' }),
-    email: z
-        .string()
-        .email({ message: 'Please enter a valid email' }),
-    password: z
-        .string()
-        .min(1, {
-            message: 'Please enter your password',
-        }),
-    phone: z
-        .string()
-        .min(1, {
-            message: 'Please enter your phone',
-        }),
-
-
-})
 
 
 const Register = () => {
     const { t } = useTranslation();
-    const form = useForm<z.infer<typeof formSchemaTypeAccount>>({
-        resolver: zodResolver(formSchemaTypeAccount),
-        defaultValues: {
-            company_name: '',
-            specialitie_id: 0,
-            role: RoleEnum.SELLER
-        },
+
+    const [form, setform] = useState<RegisterForm>({
+        company_name: "",
+        role: "",
+        password: "",
+        email: "",
+        specialitie_id: 0,
+        interseing_id: [],
+        phone: "",
+        address: "",
+        zip_code: "",
+        city: "",
+        country: "",
+        agreement: false,
+        company_logo: "",
+        first_name: "",
+
     })
+
     const { Scoped, useStepper, steps, utils } = defineStepper(
-        { id: "1", component: <TypeAccount form={form} /> },
-        { id: "2", component: <InterseingForm form={form} /> },
-        { id: "3", component: <PersonalInformation form={form} /> },
+        { id: "1", component: <TypeAccount form={form} setform={setform} /> },
+        { id: "2", component: <InterseingForm form={form} setform={setform} /> },
+        { id: "3", component: <PersonalInformation form={form} setform={setform} /> },
 
     );
 
     const { current, prev, next } = useStepper();
 
+    useEffect(() => {
+        console.log("form,", form);
+    }, [form])
 
-
-    function onSubmit(values: z.infer<typeof formSchemaTypeAccount>) {
-
-
-        console.log("values : ", values);
-    }
 
     return (
         <>
@@ -86,11 +66,10 @@ const Register = () => {
                 </div>
 
                 <div className="p-10 max-w-lg mx-auto  ">
-                    <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)}>
-                            {current.component}
-                        </form>
-                    </Form>
+
+                    {current.component}
+
+
 
                 </div>
                 <div className="flex flex-row justify-between">

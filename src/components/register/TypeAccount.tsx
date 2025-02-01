@@ -6,15 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { RadioGroupItem, RadioGroup } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { RoleEnum } from "@/enum/RoleEnum";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from '@/components/ui/form';
-const TypeAccount = ({ form }) => {
+
+const TypeAccount = ({ form, setform }) => {
 
     return (
         <div>
@@ -24,9 +17,22 @@ const TypeAccount = ({ form }) => {
                     <CardTitle>Account type</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                    <RadioGroup defaultValue="card" className="grid grid-cols-2 gap-4">
+                    <RadioGroup defaultValue="buyer"
+                        className="grid grid-cols-2 gap-4"
+                        onValueChange={(e) => {
+
+                            setform({ ...form, role: e })
+                        }}
+                    >
+
                         <div>
-                            <RadioGroupItem value={RoleEnum.BUYER.toString()} id="buyer" className="peer sr-only" />
+                            <RadioGroupItem
+                                value={RoleEnum.BUYER.toString()}
+                                id="buyer"
+                                className="peer sr-only"
+
+
+                            />
                             <Label
                                 htmlFor="buyer"
                                 className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
@@ -36,7 +42,10 @@ const TypeAccount = ({ form }) => {
                             </Label>
                         </div>
                         <div>
-                            <RadioGroupItem value={RoleEnum.SELLER.toString()} id="seller" className="peer sr-only" />
+                            <RadioGroupItem value={RoleEnum.SELLER.toString()} id="seller"
+                                className="peer sr-only"
+
+                            />
                             <Label
                                 htmlFor="seller"
                                 className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
@@ -48,23 +57,14 @@ const TypeAccount = ({ form }) => {
 
                     </RadioGroup>
 
+                    <Input
+                        placeholder='Company name'
 
-                    <FormField
-                        control={form.control}
-                        name='company_name'
-                        render={({ field }) => (
-                            <FormItem className='space-y-1'>
-                                <FormLabel>Company name </FormLabel>
-                                <FormControl>
-                                    <Input placeholder='Company name' {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                        onChange={(e) => setform({ ...form, company_name: e.target.value })}
                     />
 
 
-                    <Select >
+                    <Select onValueChange={(e) => setform({ ...form, specialitie_id: e })}>
                         <SelectTrigger >
                             <SelectValue placeholder="Select a specialitie" />
                         </SelectTrigger>

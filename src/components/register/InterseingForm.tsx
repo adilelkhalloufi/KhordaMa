@@ -1,4 +1,4 @@
-const InterseingForm = ({ form }) => {
+const InterseingForm = ({ form, setform }) => {
     return (
         <div>
             InterseingForm
