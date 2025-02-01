@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
- 
+
 const LayoutContext = React.createContext<{
   offset: number
   fixed: boolean
@@ -10,7 +10,7 @@ interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   fixed?: boolean
 }
 
-const LayoutSh = ({ className, fixed = false, ...props }: LayoutProps) => {
+const LayoutDashbord = ({ className, fixed = false, ...props }: LayoutProps) => {
   const divRef = React.useRef<HTMLDivElement>(null)
   const [offset, setOffset] = React.useState(0)
 
@@ -37,14 +37,14 @@ const LayoutSh = ({ className, fixed = false, ...props }: LayoutProps) => {
           className
         )}
         {...props}
-   
-      
+
+
       />
-           {/* <Outlet /> */}
+      {/* <Outlet /> */}
     </LayoutContext.Provider>
   )
 }
-LayoutSh.displayName = 'Layout'
+LayoutDashbord.displayName = 'Layout'
 
 interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   sticky?: boolean
@@ -56,7 +56,7 @@ const Header = React.forwardRef<HTMLDivElement, HeaderProps>(
     const contextVal = React.useContext(LayoutContext)
     if (contextVal === null) {
       throw new Error(
-        `Layout.Header must be used within ${LayoutSh.displayName}.`
+        `Layout.Header must be used within ${LayoutDashbord.displayName}.`
       )
     }
 
@@ -71,7 +71,7 @@ const Header = React.forwardRef<HTMLDivElement, HeaderProps>(
           sticky && 'sticky top-0',
           className
         )}
-        
+
         {...props}
       />
     )
@@ -86,7 +86,7 @@ const Body = React.forwardRef<
   // Check if Layout.Body is used within Layout
   const contextVal = React.useContext(LayoutContext)
   if (contextVal === null) {
-    throw new Error(`Layout.Body must be used within ${LayoutSh.displayName}.`)
+    throw new Error(`Layout.Body must be used within ${LayoutDashbord.displayName}.`)
   }
 
   return (
@@ -104,7 +104,7 @@ const Body = React.forwardRef<
 })
 Body.displayName = 'Body'
 
-LayoutSh.Header = Header
-LayoutSh.Body = Body
+LayoutDashbord.Header = Header
+LayoutDashbord.Body = Body
 
-export { LayoutSh }
+export { LayoutDashbord }

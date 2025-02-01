@@ -10,21 +10,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/slices/adminSlice";
 import { webRoutes } from "@/routes/web";
 import http from "@/utils/http";
 import { apiRoutes } from "@/routes/api";
 import { handleErrorResponse } from "@/utils";
-import { reset } from "@/store/slices/cartSlice";
 import { Button } from "../ui/button";
+import { RootState } from "@/store";
 
 export function UserNav() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.admin.user);
   const logoutAdmin = () => {
     dispatch(logout());
-    dispatch(reset());
+
     navigate(webRoutes.login, {
       replace: true,
     });
@@ -46,9 +47,11 @@ export function UserNav() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">satnaing</p>
+            <p className="text-sm font-medium leading-none">
+              {user?.name}
+            </p>
             <p className="text-xs leading-none text-muted-foreground">
-              satnaingdev@gmail.com
+              {user?.email}
             </p>
           </div>
         </DropdownMenuLabel>
@@ -58,15 +61,7 @@ export function UserNav() {
             Profile
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Billing
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>New Team</DropdownMenuItem>
+
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem

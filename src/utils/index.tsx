@@ -2,8 +2,8 @@ import { CONFIG } from "@/CONFIG";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
-// export const API_URL = `http://127.0.0.1:8000/api`;
-export const API_URL = `http://khordamabackend.test/api`;
+export const API_URL = `http://127.0.0.1:8000/api`;
+// export const API_URL = `http://khordamabackend.test/api`;
 
 export enum NotificationType {
   ERROR = "error",
@@ -51,7 +51,7 @@ export const handleErrorResponse = (
 
   showNotification(
     errorMessage &&
-      errorMessage.charAt(0).toUpperCase() + errorMessage.slice(1),
+    errorMessage.charAt(0).toUpperCase() + errorMessage.slice(1),
     NotificationType.ERROR
   );
 
@@ -98,8 +98,8 @@ export function extractVariables(expression: string) {
   return variables;
 }
 
-export function calculateTotal(valueOne:number, valueTwo:number, operation = '*') {
-  let result : number;
+export function calculateTotal(valueOne: number, valueTwo: number, operation = '*') {
+  let result: number;
 
   switch (operation) {
     case '+':
@@ -121,11 +121,10 @@ export function calculateTotal(valueOne:number, valueTwo:number, operation = '*'
       throw new Error(`Unsupported operation: ${operation}`);
   }
 
-   return FormatPrice(result);
+  return FormatPrice(result);
 }
 
-export function FormatPrice(value:any){
+export function FormatPrice(value: any) {
 
-  return   parseFloat(value).toFixed(2) + " " + CONFIG.CURRENCY_SYMBOL;
+  return parseFloat(value).toFixed(2) + " " + CONFIG.CURRENCY_SYMBOL;
 }
- 

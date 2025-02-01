@@ -11,7 +11,6 @@ export const adminSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state = action.payload;
-      console.log("login ", state)
       return state;
     },
     logout: (state) => {

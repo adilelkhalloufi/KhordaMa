@@ -1,19 +1,13 @@
 import { webRoutes } from '@/routes/web'
 import {
-    IconBasket,
-    IconBox,
-    IconBrandMedium,
-    IconBuilding,
-    IconCashRegister,
-    IconFileInvoice,
-    IconLayoutDashboard,
-    IconPackages,
-    IconSettings,
-    IconSettings2,
-    IconShoppingCart,
-    IconTruck,
-    IconTruckDelivery,
-    IconUsers,
+  IconBox,
+  IconFileInvoice,
+  IconHeart,
+  IconLayoutDashboard,
+  IconSettings,
+  IconSettings2,
+  IconShoppingCart,
+
 } from '@tabler/icons-react'
 
 export interface NavLink {
@@ -35,30 +29,6 @@ export const sidelinks: SideLink[] = [
     icon: <IconLayoutDashboard size={18} />,
   },
   {
-    title: 'Vente',
-    label: '',
-    href: webRoutes.Vente,
-    icon: <IconBasket size={18} />,
-  },
-  {
-    title: 'Achat',
-    label: '',
-    href: webRoutes.Achat,
-    icon: <IconShoppingCart size={18} />,
-  },
-  {
-    title: 'Facture',
-    label: '',
-    href: webRoutes.Facture,
-    icon: <IconFileInvoice size={18} />,
-  },
-  {
-    title: 'Fournisseur',
-    label: '',
-    href: webRoutes.Fournisseur,
-    icon: <IconTruck size={18} />,
-  },
-  {
     title: 'Produit',
     label: '',
     href: webRoutes.Produit,
@@ -68,55 +38,35 @@ export const sidelinks: SideLink[] = [
     title: 'Commandes',
     label: '',
     href: webRoutes.Commandes,
-    icon: <IconTruckDelivery size={18} />,
+    icon: <IconShoppingCart size={18} />,
   },
   {
-    title: 'Clients',
+    title: 'Favoris',
     label: '',
-    href: webRoutes.Clients,
-    icon: <IconUsers size={18} />,
+    href: webRoutes.favorite,
+    icon: <IconHeart size={18} />,
   },
   {
-    title: 'Caisse',
+    title: 'Facture',
     label: '',
-    href: webRoutes.Caisse,
-    icon: <IconCashRegister size={18} />,
+    href: webRoutes.Facture,
+    icon: <IconFileInvoice size={18} />,
   },
-  {
-    title: 'Stock',
-    label: '',
-    href: webRoutes.Stock,
-    icon: <IconPackages size={18} />,
-  },
- 
- 
- 
-   
   {
     title: 'Settings',
     label: '',
-    href: '',
+    href: 'settings',
     icon: <IconSettings size={18} />,
     sub: [
-      {
-        title: 'Marque',
-        label: '',
-        href: webRoutes.Marque,
-        icon: <IconBrandMedium size={18} />,
-      },
+
       {
         title: 'Parametre',
         label: '',
         href: webRoutes.Parametre,
         icon: <IconSettings2 size={18} />,
       },
-      {
-        title: 'Société',
-        label: '',
-        href: webRoutes.Societe,
-        icon: <IconBuilding size={18} />,
-      },
-  
+
+
     ],
   },
 ]

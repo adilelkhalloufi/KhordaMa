@@ -10,7 +10,7 @@ export type RequireAuthProps = {
 const RequireAuth = ({ children }: RequireAuthProps) => {
   const admin = useSelector((state: RootState) => state.admin);
   const location = useLocation();
-
+  console.log('dkhol auth ', admin);
   if (!admin) {
     return <Navigate to={webRoutes.login} state={{ from: location }} replace />;
   }

@@ -6,6 +6,7 @@ import { webRoutes } from "@/routes/web";
 import { IconBasket, IconLogin, IconRecycle } from "@tabler/icons-react";
 import i18next from "../i18n";
 import { LangToggle } from "./lang-toggle";
+import ThemeSwitcher from "./theme-switcher";
 
 interface RouteProps {
   href: string;
@@ -13,7 +14,6 @@ interface RouteProps {
 }
 
 export function Header() {
-  const { theme, setTheme } = useTheme();
   const { t } = useTranslation();
 
   const routeList: RouteProps[] = [
@@ -67,17 +67,7 @@ export function Header() {
           </nav>
         </div>
         <div className="flex items-center space-x-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          >
-            {theme === "light" ? (
-              <Moon className="h-5 w-5" />
-            ) : (
-              <Sun className="h-5 w-5" />
-            )}
-          </Button>
+          <ThemeSwitcher />
           <LangToggle />
 
           <Button

@@ -5,9 +5,11 @@ import LayoutLanding from "@/components/landing/LayoutLanding";
 import loadable from "@loadable/component";
 import ProgressBar from "@/components/loader/progressBar";
 import SingleProduct from "@/pages/SingleProduct";
+import SignIn from "@/pages/SignIn";
+import RequireAuth from "./requireAuth";
+import Layout from "@/components/dashboard/layout";
 
 // import RequireAuth from "./requireAuth";
-// import { LayoutSh } from "@/components/dashboard/custom/layout";
 // import ProgressBar from "@/components/loader/progressBar";
 // import loadable from "@loadable/component";
 
@@ -21,7 +23,7 @@ const fallbackElement = <ProgressBar />;
 //   fallback: fallbackElement,
 // });
 
-const Login = loadable(() => import("../pages/login"), {
+const Dashboard = loadable(() => import('../pages/dashboard'), {
   fallback: fallbackElement,
 });
 
@@ -49,24 +51,27 @@ export const browserRouter = createBrowserRouter([
         path: webRoutes.SingleProduit,
         element: <SingleProduct />,
       },
-     
+
     ],
   },
 
-  // {
-  //   element: (
-  //     <RequireAuth>
-  //       <LayoutSh />
-  //     </RequireAuth>
-  //   ),
-  //   errorElement: errorElement,
-  //   children: [
-
-  //   ],
-  // },
+  {
+    element: (
+      <RequireAuth>
+        <Layout />
+      </RequireAuth>
+    ),
+    errorElement: errorElement,
+    children: [
+      {
+        path: webRoutes.Dashboard,
+        element: <Dashboard />,
+      },
+    ],
+  },
   {
     path: webRoutes.login,
-    element: <Login />,
+    element: <SignIn />,
     errorElement: errorElement,
   },
   {

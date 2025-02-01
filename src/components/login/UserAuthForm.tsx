@@ -2,7 +2,7 @@ import { HTMLAttributes, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
- import {
+import {
   Form,
   FormControl,
   FormField,
@@ -11,21 +11,22 @@ import { zodResolver } from '@hookform/resolvers/zod'
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
- 
+
 import { cn } from '@/lib/utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { webRoutes } from '@/routes/web'
 import { RootState } from '@/store'
- import { defaultHttp } from '@/utils/http'
+import { defaultHttp } from '@/utils/http'
 import { apiRoutes } from '@/routes/api'
- import { login } from '@/store/slices/adminSlice'
+import { login } from '@/store/slices/adminSlice'
 import { handleErrorResponse, setPageTitle } from '@/utils'
 import { Admin } from '@/interfaces/admin'
 import { PasswordInput } from '../dashboard/custom/password-input'
 import { Button } from '../ui/button'
- 
-interface UserAuthFormProps extends HTMLAttributes<HTMLDivElement> {}
+import { useTranslation } from 'react-i18next'
+
+interface UserAuthFormProps extends HTMLAttributes<HTMLDivElement> { }
 
 const formSchema = z.object({
   email: z
@@ -43,13 +44,13 @@ const formSchema = z.object({
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const from = location.state?.from?.pathname || webRoutes.Dashboard;
   const admin = useSelector((state: RootState) => state.admin);
-  const theCart = useSelector((state: RootState) => state.cart);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -61,12 +62,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
 
 
-  
+
   useEffect(() => {
-      setPageTitle('Log in');
-  
- 
-    
+    setPageTitle('Log in');
+
+
+
   }, []);
 
   useEffect(() => {
@@ -74,10 +75,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       navigate(from, { replace: true });
     }
   }, [admin]);
- 
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-  
-    
+
+
     setIsLoading(true)
 
 
@@ -89,6 +90,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       .then((response) => {
         const admin: Admin = {
           token: response.data.token,
+          user: response.data.user,
         };
         dispatch(login(admin));
       })
@@ -108,7 +110,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               name='email'
               render={({ field }) => (
                 <FormItem className='space-y-1'>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{t('login.email')}</FormLabel>
                   <FormControl>
                     <Input placeholder='email' {...field} />
                   </FormControl>
@@ -122,7 +124,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               render={({ field }) => (
                 <FormItem className='space-y-1'>
                   <div className='flex items-center justify-between'>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>{t('login.password')}</FormLabel>
                     {/* <Link
                       to='/forgot-password'
                       className='text-sm font-medium text-muted-foreground hover:opacity-75'
@@ -137,12 +139,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 </FormItem>
               )}
             />
-            <Button className='mt-2' 
+            <Button className='mt-2'
             // loading={isLoading} 
-             >
-              Login
+            >
+              {t('login')}
             </Button>
-{/* 
+            {/* 
             <div className='relative my-2'>
               <div className='absolute inset-0 flex items-center'>
                 <span className='w-full border-t' />
