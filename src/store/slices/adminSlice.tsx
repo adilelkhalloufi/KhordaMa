@@ -11,16 +11,16 @@ export const adminSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state = action.payload;
-      return state;
+    },
+    register: (state, action) => {
+      state.register = action.payload;
     },
     logout: (state) => {
       state = null;
-
-      return state;
     },
   },
 });
 
-export const { login, logout } = adminSlice.actions;
+export const { login, logout, register } = adminSlice.actions;
 
 export default adminSlice.reducer;

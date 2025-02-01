@@ -2,6 +2,7 @@ export const webRoutes = {
   home: '/',
   login: '/login',
   logout: '/logout',
+  register: '/register',
   Dashboard: '/dashbord',
   Facture: '/Facture',
   Produit: '/Produit',

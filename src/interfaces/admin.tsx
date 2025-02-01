@@ -1,6 +1,27 @@
 export interface Admin {
     token?: string
     user?: User
+    register?: Register
+}
+
+export interface Register {
+
+    company_name?: string
+    role?: string
+    password?: string
+    email?: string
+    specialitie_id?: number
+    interseing_id?: number[]
+    phone?: string
+    address?: string
+    zip_code?: string
+    city?: string
+    country?: string
+    agreement?: boolean
+    company_logo?: string
+    first_name?: string
+    last_name?: string
+
 }
 
 export interface User {

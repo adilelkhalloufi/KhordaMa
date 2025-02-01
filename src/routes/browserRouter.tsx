@@ -8,6 +8,7 @@ import SingleProduct from "@/pages/SingleProduct";
 import SignIn from "@/pages/SignIn";
 import RequireAuth from "./requireAuth";
 import Layout from "@/components/dashboard/layout";
+import Register from "@/pages/register/index";
 
 // import RequireAuth from "./requireAuth";
 // import ProgressBar from "@/components/loader/progressBar";
@@ -51,6 +52,10 @@ export const browserRouter = createBrowserRouter([
         path: webRoutes.SingleProduit,
         element: <SingleProduct />,
       },
+      {
+        path: webRoutes.register,
+        element: <Register />,
+      },
 
     ],
   },
@@ -74,6 +79,7 @@ export const browserRouter = createBrowserRouter([
     element: <SignIn />,
     errorElement: errorElement,
   },
+
   {
     path: "*",
     element: <ErrorPage />,

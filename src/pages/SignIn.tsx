@@ -1,6 +1,7 @@
 import { UserAuthForm } from '@/components/login/UserAuthForm'
 import { IconRecycle } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 export default function SignIn() {
   const { t } = useTranslation()
@@ -42,6 +43,13 @@ export default function SignIn() {
             <UserAuthForm />
             <p className='px-8 text-center text-sm text-muted-foreground'>
               {t('login.condition')}
+            </p>
+            <p className='px-8 text-center text-sm text-muted-foreground'>
+              I don’t have an account on the platform
+              <Link to='/register' className='text-primary'>
+                Create a new account
+
+              </Link>
             </p>
           </div>
         </div>
