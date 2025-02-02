@@ -22,6 +22,8 @@ const Register = () => {
     const [specialitie, setSpecialitie] = useState<Specialitie[]>([]);
     const [categories, setCategories] = useState<Categorie[]>([]);
     const [Stepper, setStepper] = useState(1);
+
+
     useEffect(() => {
         defaultHttp.get(apiRoutes.specialities)
             .then((response) => {
@@ -37,24 +39,23 @@ const Register = () => {
     }, []);
 
     useEffect(() => {
-        console.log("form", form);
-    }
-        , [form]);
+        window.scrollTo(0, 0);
+    }, [Stepper]);
+    const stepComponents = [
+        { step: 1, component: <TypeAccount form={form} data={specialitie} /> },
+        { step: 2, component: <InterseingForm form={form} data={categories} /> },
+        { step: 3, component: <PersonalInformation form={form} /> },
+    ];
 
     const Next = () => {
-        console.log("Next", form);
-
+        console.log("form", form)
         if (Stepper < 3) {
-            console.log("Next", form);
-
             setStepper(Stepper + 1)
         }
     }
     const Previous = () => {
-        console.log("Previous", form);
 
         if (Stepper > 1) {
-            console.log("Previous", form);
 
             setStepper(Stepper - 1)
         }
@@ -66,18 +67,25 @@ const Register = () => {
 
                 <h1 className="text-3xl font-bold md:text-4xl  text-center mb-4 ">{t('website')}</h1>
                 <p className="text-center mb-4">{t('hero_description')}</p>
-                <div className="grid grid-cols-3 gap-3   transition-all">
-                    {Array(3).map((step, index) => (
-                        <div key={index} className={`relative h-1 rounded-full  transition-all   ${index < Stepper ? "bg-primary" : "bg-secondary"}`}></div>
+                <div className="grid grid-cols-3 gap-3   transition-all mb-4">
+                    {stepComponents.map((_, index) => (
+                        <>
+                            <div
+                                key={index}
+                                className={`relative h-1 rounded-full transition-all ${index < Stepper ? "bg-primary" : "bg-secondary"}`}
+                            />
+                        </>
+
                     ))}
 
                 </div>
+                <div className="flex flex-row justify-between">
+                    <Button onClick={Previous} variant="outline">Previous</Button>
+                    <Button onClick={Next}>Next</Button>
+                </div>
+                <div className="p-10 max-w-2xl mx-auto scroll-smooth">
 
-                <div className="p-10 max-w-2xl mx-auto  ">
-
-                    {Stepper === 1 && <TypeAccount form={form} data={specialitie} />}
-                    {Stepper === 2 && <InterseingForm form={form} data={categories} />}
-                    {Stepper === 3 && <PersonalInformation form={form} />}
+                    {stepComponents.find(item => item.step === Stepper)?.component}
 
 
 

@@ -28,7 +28,6 @@ export const registerSlice = createSlice({
     reducers: {
 
         register: (state, action) => {
-            console.log("register : ", action.payload);
             state = {
                 ...state,
                 [action.payload.key]: action.payload.value,
