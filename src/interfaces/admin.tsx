@@ -10,6 +10,9 @@ export interface Specialitie {
     slug?: string
     description?: string
 }
+export interface Cart {
+    products: Product[]
+}
 export interface RegisterForm {
 
     company_name?: string
