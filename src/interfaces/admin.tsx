@@ -17,11 +17,11 @@ export interface RegisterForm {
     password?: string
     email?: string
     specialitie_id?: number
-    interseing_id?: number[]
+    interests?: number[]
     phone?: string
     address?: string
     zip_code?: string
-    city?: string
+    city_id?: string
     country?: string
     agreement?: boolean
     company_logo?: string

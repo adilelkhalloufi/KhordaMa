@@ -2,18 +2,18 @@ import { Badge } from "../ui/badge";
 import { Categorie } from "@/interfaces/admin";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { toggleIntersting } from "@/store/slices/registerSlice";
 import i18next from "i18next";
 import { CategoryTypesEnum } from "@/enum/CategoryTypes";
 import { useTranslation } from "react-i18next";
+import { toggleInterests } from "@/store/slices/registerSlice";
 
 const InterseingForm = ({ form, data }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
-    const selectedCategories = useSelector((state: RootState) => state.register.interseing_id);
+    const selectedCategories = useSelector((state: RootState) => state.register.interests);
 
     const handleToggle = (id: string) => {
-        dispatch(toggleIntersting(id));
+        dispatch(toggleInterests(id));
     };
     const DataScarp = data.filter((category: Categorie) => category.family_id === CategoryTypesEnum.Scrap);
     const DataStagnant = data.filter((category: Categorie) => category.family_id === CategoryTypesEnum.Stagnant);

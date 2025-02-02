@@ -9,8 +9,11 @@ import { Categorie, RegisterForm, Specialitie } from "@/interfaces/admin";
 import { apiRoutes } from "@/routes/api";
 import { defaultHttp } from "@/utils/http";
 import { handleErrorResponse } from "@/utils";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { restRegister } from "@/store/slices/registerSlice";
+import { useNavigate } from "react-router-dom";
+import { webRoutes } from "@/routes/web";
 
 
 
@@ -22,7 +25,8 @@ const Register = () => {
     const [specialitie, setSpecialitie] = useState<Specialitie[]>([]);
     const [categories, setCategories] = useState<Categorie[]>([]);
     const [Stepper, setStepper] = useState(1);
-
+    const navigator = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         defaultHttp.get(apiRoutes.specialities)
@@ -51,6 +55,16 @@ const Register = () => {
         console.log("form", form)
         if (Stepper < 3) {
             setStepper(Stepper + 1)
+        } else {
+            console.log("hadi lkhra", form)
+            defaultHttp.post(apiRoutes.register, form)
+                .then((response) => {
+                    dispatch(restRegister());
+                    navigator(webRoutes.login);
+
+                })
+                .catch(handleErrorResponse);
+
         }
     }
     const Previous = () => {

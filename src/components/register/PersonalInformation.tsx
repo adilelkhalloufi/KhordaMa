@@ -4,7 +4,8 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { RootState } from "@/store";
 import { register } from "@/store/slices/registerSlice";
-
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
+import Cities from "@/data/cities.json";
 const PersonalInformation = ({ form }) => {
     const dispatch = useDispatch();
     const data = useSelector((state: RootState) => state.register);
@@ -19,7 +20,6 @@ const PersonalInformation = ({ form }) => {
                 <Input type="file" className="mt-2"
                     name="company_logo"
                     onChange={(e) => handleChange(e)}
-                    defaultValue={data.company_logo}
                 />
             </Label>
             <Label>
@@ -53,10 +53,30 @@ const PersonalInformation = ({ form }) => {
             </Label>
             <Label>
                 City
-                <Input name="city" onChange={(e) => handleChange(e)}
-                    defaultValue={data.city}
-                />
-            </Label>
+
+                <Select
+                    name="city_id"
+                    onValueChange={(e) => dispatch(register({ key: 'city_id', value: e }))}
+                    defaultValue={data.city_id}
+                >
+
+
+                    <SelectTrigger >
+                        <SelectValue placeholder="Select a City" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel>City</SelectLabel>
+
+                            {Cities.map((city) => (
+                                <SelectItem key={city.id} value={city.id}>{city.name}</SelectItem>
+                            ))}
+
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
+
+            </Label >
             <Label>
                 Address
                 <Input name="address" type="text" onChange={(e) => handleChange(e)}

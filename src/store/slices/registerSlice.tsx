@@ -9,11 +9,11 @@ const initialState: RegisterForm =
     password: '',
     email: '',
     specialitie_id: 0,
-    interseing_id: [],
+    interests: [],
     phone: '',
     address: '',
     zip_code: '',
-    city: '',
+    city_id: '',
     country: '',
     agreement: false,
     company_logo: '',
@@ -35,11 +35,11 @@ export const registerSlice = createSlice({
 
             return state;
         },
-        toggleIntersting: (state, action) => {
-            if (state.interseing_id.includes(action.payload)) {
-                state.interseing_id = state.interseing_id.filter((id) => id !== action.payload);
+        toggleInterests: (state, action) => {
+            if (state.interests.includes(action.payload)) {
+                state.interests = state.interests.filter((id) => id !== action.payload);
             } else {
-                state.interseing_id.push(action.payload);
+                state.interests.push(action.payload);
             }
             return state;
         },
@@ -52,6 +52,6 @@ export const registerSlice = createSlice({
     },
 });
 
-export const { register, toggleIntersting, restRegister } = registerSlice.actions;
+export const { register, toggleInterests, restRegister } = registerSlice.actions;
 
 export default registerSlice.reducer;
