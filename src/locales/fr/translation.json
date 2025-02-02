@@ -68,5 +68,6 @@
   "login.description": "Saisissez votre email et votre mot de passe ci-dessous <br/> pour vous connecter à votre compte",
   "login.condition": "En cliquant sur Connexion, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité.",
   "login.email": "Email",
-  "login.password": "Mot de passe"
+  "login.password": "Mot de passe",
+  "menu_stagnant": "Stagnante"
 }

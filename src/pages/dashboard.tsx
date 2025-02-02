@@ -16,11 +16,6 @@ export default function Dashboard() {
     useEffect(() => {
         setPageTitle("Dashboard")
     }, [])
-    useEffect(() => {
-
-        console.log("Dashboard");
-
-    }, [])
 
     return (
 

@@ -19,12 +19,12 @@ import { webRoutes } from '@/routes/web'
 import { RootState } from '@/store'
 import { defaultHttp } from '@/utils/http'
 import { apiRoutes } from '@/routes/api'
-import { login } from '@/store/slices/adminSlice'
 import { handleErrorResponse, setPageTitle } from '@/utils'
 import { Admin } from '@/interfaces/admin'
 import { PasswordInput } from '../dashboard/custom/password-input'
 import { Button } from '../ui/button'
 import { useTranslation } from 'react-i18next'
+import { login } from '@/store/slices/adminSlice'
 
 interface UserAuthFormProps extends HTMLAttributes<HTMLDivElement> { }
 
@@ -65,9 +65,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
   useEffect(() => {
     setPageTitle('Log in');
-
-
-
   }, []);
 
   useEffect(() => {

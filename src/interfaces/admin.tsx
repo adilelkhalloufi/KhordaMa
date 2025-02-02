@@ -63,6 +63,7 @@ export interface Categorie {
     name: any
     slug?: string
     description?: string
+    family_id?: number
     subcategories?: Categorie[]
 }
 

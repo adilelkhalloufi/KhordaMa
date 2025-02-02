@@ -13,23 +13,7 @@ const initialState: AdminState = {
     role: '',
     token: '',
   },
-  register: {
-    company_name: '',
-    role: '',
-    password: '',
-    email: '',
-    specialitie_id: 0,
-    interseing_id: [],
-    phone: '',
-    address: '',
-    zip_code: '',
-    city: '',
-    country: '',
-    agreement: false,
-    company_logo: '',
-    first_name: '',
-    last_name: '',
-  },
+
 };
 
 export const adminSlice = createSlice({
@@ -38,19 +22,17 @@ export const adminSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state = action.payload;
+      return state;
     },
-    register: (state, action) => {
-      state.register = {
-        ...state.register,
-        [action.payload.key]: action.payload.value,
-      };
-    },
+
     logout: (state) => {
       state = null;
+      return state;
+
     },
   },
 });
 
-export const { login, logout, register } = adminSlice.actions;
+export const { login, logout } = adminSlice.actions;
 
 export default adminSlice.reducer;

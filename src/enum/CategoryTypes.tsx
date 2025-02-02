@@ -1,4 +1,4 @@
-enum CategoryTypesEnum {
+export enum CategoryTypesEnum {
 
 
   Scrap = 1,

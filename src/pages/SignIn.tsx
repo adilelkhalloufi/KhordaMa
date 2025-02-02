@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 export default function SignIn() {
   const { t } = useTranslation()
+
   return (
     <>
       <div className='container relative grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0'>

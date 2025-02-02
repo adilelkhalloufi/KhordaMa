@@ -68,5 +68,6 @@
   "login.description": "Enter your email and password below <br/> to log into your account",
   "login.condition": "By clicking login, you agree to our Terms of Service and Privacy Policy.",
   "login.email": "E-mail",
-  "login.password": "Password"
+  "login.password": "Password",
+  "menu_stagnant": "Stagnant"
 }

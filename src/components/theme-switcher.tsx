@@ -5,7 +5,7 @@ import { Switch } from "./ui/switch";
 import { Label } from "./ui/label";
 
 interface ThemeSwitcherProps {
-    type: "default" | "checkbox";
+    type?: "default" | "checkbox";
 }
 
 export default function ThemeSwitcher({ type = "default" }: ThemeSwitcherProps) {

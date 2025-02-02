@@ -24,15 +24,17 @@ export function UserNav() {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.admin.user);
   const logoutAdmin = () => {
+
+
     dispatch(logout());
 
     navigate(webRoutes.login, {
       replace: true,
     });
+    // http.post(apiRoutes.logout).catch((error) => {
+    //   handleErrorResponse(error);
+    // });
 
-    http.post(apiRoutes.logout).catch((error) => {
-      handleErrorResponse(error);
-    });
   };
   return (
     <DropdownMenu>
