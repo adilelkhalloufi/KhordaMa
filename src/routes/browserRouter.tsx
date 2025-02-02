@@ -9,6 +9,7 @@ import SignIn from "@/pages/SignIn";
 import RequireAuth from "./requireAuth";
 import Layout from "@/components/dashboard/layout";
 import Register from "@/pages/register/index";
+import Checkout from "@/pages/checkout";
 
 // import RequireAuth from "./requireAuth";
 // import ProgressBar from "@/components/loader/progressBar";
@@ -72,6 +73,7 @@ export const browserRouter = createBrowserRouter([
         path: webRoutes.Dashboard,
         element: <Dashboard />,
       },
+
     ],
   },
   {
@@ -79,7 +81,10 @@ export const browserRouter = createBrowserRouter([
     element: <SignIn />,
     // errorElement: errorElement,
   },
-
+  {
+    path: webRoutes.checkout,
+    element: <Checkout />,
+  },
   {
     path: "*",
     element: <ErrorPage />,

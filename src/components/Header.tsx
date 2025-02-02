@@ -7,6 +7,7 @@ import { IconBasket, IconLogin, IconRecycle } from "@tabler/icons-react";
 import i18next from "../i18n";
 import { LangToggle } from "./lang-toggle";
 import ThemeSwitcher from "./theme-switcher";
+import { useNavigate } from "react-router-dom";
 
 interface RouteProps {
   href: string;
@@ -15,7 +16,7 @@ interface RouteProps {
 
 export function Header() {
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
   const routeList: RouteProps[] = [
     {
       href: "#home",
@@ -73,7 +74,10 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => console.log("basket")}
+            onClick={() => {
+              // go to route basket
+              navigate(webRoutes.checkout);
+            }}
           >
             <IconBasket className="mr-2 w-5 h-5" />
           </Button>

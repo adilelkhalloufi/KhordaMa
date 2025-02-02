@@ -27,6 +27,7 @@ const Register = () => {
     const [Stepper, setStepper] = useState(1);
     const navigator = useNavigate();
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         defaultHttp.get(apiRoutes.specialities)
@@ -57,11 +58,12 @@ const Register = () => {
             setStepper(Stepper + 1)
         } else {
             console.log("hadi lkhra", form)
+            setLoading(true);
             defaultHttp.post(apiRoutes.register, form)
                 .then((response) => {
                     dispatch(restRegister());
                     navigator(webRoutes.login);
-
+                    setLoading(false);
                 })
                 .catch(handleErrorResponse);
 
@@ -106,7 +108,7 @@ const Register = () => {
                 </div>
                 <div className="flex flex-row justify-between">
                     <Button onClick={Previous} variant="outline">Previous</Button>
-                    <Button onClick={Next}>Next</Button>
+                    <Button onClick={Next} loading={loading}>Next</Button>
                 </div>
 
             </div >

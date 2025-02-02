@@ -31,9 +31,9 @@ export function UserNav() {
     navigate(webRoutes.login, {
       replace: true,
     });
-    // http.post(apiRoutes.logout).catch((error) => {
-    //   handleErrorResponse(error);
-    // });
+    http.post(apiRoutes.logout).catch((error) => {
+      handleErrorResponse(error);
+    });
 
   };
   return (

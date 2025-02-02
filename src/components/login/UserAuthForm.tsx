@@ -92,6 +92,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         dispatch(login(admin));
       })
       .catch((error) => {
+        console.log("error", error)
         handleErrorResponse(error);
         setIsLoading(false);
       });
@@ -137,7 +138,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               )}
             />
             <Button className='mt-2'
-            // loading={isLoading} 
+              loading={isLoading}
             >
               {t('login')}
             </Button>

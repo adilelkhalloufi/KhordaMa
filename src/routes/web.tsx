@@ -3,6 +3,7 @@ export const webRoutes = {
   login: '/login',
   logout: '/logout',
   register: '/register',
+  checkout: '/checkout',
   Dashboard: '/dashbord',
   Facture: '/Facture',
   Produit: '/Produit',
