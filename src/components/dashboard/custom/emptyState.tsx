@@ -13,6 +13,8 @@ const EmptyStateComponent = ({title,description,onclick,buttonTitle = "Go Back" 
   return (
     <div className='flex flex-col items-center justify-center h-[60vh] p-10 text-center'>
       <div className='mb-6'>
+ 
+        
         {icon}
       </div>
       <div className='mb-4'>

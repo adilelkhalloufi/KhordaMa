@@ -20,14 +20,21 @@ import {
 import React from "react";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { RootState } from "@/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import EmptyStateComponent from "@/components/dashboard/custom/emptyState";
-import { IconBasket } from "@tabler/icons-react";
+import { IconBasket, IconTrash } from "@tabler/icons-react";
+import { useNavigate } from "react-router-dom";
+import { webRoutes } from "@/routes/web";
+import { Badge } from "@/components/ui/badge";
+import i18next from "i18next";
+import { removeProduct } from "@/store/slices/cartSlice";
 
 export default function Component() {
   const cart = useSelector((state: RootState) => state.cart.products);
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <React.Fragment>
       <main className="container mx-auto my-8 grid grid-cols-1 gap-8 md:grid-cols-[2fr_1fr]">
@@ -41,11 +48,17 @@ export default function Component() {
                 description="Looks like you haven't added any products to your cart yet."
                 icon={<IconBasket className="w-12 h-12" />}
                 buttonTitle="Start Shopping"
-               />
+                onclick={() => (
+                  navigate(webRoutes.stagnant), { replace: true }
+                )} // if click go to products page
+              />
             )}
             {/* if cart not vide show product in cart */}
             {cart.map((product) => (
-              <div key={product.id} className="flex items-center gap-4 rounded-lg border bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-950">
+              <div
+                key={product.id}
+                className="flex items-center gap-4 rounded-lg border bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-950"
+              >
                 <img
                   src={product.image}
                   width={80}
@@ -59,19 +72,38 @@ export default function Component() {
                   <p className="text-gray-500 dark:text-gray-400">
                     {product.description}
                   </p>
+                  <p className="text-gray-500 dark:text-gray-400 flex flex-row items-center gap-2">
+                    <div>
+                      <span className="mr-2 font-medium">
+                        {t("product.categorie")} :
+                      </span>
+                      <Badge>{product.categorie?.name[i18next.language]}</Badge>
+                    </div>
+                    <div>
+                      <span className="mr-2 font-medium">
+                        {t("product.unite")} :
+                      </span>
+                      <Badge>{product.unite?.name[i18next.language]}</Badge>
+                    </div>
+                  </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Button variant="outline" size="icon">
-                    <MinusIcon className="h-4 w-4" />
-                  </Button>
-                  <span>1</span>
-                  <Button variant="outline" size="icon">
-                    <PlusIcon className="h-4 w-4" />
-                  </Button>
-                </div>
+
+ 
                 <div className="text-right font-medium">
-                    {product.price} {t("currency")}
+                  {product.price} {t("currency")}
                 </div>
+                {/* add button to delete from checkout */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => {
+                     dispatch(removeProduct(product));
+                  }}
+                >
+                    <IconTrash color="red"  />
+                   
+                </Button>
+                
               </div>
             ))}
           </div>
