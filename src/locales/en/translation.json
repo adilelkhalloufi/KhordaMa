@@ -69,5 +69,16 @@
   "login.condition": "By clicking login, you agree to our Terms of Service and Privacy Policy.",
   "login.email": "E-mail",
   "login.password": "Password",
-  "menu_stagnant": "Stagnant"
+  "menu_stagnant": "Stagnant",
+  "checkout.empty": "Your cart is empty",
+  "checkout.empty.description": "Looks like you haven't added any products to your cart yet.\n\n\n",
+  "checkout.title": "Your Cart",
+  "checkout.empty.button": "Start Shopping",
+  "checkout.summary": "Order Summary\n\n",
+  "checkout.payement": "Shipping & Payment\n\n",
+  "checkout.command": "Place Order",
+  "checkout.total": "Total",
+  "checkout.discount": "Discount",
+  "checkout.note": "Note",
+  "checkout.type.payement": "Payment Method"
 }

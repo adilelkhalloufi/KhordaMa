@@ -69,5 +69,16 @@
   "login.condition": "بالنقر على تسجيل الدخول، فإنك توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا.",
   "login.email": "بريد إلكتروني",
   "login.password": "كلمة المرور",
-  "menu_stagnant": "راكد"
+  "menu_stagnant": "راكد",
+  "checkout.empty": "سلة التسوق الخاصة بك فارغة",
+  "checkout.empty.description": "يبدو أنك لم تقم بإضافة أي منتجات إلى سلة التسوق الخاصة بك بعد.",
+  "checkout.title": "عربة التسوق الخاصة بك",
+  "checkout.empty.button": "ابدأ التسوق",
+  "checkout.summary": "ملخص الطلب",
+  "checkout.payement": "الشحن والدفع",
+  "checkout.command": "وضع الطلب",
+  "checkout.total": "المجموع الفرعي",
+  "checkout.discount": "تخفيض",
+  "checkout.note": "ملحوظة",
+  "checkout.type.payement": "طريقة الدفع"
 }

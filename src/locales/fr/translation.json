@@ -69,5 +69,16 @@
   "login.condition": "En cliquant sur Connexion, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité.",
   "login.email": "Email",
   "login.password": "Mot de passe",
-  "menu_stagnant": "Stagnante"
+  "menu_stagnant": "Stagnante",
+  "checkout.empty": "Votre panier est vide",
+  "checkout.empty.description": "Il semblerait que vous n'ayez pas encore ajouté de produits à votre panier.",
+  "checkout.title": "Votre panier",
+  "checkout.empty.button": "Commencer à magasiner",
+  "checkout.summary": "Résumé de la commande",
+  "checkout.payement": "Expédition et paiement",
+  "checkout.command": "Passer une commande",
+  "checkout.total": "Total",
+  "checkout.discount": "Remise",
+  "checkout.note": "Note",
+  "checkout.type.payement": "Mode de paiement"
 }
