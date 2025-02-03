@@ -57,6 +57,10 @@ export const browserRouter = createBrowserRouter([
         path: webRoutes.register,
         element: <Register />,
       },
+      {
+        path: webRoutes.checkout,
+        element: <Checkout />,
+      },
 
     ],
   },
@@ -81,10 +85,7 @@ export const browserRouter = createBrowserRouter([
     element: <SignIn />,
     // errorElement: errorElement,
   },
-  {
-    path: webRoutes.checkout,
-    element: <Checkout />,
-  },
+ 
   {
     path: "*",
     element: <ErrorPage />,

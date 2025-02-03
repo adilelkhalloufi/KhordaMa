@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Moon, Sun } from "lucide-react";
+import {   Moon, Sun } from "lucide-react";
 import { useTheme } from "./theme-provider";
 import { useTranslation } from "react-i18next";
 import { webRoutes } from "@/routes/web";
@@ -8,6 +8,9 @@ import i18next from "../i18n";
 import { LangToggle } from "./lang-toggle";
 import ThemeSwitcher from "./theme-switcher";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
+import { Badge } from "./ui/badge";
 
 interface RouteProps {
   href: string;
@@ -39,7 +42,7 @@ export function Header() {
       // label: "Contact"  ,
     },
   ];
-
+  const cart = useSelector((state: RootState) => state.cart);
   return (
     <header className="fixed top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -74,12 +77,18 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
+            className="relative"
             onClick={() => {
               // go to route basket
               navigate(webRoutes.checkout);
             }}
           >
             <IconBasket className="mr-2 w-5 h-5" />
+            {cart.products.length > 0 && (    <Badge  variant="default"    className="absolute top-0 right-0">
+              {cart.products.length}
+              </Badge>  )}
+            
+          
           </Button>
 
           <Button

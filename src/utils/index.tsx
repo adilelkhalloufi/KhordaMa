@@ -44,8 +44,7 @@ export const handleErrorResponse = (
 
     if (error instanceof AxiosError && error?.response?.data?.error) {
       errorMessage = error.response.data.error;
-      // errorMessage = error.response.data.error.message;
-    } else if (error?.response?.data?.message) {
+     } else if (error?.response?.data?.message) {
       errorMessage = error.response.data.message;
     } else if (error?.message) {
       errorMessage = error.message;

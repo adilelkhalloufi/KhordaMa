@@ -7,20 +7,25 @@ import i18next from "i18next";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { webRoutes } from "@/routes/web";
+import { useDispatch } from "react-redux";
+import { addProduct } from "@/store/slices/cartSlice";
  
 interface ProductCardProps {
   product: Product
 }
 export const ProductCard = ({ product }: ProductCardProps) => {
   const { t } = useTranslation();
- 
+  const dispatch = useDispatch();
+  const addProductToCart = (product : Product) => {
+     dispatch(addProduct(product));
+  }
 
   return (
     <Card className="product-card relative"
     
     >
       <CardHeader className="p-0">
-        <Link to={webRoutes.SingleProduit + product.id}>
+        <Link to={webRoutes.SingleProduit.replace(':id', product.id)}>
             <img
               src={product.image}
               alt={product.name}
@@ -72,7 +77,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <p className="text-muted-foreground text-sm line-clamp-2">{product.description}</p>
 
         {/* Create button to command  */}
-        <button className="bg-primary text-white py-2 px-4 mt-4 rounded-3xl w-full">
+        <button className="bg-primary text-white py-2 px-4 mt-4 rounded-3xl w-full"
+          onClick={() => addProductToCart(product)}
+        >
           {t('product.command')}
         </button>
 

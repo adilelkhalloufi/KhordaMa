@@ -5,15 +5,13 @@ import { Product } from "@/interfaces/admin";
 import http from "@/utils/http";
 import { apiRoutes } from "@/routes/api";
 import { handleErrorResponse } from "@/utils";
-import { Link, useParams } from "react-router-dom";
+import {   useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { StarIcon } from "lucide-react";
-
+ 
 import ListProductSkeleton from "@/components/skeleton/ListProductSkeleton";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import ReviewCustomer from "@/components/products/ReviewCustomer";
-import RelatedProduct from "@/components/products/RelatedProduct";
+ import RelatedProduct from "@/components/products/RelatedProduct";
 
 export const SingleProduct = () => {
   const { t } = useTranslation();

@@ -1,5 +1,4 @@
- import { FiShoppingCart } from 'react-icons/fi';
-import { Button } from './button';
+ import { Button } from './button';
 
  interface EmptyState {
     title: string;
@@ -10,7 +9,7 @@ import { Button } from './button';
 
  }
 
-const EmptyStateComponent = ({title,description,onclick,buttonTitle = "Go Back" , icon = <FiShoppingCart className='mx-auto text-6xl text-gray-400' />} : EmptyState) => {
+const EmptyStateComponent = ({title,description,onclick,buttonTitle = "Go Back" , icon } : EmptyState) => {
   return (
     <div className='flex flex-col items-center justify-center h-[60vh] p-10 text-center'>
       <div className='mb-6'>
