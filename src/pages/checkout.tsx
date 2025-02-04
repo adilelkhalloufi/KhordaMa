@@ -8,8 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+ import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectTrigger,
@@ -18,8 +17,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import React from "react";
-import { MinusIcon, PlusIcon } from "lucide-react";
-import { RootState } from "@/store";
+ import { RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import EmptyStateComponent from "@/components/dashboard/custom/emptyState";
@@ -28,14 +26,41 @@ import { useNavigate } from "react-router-dom";
 import { webRoutes } from "@/routes/web";
 import { Badge } from "@/components/ui/badge";
 import i18next from "i18next";
-import { removeProduct } from "@/store/slices/cartSlice";
+import { clearCart, removeProduct } from "@/store/slices/cartSlice";
 import { Product } from "@/interfaces/admin";
+import http  from "@/utils/http";
+import { apiRoutes } from "@/routes/api";
+import { handleErrorResponse } from "@/utils";
 
 export default function Component() {
   const products : Product[] = useSelector((state: RootState) => state.cart.products);
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = React.useState(false);
+  const [FromValues, setFromValues] = React.useState({
+    note: "",
+    payement: "",
+ 
+  });
+  const CreateOrder = () => {
+    setLoading(true);
+     http.post(apiRoutes.orders, { 
+          products: products , 
+          note: FromValues.note, 
+          payement: FromValues.payement
+        })
+          .then((res) => {
+            setLoading(false);
+            navigate(webRoutes.home, { replace: true });
+            dispatch(clearCart());
+          }).catch((e) => {
+            setLoading(false);
+            handleErrorResponse(e);
+          });
+
+      
+  }
   return (
     <React.Fragment>
       <main className="container mx-auto my-8 grid grid-cols-1 gap-8 md:grid-cols-[2fr_1fr]">
@@ -159,23 +184,34 @@ export default function Component() {
               </div> */}
               <div className="space-y-2">
                 <Label htmlFor="address">{t('checkout.note')}</Label>
-                <Textarea id="address" placeholder="123 Adress" />
+                <Textarea name="note" placeholder={t('checkout.note')} 
+                onChange={(e)=>{
+                  setFromValues({...FromValues, note: e.target.value})
+                }} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="payment">{t('checkout.type.payement')}</Label>
-                <Select id="payment">
+                <Select id="payment" name="payment"
+                   onValueChange={(e)=>{
+                    setFromValues({...FromValues, payement: e})
+                  }}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder={t('checkout.type.payement')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="credit-card">Credit Card</SelectItem>
-                    <SelectItem value="paypal">PayPal</SelectItem>
+                    <SelectItem value="1">Cash</SelectItem>
+                    <SelectItem value="2">credit card</SelectItem>
+                    <SelectItem value="3">paypal</SelectItem>
+                    <SelectItem value="4">other</SelectItem>
                    </SelectContent>
                 </Select>
               </div>
             </CardContent>
             <CardFooter>
-              <Button className="w-full">
+              <Button className="w-full" loading={loading}
+                onClick={() => {CreateOrder()}}
+              >
                 {t('checkout.command')}
               </Button>
             </CardFooter>

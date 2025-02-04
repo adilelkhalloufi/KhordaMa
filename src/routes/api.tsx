@@ -10,6 +10,7 @@ export const apiRoutes = {
   categories: `${API_URL}/categorie`,
   unites: `${API_URL}/unites`,
   specialities: `${API_URL}/specialities`,
+  orders : `${API_URL}/orders`,
 
 
 };
