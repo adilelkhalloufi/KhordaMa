@@ -22,12 +22,17 @@ export function Header() {
   const navigate = useNavigate();
   const routeList: RouteProps[] = [
     {
-      href: "#home",
+      href: webRoutes.home,
       // label: "Home",
       label: t("menu_home"),
     },
     {
       href: webRoutes.stagnant,
+      //  label: "Scarp",
+      label: t("menu_stagnant"),
+    },
+    {
+      href: webRoutes.scarp,
       //  label: "Scarp",
       label: t("menu_scrap"),
     },

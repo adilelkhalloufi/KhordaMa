@@ -86,6 +86,14 @@ export default function Component() {
                       </span>
                       <Badge>{product.unite?.name[i18next.language]}</Badge>
                     </div>
+
+                    <div>
+                      <span className="mr-2 font-medium">
+                        {t("product.qte")} :
+                      </span>
+                      <Badge>{product.quantity}</Badge>
+                    </div>
+                    
                   </p>
                 </div>
 
@@ -93,8 +101,7 @@ export default function Component() {
                 <div className="text-right font-medium">
                   {product.price} {t("currency")}
                 </div>
-                {/* add button to delete from checkout */}
-                <Button
+                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => {

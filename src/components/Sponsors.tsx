@@ -31,9 +31,9 @@ export function Sponsors() {
           Trusted by leading companies
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-center opacity-70">
-          {sponsors.map(({ icon, name }: SponsorProps) => (
+          {sponsors.map(({ icon, name }: SponsorProps,index) => (
             <div
-              key={name}
+              key={index}
               className="flex items-center gap-1 text-muted-foreground/60"
             >
               <span>{icon}</span>

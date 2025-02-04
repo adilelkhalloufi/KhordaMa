@@ -50,6 +50,10 @@ export const browserRouter = createBrowserRouter([
         element: <Stagnant />,
       },
       {
+        path: webRoutes.scarp,
+        element: <Stagnant />,
+      },
+      {
         path: webRoutes.SingleProduit,
         element: <SingleProduct />,
       },

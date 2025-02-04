@@ -8,22 +8,26 @@ import http, { defaultHttp } from "@/utils/http";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
 
 
 const Index = () => {
 
+  const { pathname } = useLocation();
+  const type = pathname.includes('stagnant') ? 1 : 2;
   const { data: categories = [] } = useQuery<Categorie[]>({
     queryKey: ['categories'],
     queryFn: () =>
       defaultHttp
-        .get<Categorie[]>(apiRoutes.categories, { params: { type: 2 } })
+        .get<Categorie[]>(apiRoutes.categories, { params: { type: type } })
         .then((res) => res.data)
         .catch((e) => {
           handleErrorResponse(e)
           return []
         }),
   })
+
   const { data: unites = [] } = useQuery<Unite[]>({
     queryKey: ['unites'],
     queryFn: () =>

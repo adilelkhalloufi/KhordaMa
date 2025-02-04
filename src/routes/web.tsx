@@ -12,6 +12,7 @@ export const webRoutes = {
   Parametre: '/Parametre',
   Societe: '/Société',
   stagnant: '/stagnant',
+  scarp: '/scrap',
   favorite: '/favorite',
 
 };

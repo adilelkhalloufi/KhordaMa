@@ -59,6 +59,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
 
         <div className="flex items-center gap-6">
+        
           <div className="flex flex-col items-start">
             <span className="text-sm text-[#8C929E]">{t('product.unite')}</span>
             {product.unite.name[i18next.language]}
@@ -67,7 +68,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <div className="flex flex-col items-start">
             <span className="text-sm text-[#8C929E]">{t('product.categorie')}</span>
             {product.categorie.name[i18next.language]}
-
           </div>
        
         </div>
