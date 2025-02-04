@@ -13,6 +13,7 @@ const initialState: AdminState = {
     role: '',
     token: '',
   },
+  favoris :[]
 
 };
 

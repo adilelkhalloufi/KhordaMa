@@ -1,14 +1,18 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { IconHeart } from "@tabler/icons-react";
+import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { Badge } from "../ui/badge";
 import { Product } from "@/interfaces/admin";
 import i18next from "i18next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { webRoutes } from "@/routes/web";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "@/store/slices/cartSlice";
+import { RootState } from "@/store";
+import http from "@/utils/http";
+import { apiRoutes } from "@/routes/api";
+import { login } from "@/store/slices/adminSlice";
  
 interface ProductCardProps {
   product: Product
@@ -18,6 +22,31 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const dispatch = useDispatch();
   const addProductToCart = (product : Product) => {
      dispatch(addProduct(product));
+  }
+  const admin = useSelector((state: RootState) => state.admin);
+  
+
+ 
+ 
+  const addToFavorite = (product_id:any)=> {
+    let newFavoris = [];
+    if(admin.favoris.includes(product_id)){
+       newFavoris = admin.favoris.filter((fav) => fav !== product_id)
+    }else
+    {
+      newFavoris = [...admin.favoris, product_id]
+    }
+    dispatch(login({...admin, favoris: newFavoris}))
+
+    http.post(apiRoutes.favoris, {product_id: product_id})
+    .then((res) => {  
+      console.log(res.data)
+    })
+
+
+
+  
+    
   }
 
   return (
@@ -41,14 +70,21 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                 {product.status.name[i18next.language]}
               </Badge>
             </div>
+             
+          
 
-            <div className="absolute top-2 left-2">
-              <Badge className="px-2 py-1 bg-primary text-white rounded-lg text-xs">
-                <IconHeart></IconHeart>
-              </Badge>
-            </div>
         </Link>
-
+            {admin && (
+            <div className="absolute top-2 left-2" 
+           
+            >
+               <Badge className="px-2 py-1 bg-primary text-white rounded-lg text-xs" 
+                onClick={() => addToFavorite(product.id)}
+               >
+                   {admin.favoris.includes(product.id) ? <IconHeartFilled size={20}  color="red" /> : <IconHeart size={20} />}
+               </Badge>
+             </div>
+            )}
       </CardHeader>
       <CardContent className="p-4">
 

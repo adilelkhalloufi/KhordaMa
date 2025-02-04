@@ -1,7 +1,6 @@
 import { Cart } from '@/interfaces/admin';
 import { createSlice } from '@reduxjs/toolkit';
-import { clear } from 'console';
-
+ 
 
 const initialState: Cart = {
     products: []

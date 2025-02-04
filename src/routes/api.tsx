@@ -11,6 +11,6 @@ export const apiRoutes = {
   unites: `${API_URL}/unites`,
   specialities: `${API_URL}/specialities`,
   orders : `${API_URL}/orders`,
-
-
+  favoris : `${API_URL}/favoris`,
+  
 };

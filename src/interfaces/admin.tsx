@@ -2,6 +2,10 @@ export interface Admin {
     token?: string
     user?: User
     register?: RegisterForm
+    favoris?: Favoris[]
+}
+export interface Favoris {
+    id?:any
 }
 
 export interface Specialitie {

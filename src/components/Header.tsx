@@ -3,7 +3,7 @@ import {   Moon, Sun } from "lucide-react";
 import { useTheme } from "./theme-provider";
 import { useTranslation } from "react-i18next";
 import { webRoutes } from "@/routes/web";
-import { IconBasket, IconLogin, IconRecycle } from "@tabler/icons-react";
+import { IconBasket, IconLogin, IconRecycle, IconUser } from "@tabler/icons-react";
 import i18next from "../i18n";
 import { LangToggle } from "./lang-toggle";
 import ThemeSwitcher from "./theme-switcher";
@@ -48,6 +48,8 @@ export function Header() {
     },
   ];
   const cart = useSelector((state: RootState) => state.cart);
+  const admin = useSelector((state: RootState) => state.admin);
+
   return (
     <header className="fixed top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -95,16 +97,25 @@ export function Header() {
             
           
           </Button>
-
-          <Button
+          {admin && (
+            <Button
+            variant="ghost"
+              onClick={() => {
+                navigate(webRoutes.Dashboard);
+              }}
+            >
+               <IconUser/>
+            </Button>
+          )} 
+          {!admin && ( <Button
             onClick={() => {
-              // go to route login
-              window.location.href = webRoutes.login;
+                navigate(webRoutes.login);
             }}
           >
             <IconLogin className="mr-2 w-5 h-5" />
             {t("login")}
-          </Button>
+          </Button>)}
+         
         </div>
       </div>
     </header>

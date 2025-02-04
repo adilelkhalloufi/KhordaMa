@@ -85,9 +85,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         password: values.password,
       })
       .then((response) => {
+        
+        console.log("response", response.data);
+
         const admin: Admin = {
           token: response.data.token,
           user: response.data.user,
+          favoris: response.data.favoris
         };
         dispatch(login(admin));
       })
