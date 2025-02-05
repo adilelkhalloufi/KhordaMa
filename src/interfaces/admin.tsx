@@ -114,6 +114,7 @@ export interface Product {
     unite?: Unite
     user?: User
     status?: Status
+    availability_status?: string
     auction?: string
     date_end_auction?: Date
     conditions_document?: string

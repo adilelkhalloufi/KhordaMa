@@ -44,7 +44,7 @@ const Index = () => {
     queryKey: ['products'],
     queryFn: () =>
       defaultHttp
-        .get<Product[]>(apiRoutes.products)
+        .get<Product[]>(apiRoutes.GetProducts)
         .then((res) => {
 
           return res.data
