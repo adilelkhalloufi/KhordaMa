@@ -122,6 +122,9 @@ export interface Product {
     show_company?: boolean
 }
 
-
+export interface FormModalProps {
+    open: boolean;
+    onClose: () => void;
+}
 
 

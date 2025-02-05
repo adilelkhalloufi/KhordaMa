@@ -11,14 +11,17 @@ export default function DemoPage() {
   const [data, setData] = useState<Product[]>([]);
 
   useEffect(() => {
-    http.get(apiRoutes.product).then((res) => {
+    http.get(apiRoutes.orders).then((res) => {
       setData(res.data);
     }
     );
   }, []);
 
   return (
+    <>
+       <h1 className="text-3xl font-bold m-2">Orders</h1>
        <DataTable columns={columns} data={data} />
+    </>
     
   )
 }

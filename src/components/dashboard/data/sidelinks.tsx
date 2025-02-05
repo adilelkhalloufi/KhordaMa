@@ -46,27 +46,27 @@ export const sidelinks: SideLink[] = [
     href: webRoutes.dashboard_favris,
     icon: <IconHeart size={18} />,
   },
-  {
-    title: 'Facture',
-    label: '',
-    href: webRoutes.Facture,
-    icon: <IconFileInvoice size={18} />,
-  },
-  {
-    title: 'Settings',
-    label: '',
-    href: 'settings',
-    icon: <IconSettings size={18} />,
-    sub: [
+  // {
+  //   title: 'Facture',
+  //   label: '',
+  //   href: webRoutes.Facture,
+  //   icon: <IconFileInvoice size={18} />,
+  // },
+  // {
+  //   title: 'Settings',
+  //   label: '',
+  //   href: 'settings',
+  //   icon: <IconSettings size={18} />,
+  //   sub: [
 
-      {
-        title: 'Parametre',
-        label: '',
-        href: webRoutes.Parametre,
-        icon: <IconSettings2 size={18} />,
-      },
+  //     {
+  //       title: 'Parametre',
+  //       label: '',
+  //       href: webRoutes.Parametre,
+  //       icon: <IconSettings2 size={18} />,
+  //     },
 
 
-    ],
-  },
+  //   ],
+  // },
 ]
