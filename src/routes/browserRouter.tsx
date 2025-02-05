@@ -28,7 +28,9 @@ const fallbackElement = <ProgressBar />;
 const Dashboard = loadable(() => import('../pages/dashboard'), {
   fallback: fallbackElement,
 });
-
+const DashboardProduct = loadable(() => import('../pages/dashboard/product/page'), {
+  fallback: fallbackElement,
+});
 const Landing = loadable(() => import("../pages/landing"), {
   fallback: fallbackElement,
 });
@@ -78,6 +80,10 @@ export const browserRouter = createBrowserRouter([
         path: webRoutes.Dashboard,
         element: <Dashboard />,
       },
+      {
+        path: webRoutes.dashboard_product,
+        element: <DashboardProduct />,
+      }
 
     ],
   },

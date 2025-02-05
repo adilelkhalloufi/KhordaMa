@@ -31,19 +31,19 @@ export const sidelinks: SideLink[] = [
   {
     title: 'Produit',
     label: '',
-    href: webRoutes.Produit,
+    href: webRoutes.dashboard_product,
     icon: <IconBox size={18} />,
   },
   {
     title: 'Commandes',
     label: '',
-    href: webRoutes.Commandes,
+    href: webRoutes.dashboard_order,
     icon: <IconShoppingCart size={18} />,
   },
   {
     title: 'Favoris',
     label: '',
-    href: webRoutes.favorite,
+    href: webRoutes.dashboard_favris,
     icon: <IconHeart size={18} />,
   },
   {

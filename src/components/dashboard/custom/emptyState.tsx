@@ -18,8 +18,8 @@ const EmptyStateComponent = ({title,description,onclick,buttonTitle = "Go Back" 
         {icon}
       </div>
       <div className='mb-4'>
-        <h2 className='text-xl font-semibold text-gray-800 mb-2'>{title}</h2>
-        <p className='text-gray-600'>{description}</p>
+        <h2 className='text-xl font-semibold   mb-2'>{title}</h2>
+        <p className=' '>{description}</p>
       </div>
         <Button  onClick={onclick}>
         {buttonTitle}

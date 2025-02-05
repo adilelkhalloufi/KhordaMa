@@ -14,5 +14,8 @@ export const webRoutes = {
   stagnant: '/stagnant',
   scarp: '/scrap',
   favorite: '/favorite',
+  dashboard_product: '/dashboard/product',
+  dashboard_order: '/dashboard/order',
+  dashboard_favris: '/dashboard/favris'
 
 };
