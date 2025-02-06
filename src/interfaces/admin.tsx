@@ -42,7 +42,7 @@ export interface User {
     name?: string
     email?: string
     password?: string
-    role?: string
+    role?: number
     token?: string
 }
 
@@ -80,8 +80,17 @@ export interface Unite {
     slug?: string
     description?: string
 }
-
-
+ export interface Order {
+    id: any
+    user?: User
+    product?: Product
+    quantity: number
+    price: number
+    note?: string
+    address?: string
+    payment?: string
+    status?: Status
+}
 export interface Setting {
     id: any
     licence?: string

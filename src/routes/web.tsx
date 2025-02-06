@@ -16,6 +16,7 @@ export const webRoutes = {
   favorite: '/favorite',
   dashboard_product: '/dashboard/product',
   dashboard_order: '/dashboard/order',
+  dashboard_order_seller: '/dashboard/order/seller',
   dashboard_favris: '/dashboard/favris'
 
 };

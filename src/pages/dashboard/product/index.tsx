@@ -8,14 +8,16 @@ import { Button } from "@/components/ui/button";
 import Form from "./form";
 
  
-export default function DemoPage() {
+export default function index() {
 
   const [data, setData] = useState<Product[]>([]);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     http.get(apiRoutes.product).then((res) => {
       setData(res.data);
+      setLoading(false);
     }
     );
   }, [open]);
@@ -26,18 +28,18 @@ export default function DemoPage() {
         setOpen(!open);
        }} />
        <div className="flex justify-between items-center w-full mb-4">
-        <h1 className="text-3xl font-bold m-2">Product</h1>
+        <h1 className="text-3xl font-bold m-2">Produit</h1>
         <Button
             onClick={()=>{
               setOpen(!open);
             }}
             >
-              Add New 
+              Nouveau
             </Button>
        </div>
       
     
-       <DataTable columns={columns} data={data} />
+       <DataTable columns={columns} data={data} loading={loading} />
     </>
     
   )

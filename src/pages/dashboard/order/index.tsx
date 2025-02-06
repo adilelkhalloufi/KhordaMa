@@ -9,18 +9,19 @@ import { apiRoutes } from "@/routes/api";
 export default function DemoPage() {
 
   const [data, setData] = useState<Product[]>([]);
-
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     http.get(apiRoutes.orders).then((res) => {
       setData(res.data);
+      setLoading(false);
     }
     );
   }, []);
 
   return (
     <>
-       <h1 className="text-3xl font-bold m-2">Orders</h1>
-       <DataTable columns={columns} data={data} />
+       <h1 className="text-3xl font-bold m-2">Commande</h1>
+       <DataTable columns={columns} data={data} loading={loading} />
     </>
     
   )

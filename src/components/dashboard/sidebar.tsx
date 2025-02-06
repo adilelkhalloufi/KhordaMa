@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import { sidelinks } from "./data/sidelinks";
 import { LayoutDashbord } from "./custom/LayoutDashbord";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
   isCollapsed: boolean;
@@ -27,6 +29,10 @@ export default function Sidebar({
       document.body.classList.remove("overflow-hidden");
     }
   }, [navOpened]);
+
+  // Test Role
+  const role : number = useSelector((state : RootState) => state.admin.user.role);
+  const sidelinksVisible = sidelinks.filter((link) => link.role.includes(role));
 
   return (
     <aside
@@ -82,7 +88,7 @@ export default function Sidebar({
             }`}
           closeNav={() => setNavOpened(false)}
           isCollapsed={isCollapsed}
-          links={sidelinks}
+          links={sidelinksVisible}
         />
 
         {/* Scrollbar width toggle button */}

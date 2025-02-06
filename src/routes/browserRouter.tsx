@@ -35,6 +35,10 @@ const DashboardProduct = loadable(() => import('../pages/dashboard/product'), {
 const DashboardFavoris = loadable(() => import('../pages/dashboard/favoris'), {
   fallback: fallbackElement,
 });
+
+const DashboardOrder = loadable(() => import('../pages/dashboard/order'), {
+  fallback: fallbackElement,
+});
 const Landing = loadable(() => import("../pages/landing"), {
   fallback: fallbackElement,
 });
@@ -92,6 +96,10 @@ export const browserRouter = createBrowserRouter([
       {
         path: webRoutes.dashboard_favris,
         element: <DashboardFavoris />,
+      },
+      {
+        path: webRoutes.dashboard_order,
+        element: <DashboardOrder />,
       }
 
     ],

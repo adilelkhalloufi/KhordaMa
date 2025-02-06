@@ -29,7 +29,7 @@ export const columns: ColumnDef<Product>[] = [
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
               >
-                Name
+                Produit  
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             )
@@ -37,11 +37,11 @@ export const columns: ColumnDef<Product>[] = [
     },
     {
         accessorKey: "price",
-        header: "Price",
+        header: "Prix",
     },
     {
         accessorKey: "quantity",
-        header: "Quantity",
+        header: "Quantité",
     },
    
     {
@@ -50,10 +50,10 @@ export const columns: ColumnDef<Product>[] = [
     },
     {
       accessorKey: "categorie.name.fr",
-      header: "Categorie",
+      header: "Catégorie",
     },
     {
       accessorKey: "unite.name.fr",
-      header: "Unite",
+      header: "Unité",
     }
 ]

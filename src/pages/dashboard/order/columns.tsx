@@ -1,59 +1,45 @@
-import { Product } from "@/interfaces/admin"
+import { Order } from "@/interfaces/admin"
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
-import { Button } from "@/components/ui/button"
  
-export const columns: ColumnDef<Product>[] = [
-  
+export const columns: ColumnDef<Order>[] = [
     {
-    accessorKey: "image",
-    header: "Image",
-    cell: ({ row }) => {
-      const product = row.original
-
-      return (
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-10 h-10 rounded-md"
-        />
-      )
-    }
-    },
- 
+        accessorKey: "product.name",
+        header: "Produit",
+    },  
     {
-        accessorKey: "name",
-        header: ({ column }) => {
-            return (
-              <Button
-                variant="ghost"
-                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-              >
-                Name
-                <ArrowUpDown className="ml-2 h-4 w-4" />
-              </Button>
-            )
-          },
-    },
-    {
-        accessorKey: "price",
-        header: "Price",
+        accessorKey: "product.price",
+        header: "Prix",
     },
     {
         accessorKey: "quantity",
-        header: "Quantity",
+        header: "Quantité",
     },
-   
     {
-        accessorKey: "description",
+        accessorKey: "product.description",
         header: "Description",
     },
     {
-      accessorKey: "categorie.name.fr",
-      header: "Categorie",
+        accessorKey: "product.categorie.name.fr",
+        header: "Catégorie",
     },
     {
-      accessorKey: "unite.name.fr",
-      header: "Unite",
-    }
+        accessorKey: "product.unite.name.fr",
+        header: "Unité",
+    },
+    {
+        accessorKey: "note",
+        header: "Note",
+    },
+    {
+        accessorKey: "payment",
+        header: "Paiement",
+    },
+    {
+        accessorKey: "status",
+        header: "Statut",
+    },
+
 ]
+
+
+  

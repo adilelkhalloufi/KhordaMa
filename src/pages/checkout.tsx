@@ -46,7 +46,7 @@ export default function Component() {
   const CreateOrder = () => {
     setLoading(true);
      http.post(apiRoutes.orders, { 
-          products: products , 
+          products: products, 
           note: FromValues.note, 
           payement: FromValues.payement
         })

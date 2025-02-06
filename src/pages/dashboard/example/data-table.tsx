@@ -71,7 +71,7 @@ export function DataTable<TData, TValue>({
     <div className="rounded-md border">
       <div className="flex items-center p-4">
             <Input
-            placeholder="Filter emails..."
+            placeholder="Filtrer les e-mails..."
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
                 table.getColumn("name")?.setFilterValue(event.target.value)
@@ -155,8 +155,8 @@ export function DataTable<TData, TValue>({
       </Table>
       <div className="flex justify-between items-center p-4">
         <div className="flex-1 text-sm text-muted-foreground">
-            {table.getFilteredSelectedRowModel().rows.length} of{" "}
-            {table.getFilteredRowModel().rows.length} row(s) selected.
+            {table.getFilteredSelectedRowModel().rows.length} de{" "}
+            {table.getFilteredRowModel().rows.length} ligne(s) sélectionnée(s)
         </div>
           <div className="flex items-center justify-end space-x-2 ">
           <Button
@@ -165,7 +165,7 @@ export function DataTable<TData, TValue>({
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
+            Précédente
           </Button>
           <Button
             variant="outline"
@@ -173,7 +173,7 @@ export function DataTable<TData, TValue>({
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
+            Suivante
           </Button>
         </div>
       </div>

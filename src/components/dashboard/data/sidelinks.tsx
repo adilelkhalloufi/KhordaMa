@@ -1,3 +1,4 @@
+import { RoleEnum } from '@/enum/RoleEnum'
 import { webRoutes } from '@/routes/web'
 import {
   IconBox,
@@ -15,6 +16,7 @@ export interface NavLink {
   label?: string
   href: string
   icon: JSX.Element
+  role?: number[]
 }
 
 export interface SideLink extends NavLink {
@@ -23,50 +25,43 @@ export interface SideLink extends NavLink {
 
 export const sidelinks: SideLink[] = [
   {
-    title: 'Dashboard',
+    title: 'Tableau de bord',
     label: '',
     href: webRoutes.Dashboard,
     icon: <IconLayoutDashboard size={18} />,
+    role: [RoleEnum.BUYER, RoleEnum.SELLER, RoleEnum.ADMIN,RoleEnum.USER]
   },
   {
     title: 'Produit',
     label: '',
     href: webRoutes.dashboard_product,
     icon: <IconBox size={18} />,
+    role: [RoleEnum.BUYER, RoleEnum.SELLER, RoleEnum.ADMIN,RoleEnum.USER]
+
   },
   {
-    title: 'Commandes',
+    title: 'Votre Commandes',
     label: '',
     href: webRoutes.dashboard_order,
     icon: <IconShoppingCart size={18} />,
+    role: [RoleEnum.BUYER, RoleEnum.SELLER, RoleEnum.ADMIN,RoleEnum.USER]
+
   },
   {
-    title: 'Favoris',
+    title: 'Commandes des clients',
+    label: '',
+    href: webRoutes.dashboard_order_seller,
+    icon: <IconShoppingCart size={18} />,
+    role: [RoleEnum.SELLER]
+
+  },
+  {
+    title: 'Favorites',
     label: '',
     href: webRoutes.dashboard_favris,
     icon: <IconHeart size={18} />,
+    role: [RoleEnum.BUYER, RoleEnum.SELLER, RoleEnum.ADMIN,RoleEnum.USER]
+
   },
-  // {
-  //   title: 'Facture',
-  //   label: '',
-  //   href: webRoutes.Facture,
-  //   icon: <IconFileInvoice size={18} />,
-  // },
-  // {
-  //   title: 'Settings',
-  //   label: '',
-  //   href: 'settings',
-  //   icon: <IconSettings size={18} />,
-  //   sub: [
-
-  //     {
-  //       title: 'Parametre',
-  //       label: '',
-  //       href: webRoutes.Parametre,
-  //       icon: <IconSettings2 size={18} />,
-  //     },
-
-
-  //   ],
-  // },
+ 
 ]

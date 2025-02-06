@@ -95,18 +95,18 @@ export default function Form({open,onClose}: FormModalProps) {
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-6xl">
-        <DialogHeader>Add Products</DialogHeader>
+        <DialogHeader className="font-bold">Ajouter un produit</DialogHeader>
         {error && <Alert variant="destructive">
-          <AlertTitle>Error</AlertTitle>
+          <AlertTitle>Erreur</AlertTitle>
           <AlertDescription>
-            Please fill all the required fields
+          Veuillez remplir tous les champs obligatoires
           </AlertDescription>
         </Alert>}
       
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label>Name</Label>
+            <Label>Nom</Label>
             <Input name="name" value={formData.name} onChange={handleChange} />
           </div>
           <div>
@@ -122,7 +122,7 @@ export default function Form({open,onClose}: FormModalProps) {
             />
           </div>
           <div>
-            <Label>Price</Label>
+            <Label>Prix</Label>
             <Input
               type="number"
               name="price"
@@ -131,7 +131,7 @@ export default function Form({open,onClose}: FormModalProps) {
             />
           </div>
           <div>
-            <Label>Quantity</Label>
+            <Label>Quantité</Label>
             <Input
               type="number"
               name="quantity"
@@ -140,14 +140,14 @@ export default function Form({open,onClose}: FormModalProps) {
             />
           </div>
           <div>
-            <Label>Category</Label>
+            <Label>Catégorie</Label>
             <Select
               onValueChange={(value) =>
                 setFormData((prev) => ({ ...prev, categorie_id: value }))
               }
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select a category" />
+                <SelectValue placeholder="Sélectionnez une catégorie" />
               </SelectTrigger>
               <SelectContent>
                 {categories.map((category) => (
@@ -159,14 +159,14 @@ export default function Form({open,onClose}: FormModalProps) {
             </Select>
           </div>
           <div>
-            <Label>Unit</Label>
+            <Label>Unité</Label>
             <Select
               onValueChange={(value) =>
                 setFormData((prev) => ({ ...prev, unite_id: value }))
               }
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select a category" />
+                <SelectValue placeholder="Sélectionnez une unité" />
               </SelectTrigger>
               <SelectContent>
                 {unites.map((unite) => (
@@ -182,7 +182,7 @@ export default function Form({open,onClose}: FormModalProps) {
          
 
           <div>
-            <Label>Conditions Document</Label>
+            <Label>Document de conditions</Label>
             <Input
               name="conditions_document"
               type="file"
@@ -191,7 +191,7 @@ export default function Form({open,onClose}: FormModalProps) {
             />
           </div>
           <div>
-            <Label>Conditions Document Price</Label>
+            <Label>Conditions Document Prix</Label>
             <Input
               type="number"
               name="conditions_document_price"
@@ -200,7 +200,7 @@ export default function Form({open,onClose}: FormModalProps) {
             />
           </div>
           <div className="flex flex-col">
-            <Label  className="mb-2">Show Company</Label>
+            <Label  className="mb-2">Affiche Socéte</Label>
             <Switch
               checked={formData.show_company}
               onCheckedChange={(checked) =>
@@ -209,7 +209,7 @@ export default function Form({open,onClose}: FormModalProps) {
             />
           </div>
           <div className="flex flex-col">
-            <Label className="mb-2">Auction</Label>
+            <Label className="mb-2">Enchères</Label>
             <Switch
               checked={formData.auction}
               onCheckedChange={(checked) =>
@@ -220,7 +220,7 @@ export default function Form({open,onClose}: FormModalProps) {
           {formData.auction && (
             <div>
               <DatePicker
-                label="Date End Auction"
+                label="Date de fin de l'enchère"
                 value={formData.date_end_auction}
                 onChange={(date) =>
                   setFormData((prev) => ({ ...prev, date_end_auction: date }))
@@ -230,7 +230,7 @@ export default function Form({open,onClose}: FormModalProps) {
           )}
         </div>
         <div className="flex justify-end">
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button onClick={handleSubmit}>Ajouter</Button>
         </div>
       </DialogContent>
     </Dialog>

@@ -30,15 +30,18 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
+ import TableLoading from "@/components/skeleton/TableLoading"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  loading ?: boolean
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  loading
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
@@ -72,7 +75,7 @@ export function DataTable<TData, TValue>({
     
       <div className="flex items-center p-4">
             <Input
-            placeholder="Filter emails..."
+            placeholder="Filtrer les e-mails..."
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
                 table.getColumn("name")?.setFilterValue(event.target.value)
@@ -82,7 +85,7 @@ export function DataTable<TData, TValue>({
             <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="outline" className="ml-auto">
-                        Columns
+                        Colonnes
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
@@ -128,7 +131,8 @@ export function DataTable<TData, TValue>({
           ))}
         </TableHeader>
         <TableBody>
-          {table.getRowModel().rows?.length ? (
+          {loading == false ? (<>
+            {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}
@@ -152,12 +156,17 @@ export function DataTable<TData, TValue>({
               </TableCell>
             </TableRow>
           )}
+          
+          </>) : (<>
+            <TableLoading/>
+          </>)}
+
         </TableBody>
       </Table>
       <div className="flex justify-between items-center p-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-            {table.getFilteredSelectedRowModel().rows.length} of{" "}
-            {table.getFilteredRowModel().rows.length} row(s) selected.
+      <div className="flex-1 text-sm text-muted-foreground">
+            {table.getFilteredSelectedRowModel().rows.length} de{" "}
+            {table.getFilteredRowModel().rows.length} ligne(s) sélectionnée(s)
         </div>
           <div className="flex items-center justify-end space-x-2 ">
           <Button
@@ -166,7 +175,7 @@ export function DataTable<TData, TValue>({
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
+            Précédente
           </Button>
           <Button
             variant="outline"
@@ -174,7 +183,7 @@ export function DataTable<TData, TValue>({
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
+            Suivante
           </Button>
         </div>
       </div>
