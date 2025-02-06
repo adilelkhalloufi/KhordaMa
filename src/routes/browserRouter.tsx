@@ -10,6 +10,7 @@ import RequireAuth from "./requireAuth";
 import Layout from "@/components/dashboard/layout";
 import Register from "@/pages/register/index";
 import Checkout from "@/pages/checkout";
+import { ProfileForm } from "@/pages/dashboard/profile";
 
 
 const fallbackElement = <ProgressBar />;
@@ -34,9 +35,9 @@ const DashboardOrderSeller = loadable(() => import('../pages/dashboard/seller_or
   fallback: fallbackElement,
 });
 
-const DashboardProfile = loadable(() => import('../pages/dashboard/profile'), {
-  fallback: fallbackElement,
-});
+// const DashboardProfile = loadable(() => import('../pages/dashboard/profile'), {
+//   fallback: fallbackElement,
+// });
 const Landing = loadable(() => import("../pages/landing"), {
   fallback: fallbackElement,
 });
@@ -103,7 +104,7 @@ export const browserRouter = createBrowserRouter([
       },
       {
         path: webRoutes.dashboard_profile,
-        element: <DashboardProfile />,
+        element: <ProfileForm />,
       }
 
     ],
