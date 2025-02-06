@@ -1,18 +1,12 @@
 import { Outlet } from 'react-router-dom'
 
 import { memo } from 'react'
-
-import { Search } from '../search'
-import ThemeSwitch from '../theme-switch'
 import { UserNav } from '../user-nav'
 import { TopNav } from '../top-nav'
 import SkipToMain from '../skip-to-main'
 import Sidebar from '../sidebar'
 import { LayoutDashbord } from '../custom/LayoutDashbord'
 import useIsCollapsed from '../hooks/use-is-collapsed'
-import { ThemeProvider } from '@/components/theme-provider'
-import { Button } from '../custom/button'
-import { Moon, Sun } from 'lucide-react'
 import ThemeSwitcher from '@/components/theme-switcher'
 
 const Layout = () => {

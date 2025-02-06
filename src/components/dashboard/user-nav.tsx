@@ -59,7 +59,11 @@ export function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem
+          onClick={() => {
+            navigate(webRoutes.dashboard_profile);
+          }}  
+          >
             Profile
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
@@ -71,7 +75,7 @@ export function UserNav() {
             logoutAdmin();
           }}
         >
-          Log out
+          Se déconnecter
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -33,6 +33,10 @@ const DashboardOrder = loadable(() => import('../pages/dashboard/order'), {
 const DashboardOrderSeller = loadable(() => import('../pages/dashboard/seller_order'), {
   fallback: fallbackElement,
 });
+
+const DashboardProfile = loadable(() => import('../pages/dashboard/profile'), {
+  fallback: fallbackElement,
+});
 const Landing = loadable(() => import("../pages/landing"), {
   fallback: fallbackElement,
 });
@@ -96,6 +100,10 @@ export const browserRouter = createBrowserRouter([
       {
         path: webRoutes.dashboard_order_seller,
         element: <DashboardOrderSeller />,
+      },
+      {
+        path: webRoutes.dashboard_profile,
+        element: <DashboardProfile />,
       }
 
     ],
@@ -106,7 +114,6 @@ export const browserRouter = createBrowserRouter([
         <LayoutLanding />
       </RequireAuth>
     ),
-    // errorElement: errorElement,
     children: [
       {
         path: webRoutes.checkout,
