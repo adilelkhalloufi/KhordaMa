@@ -13,6 +13,6 @@ export const apiRoutes = {
   specialities: `${API_URL}/specialities`,
   orders : `${API_URL}/orders`,
   favoris : `${API_URL}/favoris`,
-  GetOrderForSeller : `${API_URL}/orders/seller`,
+  GetOrderForSeller : `${API_URL}/GetOrderForSeller`,
   
 };

@@ -11,19 +11,9 @@ import Layout from "@/components/dashboard/layout";
 import Register from "@/pages/register/index";
 import Checkout from "@/pages/checkout";
 
-// import RequireAuth from "./requireAuth";
-// import ProgressBar from "@/components/loader/progressBar";
-// import loadable from "@loadable/component";
 
-// const errorElement = <ErrorPage />;
 const fallbackElement = <ProgressBar />;
 
-// const Dashboard = loadable(() => import("../pages/dashboard"), {
-//   fallback: fallbackElement,
-// });
-// const Users = loadable(() => import("../pages/tasks"), {
-//   fallback: fallbackElement,
-// });
 
 const Dashboard = loadable(() => import('../pages/dashboard'), {
   fallback: fallbackElement,
@@ -39,6 +29,10 @@ const DashboardFavoris = loadable(() => import('../pages/dashboard/favoris'), {
 const DashboardOrder = loadable(() => import('../pages/dashboard/order'), {
   fallback: fallbackElement,
 });
+
+const DashboardOrderSeller = loadable(() => import('../pages/dashboard/seller_order'), {
+  fallback: fallbackElement,
+});
 const Landing = loadable(() => import("../pages/landing"), {
   fallback: fallbackElement,
 });
@@ -49,7 +43,6 @@ const Stagnant = loadable(() => import("../pages/ProductList"), {
 export const browserRouter = createBrowserRouter([
   {
     element: <LayoutLanding />,
-    // errorElement: errorElement,
     children: [
       {
         path: webRoutes.home,
@@ -82,7 +75,6 @@ export const browserRouter = createBrowserRouter([
         <Layout />
       </RequireAuth>
     ),
-    // errorElement: errorElement,
     children: [
       {
         path: webRoutes.Dashboard,
@@ -100,6 +92,10 @@ export const browserRouter = createBrowserRouter([
       {
         path: webRoutes.dashboard_order,
         element: <DashboardOrder />,
+      },
+      {
+        path: webRoutes.dashboard_order_seller,
+        element: <DashboardOrderSeller />,
       }
 
     ],
