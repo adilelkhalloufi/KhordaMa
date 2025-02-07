@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 export function Newsletter() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("Subscribed!");
+
   };
   const { t } = useTranslation();
   return (

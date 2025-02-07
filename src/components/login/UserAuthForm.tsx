@@ -85,8 +85,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         password: values.password,
       })
       .then((response) => {
-        
-        console.log("response", response.data);
+
 
         const admin: Admin = {
           token: response.data.token,
@@ -96,7 +95,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         dispatch(login(admin));
       })
       .catch((error) => {
-        console.log("error", error)
         handleErrorResponse(error);
         setIsLoading(false);
       });

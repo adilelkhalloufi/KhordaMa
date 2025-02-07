@@ -5,13 +5,13 @@ import { Product } from "@/interfaces/admin";
 import http from "@/utils/http";
 import { apiRoutes } from "@/routes/api";
 import { handleErrorResponse } from "@/utils";
-import {   useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
- 
+
 import ListProductSkeleton from "@/components/skeleton/ListProductSkeleton";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
- import RelatedProduct from "@/components/products/RelatedProduct";
+import RelatedProduct from "@/components/products/RelatedProduct";
 
 export const SingleProduct = () => {
   const { t } = useTranslation();
@@ -30,8 +30,6 @@ export const SingleProduct = () => {
         }),
   });
 
-  console.log("id : ", id);
-  console.log("product : ", product);
   return (
     // test loading if load show skeleton like single product skeleto
     // if not show single product

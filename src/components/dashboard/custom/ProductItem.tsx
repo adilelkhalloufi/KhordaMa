@@ -20,7 +20,7 @@ export default function ProductItem(product: Product) {
           disabled={product?.quantity <= 0 && true}
           size='sm'
           onClick={() => {
-            console.log('product : ', product)
+
 
             // dispatch(addToCart(product))
           }}

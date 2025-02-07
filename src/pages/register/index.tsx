@@ -53,11 +53,9 @@ const Register = () => {
     ];
 
     const Next = () => {
-        console.log("form", form)
         if (Stepper < 3) {
             setStepper(Stepper + 1)
         } else {
-            console.log("hadi lkhra", form)
             setLoading(true);
             defaultHttp.post(apiRoutes.register, form)
                 .then((response) => {

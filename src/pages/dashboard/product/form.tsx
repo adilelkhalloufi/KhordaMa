@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
- import { Switch } from "@/components/ui/switch";
- import { Dialog } from "@radix-ui/react-dialog";
+import { Switch } from "@/components/ui/switch";
+import { Dialog } from "@radix-ui/react-dialog";
 import { DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Categorie, FormModalProps, Unite } from "@/interfaces/admin";
 import { DatePicker } from "@/components/ui/date-picker";
@@ -13,10 +13,10 @@ import http, { defaultHttp } from "@/utils/http";
 import { apiRoutes } from "@/routes/api";
 import { useQuery } from "@tanstack/react-query";
 import { handleErrorResponse } from "@/utils";
- import i18next from "i18next";
+import i18next from "i18next";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-  
-export default function Form({open,onClose}: FormModalProps) {
+
+export default function Form({ open, onClose }: FormModalProps) {
   const [formData, setFormData] = useState({
     name: "",
     image: "",
@@ -25,7 +25,7 @@ export default function Form({open,onClose}: FormModalProps) {
     quantity: "",
     categorie_id: "",
     unite_id: "",
-      auction: false,
+    auction: false,
     date_end_auction: null,
     conditions_document: "",
     conditions_document_price: "",
@@ -36,14 +36,14 @@ export default function Form({open,onClose}: FormModalProps) {
     queryKey: ['categories'],
     queryFn: () =>
       defaultHttp
-        .get<Categorie[]>(apiRoutes.categories )
+        .get<Categorie[]>(apiRoutes.categories)
         .then((res) => res.data)
         .catch((e) => {
           handleErrorResponse(e)
           return []
         }),
   })
-   const { data: unites = [] } = useQuery<Unite[]>({
+  const { data: unites = [] } = useQuery<Unite[]>({
     queryKey: ['unites'],
     queryFn: () =>
       defaultHttp
@@ -61,31 +61,29 @@ export default function Form({open,onClose}: FormModalProps) {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     setError(false)
-  },[open])
+  }, [open])
   const handleSubmit = () => {
-    console.log(formData);
     // test if name and price are not empty
 
-    if(formData.name && formData.price){
-        http.post(apiRoutes.product, formData).then((res) => {
-               // redirect to the product page
-            onClose()
+    if (formData.name && formData.price) {
+      http.post(apiRoutes.product, formData).then((res) => {
+        // redirect to the product page
+        onClose()
 
 
-        }).catch((e) => {
-            handleErrorResponse(e)
-        });
-    
-     }
-     else
-    {
-        setError(true)
+      }).catch((e) => {
+        handleErrorResponse(e)
+      });
+
+    }
+    else {
+      setError(true)
     }
 
- 
+
 
 
 
@@ -99,10 +97,10 @@ export default function Form({open,onClose}: FormModalProps) {
         {error && <Alert variant="destructive">
           <AlertTitle>Erreur</AlertTitle>
           <AlertDescription>
-          Veuillez remplir tous les champs obligatoires
+            Veuillez remplir tous les champs obligatoires
           </AlertDescription>
         </Alert>}
-      
+
 
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -178,8 +176,8 @@ export default function Form({open,onClose}: FormModalProps) {
             </Select>
           </div>
 
-       
-         
+
+
 
           <div>
             <Label>Document de conditions</Label>
@@ -200,7 +198,7 @@ export default function Form({open,onClose}: FormModalProps) {
             />
           </div>
           <div className="flex flex-col">
-            <Label  className="mb-2">Affiche Socéte</Label>
+            <Label className="mb-2">Affiche Socéte</Label>
             <Switch
               checked={formData.show_company}
               onCheckedChange={(checked) =>

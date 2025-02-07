@@ -25,7 +25,6 @@ const TypeAccount = ({ form, data = [] }) => {
                         className="grid grid-cols-2 gap-4"
                         defaultChecked={form.role}
                         onValueChange={(e) => {
-                            console.log("role", e);
                             dispatch(register({ key: "role", value: e }));
                         }}
                     >

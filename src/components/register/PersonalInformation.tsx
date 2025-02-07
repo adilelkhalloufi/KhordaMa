@@ -10,7 +10,6 @@ const PersonalInformation = ({ form }) => {
     const dispatch = useDispatch();
     const data = useSelector((state: RootState) => state.register);
     const handleChange = (e) => {
-        console.log("e", e.target.value)
         dispatch(register({ key: e.target.name, value: e.target.value }));
     }
     return (

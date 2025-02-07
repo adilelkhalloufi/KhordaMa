@@ -2,7 +2,7 @@ import { CONFIG } from "@/CONFIG";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
-export const API_URL = `http://127.0.0.1:8000/api`;
+export const API_URL = `https://truck.adev.ma/api`;
 // export const API_URL = `http://khordamabackend.test/api`;
 
 export enum NotificationType {
@@ -44,7 +44,7 @@ export const handleErrorResponse = (
 
     if (error instanceof AxiosError && error?.response?.data?.error) {
       errorMessage = error.response.data.error;
-     } else if (error?.response?.data?.message) {
+    } else if (error?.response?.data?.message) {
       errorMessage = error.response.data.message;
     } else if (error?.message) {
       errorMessage = error.message;
@@ -64,7 +64,6 @@ export const handleErrorResponse = (
 
 export function isExpressionValid(expression: string, variables: any) {
   if (!variables) {
-    console.log("No variables found");
 
     return false; // No variables found
   }
@@ -82,7 +81,6 @@ export function isExpressionValid(expression: string, variables: any) {
 
     eval(expressionWithNumbers); // This will throw an error if the expression is invalid
   } catch (error) {
-    console.log("error isExpressionValid");
 
     return false; // Expression is invalid
   }

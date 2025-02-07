@@ -40,8 +40,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
     http.post(apiRoutes.favoris, {product_id: product_id})
     .then((res) => {  
-      console.log(res.data)
-    })
+     })
 
 
 
