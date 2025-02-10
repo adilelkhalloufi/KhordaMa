@@ -10,6 +10,7 @@ import RequireAuth from "./requireAuth";
 import Layout from "@/components/dashboard/layout";
 import Register from "@/pages/register/index";
 import Checkout from "@/pages/checkout";
+import LogoutPage from "@/pages/logoutPage";
 import { ProfileForm } from "@/pages/dashboard/profile";
 
 
@@ -128,6 +129,13 @@ export const browserRouter = createBrowserRouter([
     element: <SignIn />,
     // errorElement: errorElement,
   },
+  {
+    path: webRoutes.logout,
+    element: <LogoutPage />,
+    // errorElement: errorElement,
+  },
+  
+
  
   {
     path: "*",

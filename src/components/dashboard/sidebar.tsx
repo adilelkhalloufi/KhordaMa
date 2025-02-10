@@ -30,7 +30,6 @@ export default function Sidebar({
     }
   }, [navOpened]);
 
-  // Test Role
   const role : number = useSelector((state : RootState) => state.admin.user.role);
   const sidelinksVisible = sidelinks.filter((link) => link.role.includes(role));
 
