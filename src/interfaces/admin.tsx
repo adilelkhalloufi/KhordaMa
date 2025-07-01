@@ -123,12 +123,16 @@ export interface Product {
     unite?: Unite
     user?: User
     status?: Status
+        status_id?: number
+
     availability_status?: string
     auction?: string
     date_end_auction?: Date
     conditions_document?: string
     conditions_document_price?: number
     show_company?: boolean
+    favaris?: boolean
+    relatedProducts?: Product[]
 }
 
 export interface FormModalProps {

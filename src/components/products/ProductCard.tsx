@@ -13,6 +13,7 @@ import { RootState } from "@/store";
 import http from "@/utils/http";
 import { apiRoutes } from "@/routes/api";
 import { login } from "@/store/slices/adminSlice";
+import { Button } from "../ui/button";
  
 interface ProductCardProps {
   product: Product
@@ -21,6 +22,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const addProductToCart = (product : Product) => {
+    console.log("Adding product to cart:", product);
      dispatch(addProduct(product));
   }
   const admin = useSelector((state: RootState) => state.admin);
@@ -58,6 +60,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               src={product.image}
               alt={product.name}
               className="w-full h-48 object-cover rounded-t-lg"
+              onError={(e) => {
+                e.currentTarget.src = '/no-image.jpg';
+              }}
             />
 
 
@@ -112,11 +117,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <p className="text-muted-foreground text-sm line-clamp-2">{product.description}</p>
 
         {/* Create button to command  */}
-        <button className="bg-primary text-white py-2 px-4 mt-4 rounded-3xl w-full"
+        {/* if status_id = 3 disable button */}
+        <Button className="bg-primary text-white py-2 px-4 mt-4 rounded-3xl w-full"
           onClick={() => addProductToCart(product)}
+          disabled={product.status_id === 3}
         >
           {t('product.command')}
-        </button>
+        </Button>
 
       </CardContent>
     </Card>

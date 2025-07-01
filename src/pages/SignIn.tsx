@@ -45,10 +45,9 @@ export default function SignIn() {
               {t('login.condition')}
             </p>
             <p className='px-8 text-center text-sm text-muted-foreground'>
-              I don’t have an account on the platform
+              {t('register.message')}
               <Link to='/register' className='text-primary'>
-                Create a new account
-
+                {t('register.create')}
               </Link>
             </p>
           </div>

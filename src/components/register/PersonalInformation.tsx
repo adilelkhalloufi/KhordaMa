@@ -2,27 +2,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { ImageUpload } from "../ui/image-upload";
 import { RootState } from "@/store";
 import { register } from "@/store/slices/registerSlice";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
 import Cities from "@/data/cities.json";
+import { useTranslation } from "react-i18next";
 const PersonalInformation = ({ form }) => {
     const dispatch = useDispatch();
     const data = useSelector((state: RootState) => state.register);
+
     const handleChange = (e) => {
         dispatch(register({ key: e.target.name, value: e.target.value }));
     }
+
+    const handleImageChange = (file: File | null) => {
+        dispatch(register({ key: 'company_logo', value: file }));
+    };
+
+    const { t } = useTranslation();
+    
     return (
-        <>
+        <div className="flex flex-col space-y-4">
+            {/* Company Logo Upload Section */}
+            <ImageUpload
+                label={t('register.form.image')}
+                value={data.company_logo}
+                onChange={handleImageChange}
+                placeholder="Drag and drop your company logo here, or"
+                helperText="PNG, JPG, GIF up to 10MB"
+                maxSize={10}
+            />
             <Label>
-                Upload Image
-                <Input type="file" className="mt-2"
-                    name="company_logo"
-                    onChange={(e) => handleChange(e)}
-                />
-            </Label>
-            <Label>
-                First Name
+                {t('register.form.first')}
                 <Input name="first_name"
                     onChange={(e) => handleChange(e)}
                     defaultValue={data.first_name}
@@ -30,14 +42,14 @@ const PersonalInformation = ({ form }) => {
                 />
             </Label>
             <Label>
-                Last Name
+                {t('register.form.last')}
                 <Input name="last_name" onChange={(e) => handleChange(e)}
                     defaultValue={data.last_name}
 
                 />
             </Label>
             <Label>
-                Phone
+                {t('register.form.phone')}
                 <Input name="phone" type="tel"
                     onChange={(e) => handleChange(e)}
                     defaultValue={data.phone}
@@ -45,14 +57,13 @@ const PersonalInformation = ({ form }) => {
                 />
             </Label>
             <Label>
-                Email
+                {t('register.form.email')}
                 <Input name="email" type="email" onChange={(e) => handleChange(e)}
                     defaultValue={data.email}
                 />
             </Label>
             <Label>
-                City
-
+                {t('register.form.city')}
                 <Select
                     name="city_id"
                     onValueChange={(e) => dispatch(register({ key: 'city_id', value: e }))}
@@ -61,14 +72,14 @@ const PersonalInformation = ({ form }) => {
 
 
                     <SelectTrigger >
-                        <SelectValue placeholder="Select a City" />
+                        <SelectValue placeholder={t('register.form.city')} />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            <SelectLabel>City</SelectLabel>
+                            <SelectLabel>{t('register.form.city')}</SelectLabel>
 
                             {Cities.map((city) => (
-                                <SelectItem key={city.id} value={city.id}>{city.name}</SelectItem>
+                                <SelectItem key={city.id} value={city.id.toString()}>{city.name}</SelectItem>
                             ))}
 
                         </SelectGroup>
@@ -77,13 +88,13 @@ const PersonalInformation = ({ form }) => {
 
             </Label >
             <Label>
-                Address
+                {t('register.form.adress')}
                 <Input name="address" type="text" onChange={(e) => handleChange(e)}
                     defaultValue={data.address}
                 />
             </Label>
             <Label>
-                Password
+                {t('register.form.password')}
                 <Input name="password" type="password" onChange={(e) => handleChange(e)}
                     defaultValue={data.password}
                 />
@@ -96,9 +107,9 @@ const PersonalInformation = ({ form }) => {
 
                     defaultChecked={data?.agreement}
                 />
-                <span>I accept the terms and conditions</span>
+                <span>{t('register.form.terms')}</span>
             </Label>
-        </>
+        </div>
     );
 }
 

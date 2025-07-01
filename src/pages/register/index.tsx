@@ -94,8 +94,8 @@ const Register = () => {
 
                 </div>
                 <div className="flex flex-row justify-between">
-                    <Button onClick={Previous} variant="outline">Previous</Button>
-                    <Button onClick={Next}>Next</Button>
+                    <Button onClick={Previous} variant="outline">{t('previous')}</Button>
+                    <Button onClick={Next}>{t('next')}</Button>
                 </div>
                 <div className="p-10 max-w-2xl mx-auto scroll-smooth">
 
@@ -105,8 +105,8 @@ const Register = () => {
 
                 </div>
                 <div className="flex flex-row justify-between">
-                    <Button onClick={Previous} variant="outline">Previous</Button>
-                    <Button onClick={Next} loading={loading}>Next</Button>
+                    <Button onClick={Previous} variant="outline">{t('previous')}</Button>
+                    <Button onClick={Next}>{t('next')}</Button>
                 </div>
 
             </div >

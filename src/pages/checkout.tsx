@@ -31,7 +31,8 @@ import { Product } from "@/interfaces/admin";
 import http  from "@/utils/http";
 import { apiRoutes } from "@/routes/api";
 import { handleErrorResponse } from "@/utils";
-
+import { toast } from "sonner";
+ 
 export default function Component() {
   const products : Product[] = useSelector((state: RootState) => state.cart.products);
   const { t } = useTranslation();
@@ -40,7 +41,7 @@ export default function Component() {
   const [loading, setLoading] = React.useState(false);
   const [FromValues, setFromValues] = React.useState({
     note: "",
-    payement: "",
+    payment: "",
  
   });
   const CreateOrder = () => {
@@ -48,12 +49,13 @@ export default function Component() {
      http.post(apiRoutes.orders, { 
           products: products, 
           note: FromValues.note, 
-          payement: FromValues.payement
+          payment: FromValues.payment
         })
           .then((res) => {
             setLoading(false);
-            navigate(webRoutes.home, { replace: true });
             dispatch(clearCart());
+            toast.success(t("checkout.success"));
+            navigate(webRoutes.home, { replace: true });
           }).catch((e) => {
             setLoading(false);
             handleErrorResponse(e);
@@ -92,6 +94,9 @@ export default function Component() {
                   alt="Product Image"
                   className="rounded-md"
                   style={{ aspectRatio: "80/80", objectFit: "cover" }}
+                  onError={(e) => {
+                      e.currentTarget.src = '/no-image.jpg';
+                  }}
                 />
                 <div className="flex-1">
                   <h3 className="text-lg font-medium">{product.name}</h3>
@@ -193,17 +198,17 @@ export default function Component() {
                 <Label htmlFor="payment">{t('checkout.type.payement')}</Label>
                 <Select id="payment" name="payment"
                    onValueChange={(e)=>{
-                    setFromValues({...FromValues, payement: e})
+                    setFromValues({...FromValues, payment: e})
                   }}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder={t('checkout.type.payement')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="1">Cash</SelectItem>
-                    <SelectItem value="2">credit card</SelectItem>
-                    <SelectItem value="3">paypal</SelectItem>
-                    <SelectItem value="4">other</SelectItem>
+                    <SelectItem value="1">Espèces</SelectItem>
+                    <SelectItem value="2">Carte de crédit</SelectItem>
+                    <SelectItem value="3">PayPal</SelectItem>
+                    <SelectItem value="4">Autre</SelectItem>
                    </SelectContent>
                 </Select>
               </div>

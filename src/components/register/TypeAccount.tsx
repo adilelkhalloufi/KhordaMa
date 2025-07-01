@@ -16,20 +16,20 @@ const TypeAccount = ({ form, data = [] }) => {
     return (
         <div>
 
-            <Card>
+            <Card   >
                 <CardHeader>
-                    <CardTitle>Account type</CardTitle>
+                    <CardTitle>{i18next.t('account.type')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                    <RadioGroup defaultValue="buyer"
-                        className="grid grid-cols-2 gap-4"
+                    <RadioGroup defaultValue="buyer" 
+                        className="grid grid-cols-2 gap-4 mb-4"
                         defaultChecked={form.role}
                         onValueChange={(e) => {
                             dispatch(register({ key: "role", value: e }));
                         }}
                     >
 
-                        <div>
+                        <div  >
                             <RadioGroupItem
                                 value={RoleEnum.BUYER.toString()}
                                 id="buyer"
@@ -42,7 +42,7 @@ const TypeAccount = ({ form, data = [] }) => {
                                 className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                             >
                                 <WalletCardsIcon className="mb-3 h-6 w-6" />
-                                Buyer
+                                {i18next.t('buyer')}
                             </Label>
                         </div>
                         <div>
@@ -57,31 +57,38 @@ const TypeAccount = ({ form, data = [] }) => {
                                 className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                             >
                                 <CreditCardIcon className="mb-3 h-6 w-6" />
-                                Seller
+                                {i18next.t('seller')}
                             </Label>
                         </div>
 
                     </RadioGroup>
-
+                      <Label className="text-sm font-medium">
+                        {i18next.t('register.form.company')}
+                    </Label>      
                     <Input
-                        placeholder='Company name'
+                        placeholder={i18next.t('register.form.company')}
                         defaultValue={form.company_name}
                         onChange={(e) => dispatch(register({ key: "company_name", value: e.target.value }))}
                     />
-
+                    <Label className="text-sm font-medium">
+                        {i18next.t('register.form.Specialitie')}
+                    </Label>
 
                     <Select
+                        placeholder={i18next.t('register.form.Specialitie')}
+                        className="w-full"
                         onValueChange={(e) =>
                             dispatch(register({ key: "specialitie_id", value: e }))
                         }
                         defaultValue={form.specialitie_id}
+                    
                     >
                         <SelectTrigger >
-                            <SelectValue placeholder="Select a specialitie" />
+                            <SelectValue placeholder={i18next.t('register.form.Specialitie')} />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
-                                <SelectLabel>Specialitie</SelectLabel>
+                                <SelectLabel>{i18next.t('register.form.Specialitie')}</SelectLabel>
                                 {dataFilter.map((item) => (
                                     <SelectItem key={item.id} value={item.id}>{item.name[i18next.language]}</SelectItem>
                                 ))}
