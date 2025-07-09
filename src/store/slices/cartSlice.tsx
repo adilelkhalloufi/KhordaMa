@@ -17,7 +17,13 @@ export const cartSlice = createSlice({
                  return state;
             }
             
-            state.products.push(action.payload);
+            // Add default coins_cost if not present (for demo purposes)
+            const productWithCoins = {
+                ...action.payload,
+                coins_cost: action.payload.coins_cost || Math.floor(action.payload.price * 0.1) || 10
+            };
+            
+            state.products.push(productWithCoins);
             return state;
         },
         removeProduct: (state, action) => {

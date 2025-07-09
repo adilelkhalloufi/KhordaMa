@@ -21,12 +21,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import EmptyStateComponent from "@/components/dashboard/custom/emptyState";
-import { IconBasket, IconTrash } from "@tabler/icons-react";
+import { IconBasket, IconTrash, IconCoins } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { webRoutes } from "@/routes/web";
 import { Badge } from "@/components/ui/badge";
 import i18next from "i18next";
 import { clearCart, removeProduct } from "@/store/slices/cartSlice";
+import { spendCoins } from "@/store/slices/userSlice";
 import { Product } from "@/interfaces/admin";
 import http  from "@/utils/http";
 import { apiRoutes } from "@/routes/api";
@@ -35,6 +36,7 @@ import { toast } from "sonner";
  
 export default function Component() {
   const products : Product[] = useSelector((state: RootState) => state.cart.products);
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -44,7 +46,20 @@ export default function Component() {
     payment: "",
  
   });
+
+  // Calculate total coins cost
+  const totalCoinsRequired = products.reduce((acc, product) => {
+    return acc + (product.coins_cost || 0);
+  }, 0);
+
+  const remainingCoins = (currentUser?.coins || 0) - totalCoinsRequired;
+  const hasEnoughCoins = remainingCoins >= 0;
   const CreateOrder = () => {
+    if (!hasEnoughCoins) {
+      toast.error(t("checkout.coins.insufficient"));
+      return;
+    }
+    
     setLoading(true);
      http.post(apiRoutes.orders, { 
           products: products, 
@@ -54,6 +69,7 @@ export default function Component() {
           .then((res) => {
             setLoading(false);
             dispatch(clearCart());
+            dispatch(spendCoins(totalCoinsRequired));
             toast.success(t("checkout.success"));
             navigate(webRoutes.home, { replace: true });
           }).catch((e) => {
@@ -123,6 +139,18 @@ export default function Component() {
                       </span>
                       <Badge>{product.quantity}</Badge>
                     </div>
+
+                    {product.coins_cost && (
+                      <div>
+                        <span className="mr-2 font-medium">
+                          {t("checkout.coins.cost")} :
+                        </span>
+                        <Badge variant="secondary" className="text-yellow-600">
+                          <IconCoins className="w-3 h-3 mr-1" />
+                          {product.coins_cost}
+                        </Badge>
+                      </div>
+                    )}
                     
                   </p>
                 </div>
@@ -168,6 +196,45 @@ export default function Component() {
                   </div>
             </CardContent>
           </Card>
+          
+          {/* Coins Card */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <IconCoins className="w-5 h-5 text-yellow-500" />
+                {t('checkout.coins')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span>{t('checkout.coins.current')}</span>
+                <span className="font-medium text-yellow-600">
+                  {currentUser?.coins || 0} {t('checkout.coins.unit')}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>{t('checkout.coins.cost')}</span>
+                <span className="font-medium">
+                  {totalCoinsRequired} {t('checkout.coins.unit')}
+                </span>
+              </div>
+              <Separator />
+              <div className="flex items-center justify-between font-medium">
+                <span>{t('checkout.coins.remaining')}</span>
+                <span className={remainingCoins < 0 ? "text-red-600" : "text-green-600"}>
+                  {remainingCoins} {t('checkout.coins.unit')}
+                </span>
+              </div>
+              {!hasEnoughCoins && (
+                <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded-md">
+                  <p className="text-sm text-red-600">
+                    {t('checkout.coins.insufficient')}
+                  </p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+          
           <Card>
             <CardHeader>
               <CardTitle>{t('checkout.payement')}</CardTitle>
@@ -196,7 +263,7 @@ export default function Component() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="payment">{t('checkout.type.payement')}</Label>
-                <Select id="payment" name="payment"
+                <Select 
                    onValueChange={(e)=>{
                     setFromValues({...FromValues, payment: e})
                   }}
@@ -214,7 +281,10 @@ export default function Component() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button className="w-full" loading={loading}
+              <Button 
+                className="w-full" 
+                loading={loading}
+                disabled={!hasEnoughCoins}
                 onClick={() => {CreateOrder()}}
               >
                 {t('checkout.command')}

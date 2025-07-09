@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import adminSlice, { AdminState } from './slices/adminSlice';
 import registerSlice from './slices/registerSlice';
 import cartSlice from './slices/cartSlice';
+import userSlice, { UserState } from './slices/userSlice';
 
 
 
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   admin: adminSlice,
   register: registerSlice,
   cart: cartSlice,
+  user: userSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -45,5 +47,6 @@ export type RootState = {
   admin: AdminState;
   register: RegisterForm;
   cart: Cart;
+  user: UserState;
 };
 export type AppDispatch = typeof store.dispatch;

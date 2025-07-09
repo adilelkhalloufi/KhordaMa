@@ -44,6 +44,7 @@ export interface User {
     password?: string
     role?: any
     token?: string
+    coins?: number
 }
 
 export interface ModalOption {
@@ -117,6 +118,7 @@ export interface Product {
     reference?: string
     description?: string
     price: number
+    coins_cost?: number
     quantity: number
     qte: number
     categorie?: Categorie
