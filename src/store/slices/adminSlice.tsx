@@ -31,9 +31,19 @@ export const adminSlice = createSlice({
       return state;
 
     },
+    updateUserCoins: (state, action) => {
+      if (state?.user) {
+        state.user.coins = action.payload;
+      }
+    },
+    spendCoins: (state, action) => {
+      if (state?.user?.coins !== undefined) {
+        state.user.coins -= action.payload;
+      }
+    },
   },
 });
 
-export const { login, logout } = adminSlice.actions;
+export const { login, logout, updateUserCoins, spendCoins } = adminSlice.actions;
 
 export default adminSlice.reducer;

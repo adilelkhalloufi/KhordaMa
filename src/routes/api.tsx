@@ -14,5 +14,6 @@ export const apiRoutes = {
   orders : `${API_URL}/orders`,
   favoris : `${API_URL}/favoris`,
   GetOrderForSeller : `${API_URL}/GetOrderForSeller`,
+  GetCoins : `${API_URL}/GetCoins`,
   
 };

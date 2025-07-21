@@ -88,6 +88,7 @@
   "checkout.coins.remaining": "Restant Après Achat",
   "checkout.coins.insufficient": "Pièces insuffisantes pour cet achat",
   "checkout.coins.unit": "pièces",
+  "checkout.coins.refreshed": "Solde de pièces mis à jour avec succès",
   "product.detail": "Détails du produit",
   "product.related": "Produits connexes",
   "product.no_related_products": "Aucun produit associé",

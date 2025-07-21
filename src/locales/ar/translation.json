@@ -88,6 +88,7 @@
   "checkout.coins.remaining": "المتبقي بعد الشراء",
   "checkout.coins.insufficient": "عملات غير كافية لهذا الشراء",
   "checkout.coins.unit": "عملات",
+  "checkout.coins.refreshed": "تم تحديث رصيد العملات بنجاح",
   "product.detail": "تفاصيل المنتج",
   "product.related": "المنتجات ذات الصلة",
   "product.no_related_products": "لا يوجد منتجات ذات صلة",

@@ -88,6 +88,7 @@
   "checkout.coins.remaining": "Remaining After Purchase",
   "checkout.coins.insufficient": "Insufficient coins for this purchase",
   "checkout.coins.unit": "coins",
+  "checkout.coins.refreshed": "Coins balance updated successfully",
   "product.detail": "Product Details",
   "product.related": "Related Products",
   "product.no_related_products": "no related products",

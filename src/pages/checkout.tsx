@@ -21,13 +21,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import EmptyStateComponent from "@/components/dashboard/custom/emptyState";
-import { IconBasket, IconTrash, IconCoins } from "@tabler/icons-react";
+import { IconBasket, IconTrash, IconCoins, IconRefresh } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { webRoutes } from "@/routes/web";
 import { Badge } from "@/components/ui/badge";
 import i18next from "i18next";
 import { clearCart, removeProduct } from "@/store/slices/cartSlice";
-import { spendCoins } from "@/store/slices/userSlice";
+import { spendCoins, updateUserCoins } from "@/store/slices/adminSlice";
 import { Product } from "@/interfaces/admin";
 import http  from "@/utils/http";
 import { apiRoutes } from "@/routes/api";
@@ -36,21 +36,62 @@ import { toast } from "sonner";
  
 export default function Component() {
   const products : Product[] = useSelector((state: RootState) => state.cart.products);
-  const currentUser = useSelector((state: RootState) => state.user.currentUser);
+  const currentUser = useSelector((state: RootState) => state.admin.user);
+ 
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = React.useState(false);
+  const [coinsLoading, setCoinsLoading] = React.useState(false);
   const [FromValues, setFromValues] = React.useState({
     note: "",
     payment: "",
  
   });
 
-  // Calculate total coins cost
-  const totalCoinsRequired = products.reduce((acc, product) => {
-    return acc + (product.coins_cost || 0);
-  }, 0);
+  // Fetch user coins on component mount
+  React.useEffect(() => {
+    const fetchUserCoins = async () => {
+      if (!currentUser?.id) return;
+      
+      setCoinsLoading(true);
+      try {
+        const response = await http.get(apiRoutes.GetCoins);
+        if (response.data && response.data.coins !== undefined) {
+          dispatch(updateUserCoins(response.data.coins));
+        }
+      } catch (error) {
+        console.error("Failed to fetch user coins:", error);
+        handleErrorResponse(error);
+      } finally {
+        setCoinsLoading(false);
+      }
+    };
+
+    fetchUserCoins();
+  }, [currentUser?.id, dispatch]);
+
+  // Function to manually refresh coins
+  const refreshCoins = async () => {
+    if (!currentUser?.id) return;
+    
+    setCoinsLoading(true);
+    try {
+      const response = await http.get(apiRoutes.GetCoins);
+      if (response.data && response.data.coins !== undefined) {
+        dispatch(updateUserCoins(response.data.coins));
+        toast.success(t('checkout.coins.refreshed'));
+      }
+    } catch (error) {
+      console.error("Failed to refresh user coins:", error);
+      handleErrorResponse(error);
+    } finally {
+      setCoinsLoading(false);
+    }
+  };
+
+  // Calculate total coins cost (no quantity multiplication for coins)
+  const totalCoinsRequired = products.length;
 
   const remainingCoins = (currentUser?.coins || 0) - totalCoinsRequired;
   const hasEnoughCoins = remainingCoins >= 0;
@@ -64,7 +105,8 @@ export default function Component() {
      http.post(apiRoutes.orders, { 
           products: products, 
           note: FromValues.note, 
-          payment: FromValues.payment
+          payment: FromValues.payment,
+          coins : totalCoinsRequired
         })
           .then((res) => {
             setLoading(false);
@@ -79,6 +121,7 @@ export default function Component() {
 
       
   }
+
   return (
     <React.Fragment>
       <main className="container mx-auto my-8 grid grid-cols-1 gap-8 md:grid-cols-[2fr_1fr]">
@@ -183,7 +226,7 @@ export default function Component() {
               <div className="flex items-center justify-between">
                 <span>{t('checkout.total')}</span>
                 {/* calculate total montant product */}
-                <span>{products.reduce((acc, product) => acc + product.price, 0)} {t('currency')}</span>
+                <span>{products.reduce((acc, product) => acc + (product.price * product.quantity), 0)} {t('currency')}</span>
                </div>
               <div className="flex items-center justify-between">
                 <span>{t('checkout.discount')}</span>
@@ -192,7 +235,7 @@ export default function Component() {
               <Separator />
               <div className="flex items-center justify-between font-medium">
                 <span>{t('checkout.total')}</span>
-                <span>{products.reduce((acc, product) => acc + product.price, 0)} {t('currency')}</span>
+                <span>{products.reduce((acc, product) => acc + (product.price * product.quantity), 0)} {t('currency')}</span>
                   </div>
             </CardContent>
           </Card>
@@ -200,16 +243,31 @@ export default function Component() {
           {/* Coins Card */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <IconCoins className="w-5 h-5 text-yellow-500" />
-                {t('checkout.coins')}
+              <CardTitle className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <IconCoins className="w-5 h-5 text-yellow-500" />
+                  {t('checkout.coins')}
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={refreshCoins}
+                  disabled={coinsLoading}
+                  className="h-8 w-8 p-0"
+                >
+                  <IconRefresh className={`w-4 h-4 ${coinsLoading ? 'animate-spin' : ''}`} />
+                </Button>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               <div className="flex items-center justify-between">
                 <span>{t('checkout.coins.current')}</span>
                 <span className="font-medium text-yellow-600">
-                  {currentUser?.coins || 0} {t('checkout.coins.unit')}
+                  {coinsLoading ? (
+                    <span className="text-gray-400">Loading...</span>
+                  ) : (
+                    `${currentUser?.coins || 0} ${t('checkout.coins.unit')}`
+                  )}
                 </span>
               </div>
               <div className="flex items-center justify-between">
