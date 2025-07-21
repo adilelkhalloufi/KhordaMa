@@ -24,13 +24,13 @@ export interface SideLink extends NavLink {
 }
 
 export const sidelinks: SideLink[] = [
-  {
-    title: 'Tableau de bord',
-    label: '',
-    href: webRoutes.Dashboard,
-    icon: <IconLayoutDashboard size={18} />,
-    role: [RoleEnum.BUYER, RoleEnum.SELLER, RoleEnum.ADMIN,RoleEnum.USER]
-  },
+  // {
+  //   title: 'Tableau de bord',
+  //   label: '',
+  //   href: webRoutes.Dashboard,
+  //   icon: <IconLayoutDashboard size={18} />,
+  //   role: [RoleEnum.BUYER, RoleEnum.SELLER, RoleEnum.ADMIN,RoleEnum.USER]
+  // },
   {
     title: 'Produit',
     label: '',
