@@ -26,11 +26,11 @@ export function Header() {
       // label: "Home",
       label: t("menu_home"),
     },
-    {
-      href: webRoutes.stagnant,
-      //  label: "Scarp",
-      label: t("menu_stagnant"),
-    },
+    // {
+    //   href: webRoutes.stagnant,
+    //   //  label: "Scarp",
+    //   label: t("menu_stagnant"),
+    // },
     {
       href: webRoutes.scarp,
       //  label: "Scarp",

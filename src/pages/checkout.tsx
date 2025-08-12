@@ -183,7 +183,7 @@ export default function Component() {
                       <Badge>{product.quantity}</Badge>
                     </div>
 
-                    {product.coins_cost && (
+                    {/* {product.coins_cost && (
                       <div>
                         <span className="mr-2 font-medium">
                           {t("checkout.coins.cost")} :
@@ -193,7 +193,7 @@ export default function Component() {
                           {product.coins_cost}
                         </Badge>
                       </div>
-                    )}
+                    )} */}
                     
                   </p>
                 </div>

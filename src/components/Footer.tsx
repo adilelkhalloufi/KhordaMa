@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/tooltip"
 import { Facebook, Instagram, Linkedin, Moon, Send, Sun, Twitter } from "lucide-react"
 import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom"
+import { webRoutes } from "@/routes/web"
 import ThemeSwitcher from "./theme-switcher"
 
 export default function Footer() {
@@ -33,7 +35,7 @@ export default function Footer() {
             <form className="relative">
               <Input
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t('footer.email_placeholder')}
                 className="pr-12 backdrop-blur-sm"
               />
               <Button
@@ -42,42 +44,42 @@ export default function Footer() {
                 className="absolute right-1 top-1 h-8 w-8 rounded-full bg-primary text-primary-foreground transition-transform hover:scale-105"
               >
                 <Send className="h-4 w-4" />
-                <span className="sr-only">Subscribe</span>
+                <span className="sr-only">{t('footer.subscribe')}</span>
               </Button>
             </form>
             <div className="absolute -right-4 top-0 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
           </div>
           <div>
-            <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
+            <h3 className="mb-4 text-lg font-semibold">{t('footer.quick_links')}</h3>
             <nav className="space-y-2 text-sm">
               <a href="#" className="block transition-colors hover:text-primary">
-                Home
+                {t('menu_home')}
               </a>
               <a href="#" className="block transition-colors hover:text-primary">
-                About Us
+                {t('menu_about')}
               </a>
               <a href="#" className="block transition-colors hover:text-primary">
-                Services
+                {t('footer.services')}
               </a>
               <a href="#" className="block transition-colors hover:text-primary">
-                Products
+                {t('footer.products')}
               </a>
               <a href="#" className="block transition-colors hover:text-primary">
-                Contact
+                {t('menu_contact')}
               </a>
             </nav>
           </div>
           <div>
-            <h3 className="mb-4 text-lg font-semibold">Contact Us</h3>
+            <h3 className="mb-4 text-lg font-semibold">{t('footer.contact_us')}</h3>
             <address className="space-y-2 text-sm not-italic">
-              <p>123 Innovation Street</p>
-              <p>Tech City, TC 12345</p>
-              <p>Phone: (123) 456-7890</p>
-              <p>Email: hello@example.com</p>
+              <p>{t('footer.address_line1')}</p>
+              <p>{t('footer.address_line2')}</p>
+              <p>{t('footer.phone')}: {t('footer.phone_number')}</p>
+              <p>{t('footer.email')}: {t('footer.email_address')}</p>
             </address>
           </div>
           <div className="relative">
-            <h3 className="mb-4 text-lg font-semibold">Follow Us</h3>
+            <h3 className="mb-4 text-lg font-semibold">{t('footer.follow_us')}</h3>
             <div className="mb-6 flex space-x-4">
               <TooltipProvider>
                 <Tooltip>
@@ -88,7 +90,7 @@ export default function Footer() {
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Follow us on Facebook</p>
+                    <p>{t('footer.follow_facebook')}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -101,7 +103,7 @@ export default function Footer() {
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Follow us on Twitter</p>
+                    <p>{t('footer.follow_twitter')}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -114,7 +116,7 @@ export default function Footer() {
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Follow us on Instagram</p>
+                    <p>{t('footer.follow_instagram')}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -127,7 +129,7 @@ export default function Footer() {
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Connect with us on LinkedIn</p>
+                    <p>{t('footer.follow_linkedin')}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -139,18 +141,18 @@ export default function Footer() {
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row">
           <p className="text-sm text-muted-foreground">
-            © 2024 Your Company. All rights reserved.
+            {t('footer.copyright')}
           </p>
           <nav className="flex gap-4 text-sm">
-            <a href="#" className="transition-colors hover:text-primary">
-              Privacy Policy
-            </a>
-            <a href="#" className="transition-colors hover:text-primary">
-              Terms of Service
-            </a>
-            <a href="#" className="transition-colors hover:text-primary">
-              Cookie Settings
-            </a>
+            <Link to={webRoutes.privacy_policy} className="transition-colors hover:text-primary">
+              {t('footer.privacy_policy')}
+            </Link>
+            <Link to={webRoutes.terms_service} className="transition-colors hover:text-primary">
+              {t('footer.terms_service')}
+            </Link>
+            <Link to={webRoutes.cookie_settings} className="transition-colors hover:text-primary">
+              {t('footer.cookie_settings')}
+            </Link>
           </nav>
         </div>
       </div>

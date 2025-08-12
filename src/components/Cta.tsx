@@ -13,17 +13,24 @@ export function Cta() {
           {t('contact.description')}
         </p>
         <div className="flex gap-4 justify-center">
-          <Button size="lg">
+          <Button 
+            size="lg"
+            onClick={() => {
+              const defaultMessage = "Salut, je voudrais vous demander comment fonctionne la plateforme ?";
+              const whatsappUrl = `https://wa.me/212612704187?text=${encodeURIComponent(defaultMessage)}`;
+              window.open(whatsappUrl, '_blank');
+            }}
+          >
             <IconBrandWhatsapp />
             {t('button.whatsup')}
           </Button>
-          <Button
+          {/* <Button
             variant="outline"
             size="lg"
           >
             <IconBrandKakoTalk />
             {t('button.contact')}
-          </Button>
+          </Button> */}
         </div>
 
       </div>

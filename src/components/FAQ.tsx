@@ -6,23 +6,28 @@ import {
 } from "@/components/ui/accordion"
 import { useTranslation } from "react-i18next"
 
-const faqs = [
-  {
-    question: "What is your platform?",
-    answer: "Our platform is a comprehensive solution designed to help teams and individuals streamline their workflow and boost productivity."
-  },
-  {
-    question: "How much does it cost?",
-    answer: "We offer flexible pricing plans starting from $10/month. Contact us for custom enterprise solutions."
-  },
-  {
-    question: "Is there a free trial?",
-    answer: "Yes, we offer a 14-day free trial with full access to all features. No credit card required."
-  }
-]
-
 export function FAQ() {
   const { t } = useTranslation()
+  
+  const faqs = [
+    {
+      question: t('faq.question1'),
+      answer: t('faq.answer1')
+    },
+    {
+      question: t('faq.question2'),
+      answer: t('faq.answer2')
+    },
+    {
+      question: t('faq.question3'),
+      answer: t('faq.answer3')
+    },
+    {
+      question: t('faq.question4'),
+      answer: t('faq.answer4')
+    }
+  ]
+
   return (
     <section id="faq" className="py-16 container">
       <div className="text-center mb-12">

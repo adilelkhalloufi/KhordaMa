@@ -18,6 +18,8 @@ export const webRoutes = {
   dashboard_order: '/dashboard/order',
   dashboard_order_seller: '/dashboard/order/seller',
   dashboard_favris: '/dashboard/favris',
-  dashboard_profile: '/dashboard/profile'
-
+  dashboard_profile: '/dashboard/profile',
+  privacy_policy: '/privacy-policy',
+  terms_service: '/terms-of-service',
+  cookie_settings: '/cookie-settings'
 };

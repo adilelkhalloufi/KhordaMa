@@ -12,6 +12,9 @@ import Register from "@/pages/register/index";
 import Checkout from "@/pages/checkout";
 import LogoutPage from "@/pages/logoutPage";
 import { ProfileForm } from "@/pages/dashboard/profile";
+import PrivacyPolicy from "@/pages/privacy-policy";
+import TermsOfService from "@/pages/terms-of-service";
+import CookieSettings from "@/pages/cookie-settings";
 
 
 const fallbackElement = <ProgressBar />;
@@ -69,6 +72,18 @@ export const browserRouter = createBrowserRouter([
       {
         path: webRoutes.register,
         element: <Register />,
+      },
+      {
+        path: webRoutes.privacy_policy,
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: webRoutes.terms_service,
+        element: <TermsOfService />,
+      },
+      {
+        path: webRoutes.cookie_settings,
+        element: <CookieSettings />,
       },
   
 

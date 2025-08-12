@@ -16,18 +16,25 @@ export function Hero() {
           {t('hero_title')}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 animate-fade-up">
-          <Button size="lg"
+
+                   <Button size="lg"
+          onClick={() => {
+            navigator(webRoutes.scarp)
+          }}
+          
+          >  {t('button_scrap')}</Button>
+          {/* <Button size="lg"
           onClick={() => {
             navigator(webRoutes.stagnant)
           }}
           
-          >  {t('button_stagnant')}</Button>
-          <Button size="lg" variant="outline"
+          >  {t('button_stagnant')}</Button> */}
+          {/* <Button size="lg" variant="outline"
           
           onClick={() => {
             navigator(webRoutes.scarp)
           }}
-          >{t('button_scrap')}</Button>
+          >{t('button_scrap')}</Button> */}
         </div>
       </div>
     </section>

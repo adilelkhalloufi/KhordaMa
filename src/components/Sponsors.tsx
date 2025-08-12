@@ -28,7 +28,7 @@ export function Sponsors() {
     <section className="py-16 container">
       <div className="text-center">
         <h2 className="text-sm font-semibold text-muted-foreground mb-8">
-          Trusted by leading companies
+          {t('sponsors_title')}
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-center opacity-70">
           {sponsors.map(({ icon, name }: SponsorProps,index) => (
