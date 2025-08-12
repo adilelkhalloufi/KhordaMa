@@ -35,7 +35,7 @@ const InterseingForm = ({ form, data }) => {
                 ))}
             </div>
 
-            <h1 className="text-4xl font-semibold text-center  my-4">{t('menu_stagnant')}</h1>
+            {/* <h1 className="text-4xl font-semibold text-center  my-4">{t('menu_stagnant')}</h1> */}
             <div className="flex flex-wrap gap-2  ">
 
                 {

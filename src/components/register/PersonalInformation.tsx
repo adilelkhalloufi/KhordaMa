@@ -25,14 +25,14 @@ const PersonalInformation = ({ form }) => {
     return (
         <div className="flex flex-col space-y-4">
             {/* Company Logo Upload Section */}
-            <ImageUpload
+            {/* <ImageUpload
                 label={t('register.form.image')}
                 value={data.company_logo}
                 onChange={handleImageChange}
                 placeholder="Drag and drop your company logo here, or"
                 helperText="PNG, JPG, GIF up to 10MB"
                 maxSize={10}
-            />
+            /> */}
             <Label>
                 {t('register.form.first')}
                 <Input name="first_name"
@@ -101,13 +101,22 @@ const PersonalInformation = ({ form }) => {
             </Label>
             <Label className="flex items-center space-x-2 mt-4">
                 <Checkbox name="acceptTerms"
-                    // onCheckedChange={
-                    //     (e) => dispatch(register({ key: 'agreement', value: e.target.checked }))
-                    // }
-
+                    onCheckedChange={
+                        (checked) => dispatch(register({ key: 'agreement', value: checked }))
+                    }
                     defaultChecked={data?.agreement}
                 />
-                <span>{t('register.form.terms')}</span>
+                <span>
+                    {t('register.form.terms')}{' '}
+                    <a 
+                        href="/terms-of-service" 
+                        className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {t('register.form.terms_link')  }
+                    </a>
+                </span>
             </Label>
         </div>
     );
