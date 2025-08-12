@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import RelatedProduct from "@/components/products/RelatedProduct";
+import VendorContact from "@/components/products/VendorContact";
 
 export const SingleProduct = () => {
   const { t } = useTranslation();
@@ -224,6 +225,14 @@ export const SingleProduct = () => {
               </Button>
             </div>
           </form>
+          
+          {/* Vendor Contact Section */}
+          {product?.user && (
+            <div className="grid gap-4">
+              <VendorContact vendor={product.user} productId={product.id} />
+            </div>
+          )}
+          
           {/* <div className="grid gap-4">
             <h2 className="font-bold text-lg">Customer Reviews</h2>
          <ReviewCustomer/>

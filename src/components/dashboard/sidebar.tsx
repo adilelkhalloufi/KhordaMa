@@ -8,6 +8,7 @@ import { LayoutDashbord } from "./custom/LayoutDashbord";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { webRoutes } from "@/routes/web";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
   isCollapsed: boolean;
@@ -57,13 +58,14 @@ export default function Sidebar({
           <div className={`flex items-center ${!isCollapsed ? "gap-2" : ""}`}>
 
             <IconRecycle width={24} height={24} />
-            <div
+            <a
+            href={webRoutes.home}
               className={`flex flex-col justify-end truncate ${isCollapsed ? "invisible w-0" : "visible w-auto"
                 }`}
             >
               <span className="font-medium">{t('website')}</span>
               <span className="text-xs">Business</span>
-            </div>
+            </a>
           </div>
 
           {/* Toggle Button in mobile */}

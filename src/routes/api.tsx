@@ -15,5 +15,6 @@ export const apiRoutes = {
   favoris : `${API_URL}/favoris`,
   GetOrderForSeller : `${API_URL}/GetOrderForSeller`,
   GetCoins : `${API_URL}/GetCoins`,
+  spend_coins : `${API_URL}/spend-coins`,
   
 };

@@ -41,10 +41,13 @@ export interface User {
     id?: number
     name?: string
     email?: string
+    phone?: string
     password?: string
     role?: any
     token?: string
     coins?: number
+    address?: string
+    company?: string
 }
 
 export interface ModalOption {
